@@ -7,3 +7,24 @@
 * {
   font-family: 'Quicksand', sans-serif;
 }
+
+.cat-0:hover {
+  background-color: #f43f5e;
+}
+
+.cat-1:hover {
+  background-color: #eab308;
+}
+
+.cat-2:hover {
+  background-color: #0ea5e9;
+}
+
+.cat-3:hover {
+  background-color: #14b8a6;
+}
+
+.cat-4:hover {
+  background-color: #9ca3af;
+  border-color: #9ca3af;
+}

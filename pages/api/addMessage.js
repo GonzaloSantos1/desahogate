@@ -9,8 +9,9 @@ export default async function handler(req, res) {
   const db = client.db('posts');
   const {message} = req.body;
 
-  const newMessage = {
+  const post = {
     ...message,
     created_at: Date.now(),
   };
+  res.json(post);
 }

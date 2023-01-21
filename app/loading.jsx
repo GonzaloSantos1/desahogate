@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Loading = () => {
   return (
-    <div className='mx-auto w-full h-full my-auto text-5xl font-bold'>
+    <div className='flex justify-center items-center mx-auto w-full h-full my-auto text-5xl font-bold'>
       <Image
         src='/../public/assets/images/purr.png'
         width={300}

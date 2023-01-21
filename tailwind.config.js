@@ -12,8 +12,16 @@ module.exports = {
         secondary: '#9ca3af',
         'action-2': '#0ea5e9',
         action: '#ec4899',
+        'action-3': '#eab308',
+        'action-4': '#14b8a6',
+        'action-5': '#f43f5e',
       },
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern: /(bg|text|border|hover:bg|hover:text|hover:border)-action-(2|3|4|5)/,
+    },
+  ],
 };

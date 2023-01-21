@@ -12,11 +12,13 @@ export default function RootLayout({children}) {
         head.jsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body className='bg-background md:bg-black text-primary h-screen overflow-hidden flex flex-col'>
+      <body className='bg-black text-primary h-screen overflow-hidden flex flex-col'>
         <Header />
 
         <Suspense fallback={<Loading />}>
-          <div className='flex-1 overflow-y-scroll relative'>{children}</div>
+          <div id='body-div' className='flex-1 overflow-y-scroll relative'>
+            {children}
+          </div>
         </Suspense>
         <Footer />
       </body>
