@@ -1,43 +1,55 @@
 'use client';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {IconCircleX} from '@tabler/icons';
 
-function CategoriesFilter() {
-  const [category, setCategory] = useState(['All']);
-  const [categories, setCategories] = useState([
-    {name: 'Relaciones de pareja', color: 'action-5', selected: false},
-    {name: 'Trabajo', color: 'action-3', selected: false},
-    {name: 'Familia', color: 'action-2', selected: false},
-    {name: 'Amigos', color: 'action-4', selected: false},
-    {name: 'Otros', color: 'secondary', selected: false},
-  ]);
+function CategoriesFilter(props) {
+  const {categories, handleCategory} = props;
+  const [category, setCategory] = useState('');
 
-  const handleSelected = (index) => {
-    let newCategories = [...categories];
-    newCategories[index].selected = !newCategories[index].selected;
-    setCategories(newCategories);
+  useEffect(() => {
+    handleCategory(category);
+  }, [category]);
+
+  const uncheckCategories = () => {
+    let uncheck = categories.map((e) => e.name);
+    uncheck.forEach((element) => {
+      let input = document.getElementById(element);
+      input.checked = false;
+    });
+    handleCategory('');
   };
 
   return (
-    <ul className='w-full px-2 flex flex-wrap justify-center gap-4'>
-      {categories.map(({name, color, selected}, index) => (
-        <li key={index}>
-          <input
-            type='radio'
-            id={name}
-            onClick={(e) => console.log(e.target.value)}
-            className={`sr-only peer cat-${index}`}
-            value={name}
-            name='categories-list'
-          />
-          <label
-            htmlFor={name}
-            className={`text-${color} px-2 py-1 border font-medium ease-in-out transition duration-200 rounded-lg border-${color} select-none hover:text-white cursor-pointer cat-${index} peer-checked:text-white`}
-          >
-            {name}
-          </label>
-        </li>
-      ))}
-    </ul>
+    <>
+      <ul className='w-full px-2 flex flex-wrap justify-center gap-4'>
+        {categories.map(({name, color, selected}, index) => (
+          <li key={index}>
+            <input
+              type='radio'
+              id={name}
+              onClick={(e) => handleCategory(e.target.value)}
+              className={`sr-only peer cat-${index}`}
+              value={name}
+              name='categories-list'
+            />
+            <label
+              htmlFor={name}
+              className={`text-${color} px-2 py-1 border font-medium ease-in-out transition duration-200 rounded-lg border-${color} select-none hover:text-white cursor-pointer cat-${index} peer-checked:text-white`}
+            >
+              {name}
+            </label>
+          </li>
+        ))}
+      </ul>
+      <button
+        onClick={() => uncheckCategories()}
+        className='w-full flex justify-center items-center my-4 hover:underline hover:underline-offset-4'
+      >
+        <IconCircleX size={20} className='inline-flex mx-1' />
+
+        <p className='text-sm'>Borrar filtros</p>
+      </button>
+    </>
   );
 }
 
