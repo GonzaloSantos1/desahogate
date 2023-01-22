@@ -38,40 +38,59 @@ const dateHandler = (postDate) => {
 export default async function Board() {
   const data = await getData();
 
+  const categories = [
+    {name: 'Relaciones de pareja', color: 'action-5', selected: false},
+    {name: 'Trabajo', color: 'action-3', selected: false},
+    {name: 'Familia', color: 'action-2', selected: false},
+    {name: 'Amigos', color: 'action-4', selected: false},
+    {name: 'Otros', color: 'secondary', selected: false},
+  ];
+
   return (
     <div className='my-4 px-8 '>
       <CategoriesFilter />
-      <CreateModal />
+      <CreateModal categories={categories} />
       <ul className='flex flex-wrap justify-center gap-6 md:gap-8'>
-        {data.reverse().map((post) => (
-          <>
-            <li className='relative'>
-              <Link href={`/board/${post.id}`}>
-                <button className='w-full max-w-sm min-w-[326px] md:min-w-[384px] px-8 py-4 bg-gray-900/70 border border-action rounded-lg shadow-sm shadow-action'>
-                  <p className='mt-2 font-medium tracking-wide'>{post.message}</p>
-                  <div className='flex justify-between items-end mt-4 text-secondary font-medium'>
-                    <div className='flex flex-col justify-start text-start'>
-                      <p className='text-sm'>{post.comments.length} comentarios</p>
-                      <p className='text-sm relative pl-5'>
-                        <span className='inline-flex absolute left-0 top-0.5'>
-                          <IconClockHour3 size={15} stroke={2} />
-                        </span>
-                        {dateHandler(post.created_at)}
-                      </p>
+        {data
+          .filter((e) => e.category == 'Trabajo')
+          .reverse()
+          .map((post) => (
+            <>
+              <li className='relative'>
+                <Link href={`/board/${post.id}`}>
+                  <button className='w-full max-w-sm min-w-[326px] md:min-w-[384px] px-8 py-4 bg-gray-900/70 border border-action rounded-lg shadow-sm shadow-action'>
+                    <p className='mt-2 font-medium tracking-wide'>{post.message}</p>
+                    <div className='flex justify-between items-end mt-4 text-secondary font-medium'>
+                      <div className='flex flex-col justify-start text-start'>
+                        <p className='text-sm'>{post.comments.length} comentarios</p>
+                        <p className='text-sm relative pl-5'>
+                          <span className='inline-flex absolute left-0 top-0.5'>
+                            <IconClockHour3 size={15} stroke={2} />
+                          </span>
+                          {dateHandler(post.created_at)}
+                        </p>
+                      </div>
+                      <div className='flex flex-col items-end'>
+                        <p href='#' className='font-semibold text-sm text-action' role='link'>
+                          {post.username}
+                        </p>
+                        {categories.map(({name, color}) => {
+                          if (post.category == name) {
+                            return (
+                              <p className={`text-sm text-${color} font-semibold`}>
+                                {post.category}
+                              </p>
+                            );
+                          }
+                        })}
+                      </div>
                     </div>
-                    <div className='flex flex-col items-end'>
-                      <p href='#' className='font-semibold text-sm text-action' role='link'>
-                        {post.username}
-                      </p>
-                      <p className='text-sm text-action-2 font-semibold'>{post.category}</p>
-                    </div>
-                  </div>
-                </button>
-              </Link>
-            </li>
-            {/* <ChatInput username={user.username} /> */}
-          </>
-        ))}
+                  </button>
+                </Link>
+              </li>
+              {/* <ChatInput username={user.username} /> */}
+            </>
+          ))}
         {/* <li className='relative'>
           <button className='w-full max-w-sm px-8 py-4 bg-gray-800 border border-pink-400/20 rounded-lg shadow-sm shadow-pink-900'>
             <p className='mt-2 font-medium tracking-wide'>

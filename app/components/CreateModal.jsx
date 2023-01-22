@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import {IconChevronDown} from '@tabler/icons';
 
-function CreateModal() {
+function CreateModal({categories}) {
   const [modal, setModal] = useState(false);
   const [userDropdown, setUserDropdown] = useState(false);
   const [charactersCount, setCharactersCount] = useState(0);
@@ -10,14 +10,6 @@ function CreateModal() {
   const [category, setCategory] = useState('Selecciona una categoría');
   const [username, setUsername] = useState('username');
   const [input, setInput] = useState('');
-
-  const [categories, setCategories] = useState([
-    {name: 'Relaciones de pareja', color: 'action-5', selected: false},
-    {name: 'Trabajo', color: 'action-3', selected: false},
-    {name: 'Familia', color: 'action-2', selected: false},
-    {name: 'Amigos', color: 'action-4', selected: false},
-    {name: 'Otros', color: 'secondary', selected: false},
-  ]);
 
   const countHandler = () => {
     const textarea = document.getElementById('textarea');
@@ -170,22 +162,28 @@ function CreateModal() {
 
                     <input id='category' value={category} type='radio' className='sr-only' />
 
-                    <label
-                      for='category'
-                      id='category-label'
-                      onClick={() => {
-                        setDropdown(!dropdown);
-                        setUserDropdown(false);
-                      }}
-                      className={
-                        dropdown
-                          ? `text-sm text-primary font-semibold cursor-pointer flex items-center select-none border bg-action-2 border-action-2 pr-1 gap-0.5 rounded-md pl-2`
-                          : 'text-sm text-action-2 font-semibold cursor-pointer flex items-center select-none border border-sky-800 pr-1 gap-0.5 rounded-md pl-2'
+                    {categories.map(({name, color}) => {
+                      if (name == category) {
+                        return (
+                          <label
+                            for='category'
+                            id='category-label'
+                            onClick={() => {
+                              setDropdown(!dropdown);
+                              setUserDropdown(false);
+                            }}
+                            className={
+                              dropdown
+                                ? `text-sm text-primary font-semibold cursor-pointer flex items-center select-none border bg-${color} border-${color} pr-1 gap-0.5 rounded-md pl-2`
+                                : `text-sm text-${color} font-semibold cursor-pointer flex items-center select-none border border-${color} pr-1 gap-0.5 rounded-md pl-2`
+                            }
+                          >
+                            <p>{category}</p>
+                            <IconChevronDown size={16} stroke={3} className='mt-0.5' />
+                          </label>
+                        );
                       }
-                    >
-                      <p>{category}</p>
-                      <IconChevronDown size={16} stroke={3} className='mt-0.5' />
-                    </label>
+                    })}
 
                     {!dropdown ? (
                       ''

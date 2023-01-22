@@ -8,23 +8,28 @@
   font-family: 'Quicksand', sans-serif;
 }
 
-.cat-0:hover {
+.cat-0:hover,
+.cat-0:checked + label {
   background-color: #f43f5e;
 }
 
-.cat-1:hover {
+.cat-1:hover,
+.cat-1:checked + label {
   background-color: #eab308;
 }
 
-.cat-2:hover {
+.cat-2:hover,
+.cat-2:checked + label {
   background-color: #0ea5e9;
 }
 
-.cat-3:hover {
+.cat-3:hover,
+.cat-3:checked + label {
   background-color: #14b8a6;
 }
 
-.cat-4:hover {
+.cat-4:hover,
+.cat-4:checked + label {
   background-color: #9ca3af;
   border-color: #9ca3af;
 }
