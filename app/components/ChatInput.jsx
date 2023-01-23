@@ -2,53 +2,51 @@
 import React, {useState} from 'react';
 
 function ChatInput(props) {
-  const {username} = props;
+  const {username, postId, refreshMessages, disabled} = props;
   const [input, setInput] = useState('');
 
-  const addMessage = (e) => {
+  const addComment = (e) => {
     e.preventDefault();
 
     if (!input) return;
 
-    const messageToSend = input;
+    const commentToSend = input;
     setInput('');
 
-    const message = {
-      message: messageToSend,
+    const comment = {
+      text: commentToSend,
       created_at: Date.now(),
-      username: username,
+      username: 'fetch usuario',
     };
 
-    const uploadMessage = async () => {
-      const res = await fetch('/api/addPost', {
+    const uploadComment = async () => {
+      const res = await fetch(`/api/addPostComment/${postId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message,
+          comment,
         }),
       });
-
-      const data = await res.json();
-      console.log('MENSAJE AÑADIDO >>>', data);
     };
 
-    uploadMessage();
+    uploadComment();
+    refreshMessages();
   };
   return (
-    <form onSubmit={addMessage} className='flex max-w-xl w-full'>
+    <form onSubmit={addComment} className='flex px-2 rounded-md overflow-hidden'>
       <input
         type='text'
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        placeholder='Enter message here...'
-        className='flex-1 bg-gray-300'
+        placeholder='Enter comment here...'
+        className='flex-1 bg-black border border-primary px-2 focus:outline-none'
       />
       <button
         type='submit'
-        disabled={!input}
-        className='bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed'
+        disabled={!input || disabled}
+        className='bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed'
       >
         Send
       </button>

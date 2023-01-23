@@ -6,6 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation: {
+        //Bounces 5 times 1s equals 5s
+        'bounce-short': 'bounce 1s ease-in-out 3',
+      },
       colors: {
         background: '#171717',
         primary: '#e5e7eb',

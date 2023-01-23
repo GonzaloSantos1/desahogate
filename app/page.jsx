@@ -22,9 +22,9 @@ export default function Home() {
           </p>
         </div>
         <Image
-          src='/../public/assets/images/purr-6.gif'
-          width={300}
-          height={300}
+          src='/assets/images/purr-6.gif'
+          width={450}
+          height={450}
           alt='picture of a cat hiding dirt under the carpet'
           className='hidden md:block'
         />
@@ -41,9 +41,9 @@ export default function Home() {
           </p>
         </div>
         <Image
-          src='/../public/assets/images/purr-5.png'
-          width={300}
-          height={300}
+          src='/assets/images/purr-5.png'
+          width={450}
+          height={450}
           alt='picture of a cat hiding dirt under the carpet'
           className='hidden md:block'
         />
@@ -56,9 +56,9 @@ export default function Home() {
           </p>
         </div>
         <Image
-          src='/../public/assets/images/purr.png'
-          width={300}
-          height={300}
+          src='/assets/images/purr-working-process.png'
+          width={450}
+          height={450}
           alt='picture of a cat hiding dirt under the carpet'
           className='hidden md:block'
         />

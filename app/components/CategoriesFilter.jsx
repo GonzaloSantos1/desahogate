@@ -43,7 +43,7 @@ function CategoriesFilter(props) {
       </ul>
       <button
         onClick={() => uncheckCategories()}
-        className='w-full flex justify-center items-center my-4 hover:underline hover:underline-offset-4'
+        className='flex justify-center items-center mx-auto my-4 hover:underline hover:underline-offset-4'
       >
         <IconCircleX size={20} className='inline-flex mx-1' />
 

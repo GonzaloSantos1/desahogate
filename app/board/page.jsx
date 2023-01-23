@@ -23,7 +23,7 @@ export default async function Board() {
 
   return (
     <div className='my-4 px-8 '>
-      <CreateModal categories={categories} />
+      {data.lenght && <CreateModal categories={categories} />}
       <BoardDisplay data={data} categories={categories} />
     </div>
   );

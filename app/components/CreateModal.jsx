@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import {IconChevronDown} from '@tabler/icons';
 
-function CreateModal({categories}) {
+function CreateModal({categories, animate}) {
   const [modal, setModal] = useState(false);
   const [userDropdown, setUserDropdown] = useState(false);
   const [charactersCount, setCharactersCount] = useState(0);
@@ -60,7 +60,7 @@ function CreateModal({categories}) {
         onClick={() => {
           setModal(!modal);
         }}
-        className='block rounded-full px-5 py-2.5 text-center hover:text-action ease-in-out transition bg-gray-900/70 hover:bg-transparent text-primary border-2 border-action font-semibold tracking-wide mx-auto my-10'
+        className={`block rounded-md px-5 py-2.5 text-center ease-in-out transition duration-300 text-action border-2 border-action font-semibold tracking-wide mx-auto my-10 hover:border-pink-600 hover:bg-pink-600 hover:text-white `}
         type='button'
       >
         Desahogarme
@@ -233,9 +233,9 @@ function CreateModal({categories}) {
                 <button
                   type='submit'
                   disabled={!input || category == 'Selecciona una categoría'}
-                  className=' text-primary tracking-wide bg-sky-500 font-semibold rounded-lg text-sm py-2 px-6 items-center cursor-pointer disabled:opacity-50'
+                  className=' text-primary tracking-wide bg-sky-500 font-semibold rounded-md text-sm py-2 px-12 items-center cursor-pointer disabled:opacity-50'
                 >
-                  Desahogarme
+                  Crear
                 </button>
               </div>
             </form>
