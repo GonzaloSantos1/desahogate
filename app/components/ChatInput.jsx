@@ -1,11 +1,15 @@
 'use client';
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {useSession, signIn, signOut} from 'next-auth/react';
+import UserContext from '../../lib/userContext';
 
 function ChatInput(props) {
-  const {username, postId, refreshMessages, disabled} = props;
+  const {postId, refreshMessages, disabled} = props;
   const [input, setInput] = useState('');
   const {data: session} = useSession();
+  const user = useContext(UserContext);
+  const username = user.user.username;
+  const userId = user.user._id;
 
   const addComment = (e) => {
     e.preventDefault();
@@ -18,7 +22,7 @@ function ChatInput(props) {
     const comment = {
       text: commentToSend,
       created_at: Date.now(),
-      username: 'fetch usuario',
+      username: username,
     };
 
     const uploadComment = async () => {
@@ -29,6 +33,7 @@ function ChatInput(props) {
         },
         body: JSON.stringify({
           comment,
+          userId,
         }),
       });
     };
@@ -39,29 +44,29 @@ function ChatInput(props) {
   return (
     <>
       {!session ? (
-        <>
-          <p>Not signed in</p>
-          <br />
-          <button onClick={() => signIn()}>Sign in</button>
-        </>
+        <div className='flex justify-center items-center gap-1 py-2'>
+          <button onClick={() => signIn()} className='text-action-2 font-semibold'>
+            Inicia sesión
+          </button>
+          <p>para poder comentar</p>
+        </div>
       ) : (
         <>
-          <div>
-            <h4>Signed in as {session.user.name}</h4>
-            <button onClick={() => signOut()}>Sign out</button>
-          </div>
-          <form onSubmit={addComment} className='flex px-2 rounded-md overflow-hidden'>
+          <form
+            onSubmit={addComment}
+            className='flex px-4 rounded-md overflow-hidden w-full pt-2 text-sm h-12 relative'
+          >
             <input
               type='text'
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder='Enter comment here...'
-              className='flex-1 bg-black border border-primary px-2 focus:outline-none'
+              className='flex-1 bg-black border border-secondary px-2 focus:outline-none w-full rounded-md'
             />
             <button
               type='submit'
               disabled={!input || disabled}
-              className='bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed'
+              className='bg-blue-500 hover:bg-blue-700 text-white font-semibold px-8 py-[5px] disabled:opacity-50 disabled:cursor-not-allowed absolute right-[17px] rounded-r-md top-[9px] ease-in-out'
             >
               Enviar
             </button>

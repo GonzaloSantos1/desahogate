@@ -12,12 +12,10 @@ export default function RootLayout({children, ...props}) {
   return (
     <html lang='en'>
       <head />
-      <body className='bg-black text-primary h-screen overflow-hidden flex flex-col relative'>
+      <body className='bg-[#101010] text-primary h-screen overflow-hidden flex flex-col relative'>
         <SessionProvider session={props.session}>
           <User>
             <Header />
-            <div></div>
-
             <Suspense fallback={<Loading />}>
               <div id='body-div' className='flex-1 overflow-y-scroll relative'>
                 {children}

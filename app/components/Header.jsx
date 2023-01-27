@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import React, {useEffect, useState, useContext} from 'react';
 import {useSession, signIn, signOut} from 'next-auth/react';
 import UserContext from '../../lib/userContext';
@@ -24,12 +25,20 @@ function Header() {
   return (
     <>
       <header
-        className=' flex justify-center md:justify-between px-8 md:px-32 2xl:px-64 border-b border-gray-800 items-center h-[70px] md:h-14 tracking-wide backdrop-blur-md'
+        className=' flex justify-center md:justify-between px-8 border-b border-gray-800 items-center h-[70px] md:h-14 tracking-wide backdrop-blur-md'
         onClick={() => setModal(false)}
       >
-        <a href='/' className='font-bold text-4xl cursor-pointere select-none'>
-          desahógate
-        </a>
+        <div className='flex items-center gap-3'>
+          <Image
+            src='/assets/images/desahogatex96.png'
+            width={40}
+            height={40}
+            alt='Desahogate logo'
+          />
+          <a href='/' className='font-bold text-4xl cursor-pointere select-none text-center'>
+            desahógate
+          </a>
+        </div>
         <ul className='hidden md:flex justify-center gap-5 items-center text-lg'>
           {links.map(({label, route}) => (
             <li key={route}>
@@ -38,7 +47,7 @@ function Header() {
           ))}
           {!session ? (
             <button
-              onClick={() => signIn()}
+              onClick={() => signIn({callbackUrl: `${window.location.origin}/board`})}
               className='bg-action/90 text-white px-5 text-md font-semibold tracking-wide py-1 rounded-md'
             >
               Entrar
@@ -90,7 +99,10 @@ function Header() {
           <Link href={'/account'} onClick={() => setModal(!modal)}>
             Mi cuenta
           </Link>
-          <button onClick={() => signOut()} className='z-50'>
+          <button
+            onClick={() => signOut({callbackUrl: `${window.location.origin}`})}
+            className='z-50'
+          >
             Salir
           </button>
         </div>

@@ -1,7 +1,8 @@
 'use client';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {IconChevronDown} from '@tabler/icons';
 import {useSession} from 'next-auth/react';
+import UserContext from '../../lib/userContext';
 
 function CreateModal({categories, animate}) {
   const [modal, setModal] = useState(false);
@@ -10,7 +11,9 @@ function CreateModal({categories, animate}) {
   const [dropdown, setDropdown] = useState(false);
   const [category, setCategory] = useState('Selecciona una categoría');
   const [username, setUsername] = useState('Anónimo');
-  const [user, setUser] = useState(null);
+  const user = useContext(UserContext);
+  const userId = user.user._id;
+  const userProfileName = user.user.username;
   const [input, setInput] = useState('');
 
   const {data: session, status} = useSession();
@@ -42,6 +45,7 @@ function CreateModal({categories, animate}) {
         },
         body: JSON.stringify({
           message,
+          userId,
         }),
       });
 
@@ -143,12 +147,12 @@ function CreateModal({categories, animate}) {
                         {username == 'Anónimo' ? (
                           <li
                             onClick={() => {
-                              setUsername(user);
+                              setUsername(userProfileName);
                               setUserDropdown(!userDropdown);
                             }}
                             className='text-sm text-action font-semibold px-4 py-0.5 relative cursor-pointer hover:bg-gray-700'
                           >
-                            username
+                            {userProfileName}
                           </li>
                         ) : (
                           <li

@@ -1,8 +1,7 @@
 'use client';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Link from 'next/link';
 import {IconFlame, IconClockHour3} from '@tabler/icons';
-import ChatInput from '../components/ChatInput';
 import CategoriesFilter from './CategoriesFilter';
 import EmptyMessage from './EmptyMessage';
 import CreateModal from './CreateModal';
@@ -33,6 +32,20 @@ const dateHandler = (postDate) => {
 export default function BoardDisplay({data, categories}) {
   const [category, setCategory] = useState(null);
   const pathname = usePathname();
+  const [dataFetched, setDataFetched] = useState(data);
+
+  useEffect(() => {
+    let interval = setInterval(() => {
+      fetch(`http://localhost:3000/api/getPosts`)
+        .then((res) => res.json())
+        .then((data) => {
+          setDataFetched(data);
+        });
+    }, 10000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   const handleCategory = (cat) => setCategory(cat);
 
@@ -41,20 +54,20 @@ export default function BoardDisplay({data, categories}) {
       <CategoriesFilter categories={categories} handleCategory={handleCategory} />
       {pathname == '/board?' ? (
         <LoadingComponent />
-      ) : !data.length ? (
+      ) : !dataFetched.length ? (
         <EmptyMessage categories={categories} />
       ) : (
         <>
           <CreateModal categories={categories} />
           <ul className='flex flex-wrap justify-center gap-6 md:gap-8'>
             {category !== ''
-              ? data
+              ? dataFetched
                   .filter((e) => e.category == category)
                   .reverse()
                   .map((post) => (
                     <li className='relative' key={post._id}>
                       <Link href={`/board/${post._id}`}>
-                        <button className='w-full max-w-sm min-w-[326px] md:min-w-[384px] px-8 py-4 bg-gray-900/70 border border-action rounded-lg shadow-sm shadow-action'>
+                        <button className='w-full max-w-sm min-w-[326px] md:min-w-[384px] px-8 py-4 bg-[#202020] border border-action rounded-lg shadow-sm shadow-action'>
                           <p className='mt-2 font-medium tracking-wide'>{post.message}</p>
                           <div className='flex justify-between items-end mt-4 text-secondary font-medium'>
                             <div className='flex flex-col justify-start text-start'>
@@ -85,10 +98,10 @@ export default function BoardDisplay({data, categories}) {
                       </Link>
                     </li>
                   ))
-              : [...data].reverse().map((post) => (
+              : [...dataFetched].reverse().map((post) => (
                   <li className='relative' key={post._id}>
                     <Link href={`/board/${post._id}`}>
-                      <button className='w-full max-w-sm min-w-[326px] md:min-w-[384px] px-8 py-4 bg-gray-900/70 border border-action rounded-lg shadow-sm shadow-action'>
+                      <button className='w-full max-w-sm min-w-[326px] md:min-w-[384px] px-8 py-4 bg-[#181818] rounded-lg shadow-sm shadow-action-2'>
                         <p className='mt-2 font-medium tracking-wide'>{post.message}</p>
                         <div className='flex justify-between items-end mt-4 text-secondary font-medium'>
                           <div className='flex flex-col justify-start text-start'>

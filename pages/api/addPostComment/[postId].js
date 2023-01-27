@@ -1,7 +1,7 @@
 import {ObjectId} from 'mongodb';
 import clientPromise from '../../../lib/mongodb';
 import {unstable_getServerSession} from 'next-auth/next';
-import {authOptions} from '..//auth/[...nextauth]';
+import {authOptions} from '../auth/[...nextauth]';
 
 export default async (req, res) => {
   const session = await unstable_getServerSession(req, res, authOptions);
@@ -12,7 +12,7 @@ export default async (req, res) => {
   }
   const client = await clientPromise;
   const db = client.db('desahogate');
-  const {comment} = req.body;
+  const {comment, userId} = req.body;
   const {postId} = req.query;
 
   const post = await db.collection('posts').updateOne(
@@ -20,7 +20,7 @@ export default async (req, res) => {
       _id: ObjectId(postId),
     },
     {
-      $addToSet: {comments: {...comment}},
+      $addToSet: {comments: {...comment, userId: ObjectId(userId)}},
     }
   );
 
