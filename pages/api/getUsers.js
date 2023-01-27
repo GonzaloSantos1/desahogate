@@ -4,14 +4,10 @@ export default async (req, res) => {
   try {
     const client = await clientPromise;
     const db = client.db('desahogate');
-    const {message} = req.body;
 
-    const post = await db.collection('posts').insertOne({
-      ...message,
-      created_at: Date.now(),
-    });
+    const posts = await db.collection('users').find({}).toArray();
 
-    res.json(post);
+    res.json(posts);
   } catch (e) {
     console.error(e);
     throw new Error(e).message;

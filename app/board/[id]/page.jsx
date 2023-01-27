@@ -1,9 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
-
 import ChatMessages from '../../components/ChatMessages';
 
-const DetailedPost = async ({params}) => {
+const DetailedPost = ({params}) => {
   return (
     <div className='flex flex-col justify-between h-full py-2'>
       {params.id}

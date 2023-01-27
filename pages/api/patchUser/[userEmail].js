@@ -12,15 +12,15 @@ export default async (req, res) => {
   }
   const client = await clientPromise;
   const db = client.db('desahogate');
-  const {comment} = req.body;
-  const {postId} = req.query;
+  const {username} = req.body;
+  const {userEmail} = req.query;
 
-  const post = await db.collection('posts').updateOne(
+  const post = await db.collection('users').updateOne(
     {
-      _id: ObjectId(postId),
+      email: userEmail,
     },
     {
-      $addToSet: {comments: {...comment}},
+      $set: {username: username},
     }
   );
 

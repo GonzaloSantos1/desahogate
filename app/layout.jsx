@@ -1,26 +1,31 @@
+'use client';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import './globals.css';
 import React, {Suspense} from 'react';
 import Loading from './loading';
+import {SessionProvider} from 'next-auth/react';
+import User from './components/User';
 
-export default function RootLayout({children}) {
+export default function RootLayout({children, ...props}) {
+  const user = 'usuarito';
   return (
     <html lang='en'>
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.jsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
-      <body className='bg-black text-primary h-screen overflow-hidden flex flex-col'>
-        <Header />
+      <body className='bg-black text-primary h-screen overflow-hidden flex flex-col relative'>
+        <SessionProvider session={props.session}>
+          <User>
+            <Header />
+            <div></div>
 
-        <Suspense fallback={<Loading />}>
-          <div id='body-div' className='flex-1 overflow-y-scroll relative'>
-            {children}
-          </div>
-        </Suspense>
-        <Footer />
+            <Suspense fallback={<Loading />}>
+              <div id='body-div' className='flex-1 overflow-y-scroll relative'>
+                {children}
+              </div>
+            </Suspense>
+            <Footer />
+          </User>
+        </SessionProvider>
       </body>
     </html>
   );

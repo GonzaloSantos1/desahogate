@@ -1,6 +1,7 @@
 'use client';
 import React, {useState, useEffect} from 'react';
 import {IconChevronDown} from '@tabler/icons';
+import {useSession} from 'next-auth/react';
 
 function CreateModal({categories, animate}) {
   const [modal, setModal] = useState(false);
@@ -8,8 +9,11 @@ function CreateModal({categories, animate}) {
   const [charactersCount, setCharactersCount] = useState(0);
   const [dropdown, setDropdown] = useState(false);
   const [category, setCategory] = useState('Selecciona una categoría');
-  const [username, setUsername] = useState('username');
+  const [username, setUsername] = useState('Anónimo');
+  const [user, setUser] = useState(null);
   const [input, setInput] = useState('');
+
+  const {data: session, status} = useSession();
 
   const countHandler = () => {
     const textarea = document.getElementById('textarea');
@@ -139,7 +143,7 @@ function CreateModal({categories, animate}) {
                         {username == 'Anónimo' ? (
                           <li
                             onClick={() => {
-                              setUsername('username');
+                              setUsername(user);
                               setUserDropdown(!userDropdown);
                             }}
                             className='text-sm text-action font-semibold px-4 py-0.5 relative cursor-pointer hover:bg-gray-700'
