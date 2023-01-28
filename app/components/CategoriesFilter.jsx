@@ -34,7 +34,7 @@ function CategoriesFilter(props) {
             />
             <label
               htmlFor={name}
-              className={`text-${color} px-2 py-1 border font-medium ease-in-out transition duration-200 rounded-lg border-${color} select-none hover:text-white cursor-pointer cat-${index} peer-checked:text-white`}
+              className={`text-${color} px-3 py-1 border-2 font-semibold ease-in-out transition duration-200 rounded-full border-${color} select-none hover:text-white cursor-pointer cat-${index} peer-checked:text-white lowercase`}
             >
               {name}
             </label>

@@ -3,7 +3,7 @@ import Image from 'next/image';
 export default function Home() {
   return (
     <main className=''>
-      <h2 className='my-5 md:my-10 text-4xl md:text-7xl px-10 mx-auto text-center max-w-5xl'>
+      <h2 className='my-5 md:my-10 text-4xl font-bold text-primary md:text-7xl px-10 mx-auto text-center max-w-5xl'>
         Una plataforma donde llorar y palante.
       </h2>
       <div className='flex justify-start py-6 px-2 font-medium items-center md:justify-center'>

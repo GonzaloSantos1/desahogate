@@ -111,7 +111,7 @@ function ChatMessages({postId, categories}) {
                     key={e.created_at}
                     className='text-sm font-semibold flex flex-col justify-center items-end rounded-md bg-gray-800 my-1 p-1'
                   >
-                    <p className='text-action-2'>{e.username}</p>
+                    <p className='text-action-blue'>{e.username}</p>
                     <p className=''>{e.text}</p>
                   </li>
                 );
@@ -128,19 +128,19 @@ function ChatMessages({postId, categories}) {
         </div>
         <button
           onClick={() => scrollToBottom(0)}
-          className='text-action-2 flex justify-end w-full px-3'
+          className='text-action-blue flex justify-end w-full px-3'
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
-            class='icon icon-tabler icon-tabler-circle-chevrons-down w-8 h-8'
+            className='icon icon-tabler icon-tabler-circle-chevrons-down w-8 h-8'
             width='24'
             height='24'
             viewBox='0 0 24 24'
-            stroke-width='2'
+            strokeWidth='2'
             stroke='currentColor'
             fill='none'
-            stroke-linecap='round'
-            stroke-linejoin='round'
+            strokeLinecap='round'
+            strokeLinejoin='round'
           >
             <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
             <path d='M15 9l-3 3l-3 -3'></path>

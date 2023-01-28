@@ -45,7 +45,7 @@ function ChatInput(props) {
     <>
       {!session ? (
         <div className='flex justify-center items-center gap-1 py-2'>
-          <button onClick={() => signIn()} className='text-action-2 font-semibold'>
+          <button onClick={() => signIn()} className='text-action-blue font-semibold'>
             Inicia sesión
           </button>
           <p>para poder comentar</p>

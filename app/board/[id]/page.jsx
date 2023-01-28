@@ -4,10 +4,10 @@ import ChatMessages from '../../components/ChatMessages';
 
 const DetailedPost = ({params}) => {
   const categories = [
-    {name: 'Relaciones de pareja', color: 'action-5', selected: false},
-    {name: 'Trabajo', color: 'action-3', selected: false},
-    {name: 'Familia', color: 'action-2', selected: false},
-    {name: 'Amigos', color: 'action-4', selected: false},
+    {name: 'Relaciones de pareja', color: 'action-red', selected: false},
+    {name: 'Trabajo', color: 'action-yellow', selected: false},
+    {name: 'Familia', color: 'action-blue', selected: false},
+    {name: 'Amigos', color: 'action-green', selected: false},
     {name: 'Otros', color: 'secondary', selected: false},
   ];
   return (

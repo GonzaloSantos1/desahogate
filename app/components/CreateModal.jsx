@@ -1,6 +1,6 @@
 'use client';
 import React, {useState, useEffect, useContext} from 'react';
-import {IconChevronDown} from '@tabler/icons';
+import {IconChevronDown, IconPlus} from '@tabler/icons';
 import {useSession} from 'next-auth/react';
 import UserContext from '../../lib/userContext';
 
@@ -68,14 +68,25 @@ function CreateModal({categories, animate}) {
         onClick={() => {
           setModal(!modal);
         }}
-        className={`block rounded-md px-5 py-2.5 text-center ease-in-out transition duration-300 text-action border-2 border-action font-semibold tracking-wide mx-auto my-10 hover:border-pink-600 hover:bg-pink-600 hover:text-white `}
+        className={`hidden md:block rounded-xl px-5 py-2.5 text-center ease-in-out transition duration-300 text-primary bg-action/90 font-medium tracking-wide hover:bg-action hover:text-white text-sm md:absolute md:bottom-0 md:right-0 md:m-4 md:animate-bounce`}
         type='button'
       >
         Desahogarme
       </button>
+      <button
+        onClick={() => {
+          setModal(!modal);
+        }}
+        className={` rounded-full p-1.5 md:hidden ${
+          modal ? 'rotate-45 bg-[#101010] text-action border border-action' : 'bg-action'
+        }`}
+        type='button'
+      >
+        <IconPlus size={28} stroke={2} />
+      </button>
       {modal ? (
         <div
-          className='absolute top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-hidden h-screen md:inset-0 bg-white/10 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
+          className='absolute top-16 md:top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-hidden h-[calc(100%-120px)] md:h-screen inset-0 bg-white/10 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
           onClick={() => setModal(false)}
         >
           <div className=' md:mt-5 font-medium text-md mx-auto px-5 md:px-44 flex flex-col gap-2'>
@@ -93,7 +104,7 @@ function CreateModal({categories, animate}) {
                 >
                   <path
                     d='M9.00012 12L11.0001 14L15.0001 10M7.83486 4.69705C8.55239 4.63979 9.23358 4.35763 9.78144 3.89075C11.0599 2.80123 12.9403 2.80123 14.2188 3.89075C14.7667 4.35763 15.4478 4.63979 16.1654 4.69705C17.8398 4.83067 19.1695 6.16031 19.3031 7.83474C19.3603 8.55227 19.6425 9.23346 20.1094 9.78132C21.1989 11.0598 21.1989 12.9402 20.1094 14.2187C19.6425 14.7665 19.3603 15.4477 19.3031 16.1653C19.1695 17.8397 17.8398 19.1693 16.1654 19.303C15.4479 19.3602 14.7667 19.6424 14.2188 20.1093C12.9403 21.1988 11.0599 21.1988 9.78144 20.1093C9.23358 19.6424 8.55239 19.3602 7.83486 19.303C6.16043 19.1693 4.83079 17.8397 4.69717 16.1653C4.63991 15.4477 4.35775 14.7665 3.89087 14.2187C2.80135 12.9402 2.80135 11.0598 3.89087 9.78132C4.35775 9.23346 4.63991 8.55227 4.69717 7.83474C4.83079 6.16031 6.16043 4.83067 7.83486 4.69705Z'
-                    stroke='#ec4899'
+                    stroke='#FF4ECD'
                     strokeLinecap='round'
                     strokeLinejoin='round'
                     strokeWidth='2.5'
@@ -109,7 +120,7 @@ function CreateModal({categories, animate}) {
           </div>
           <div className=' w-full h-full max-w-md md:h-auto' onClick={(e) => e.stopPropagation()}>
             <form onSubmit={createPost} className='flex flex-col justify-center gap-5 items-center'>
-              <div className='w-full max-w-sm px-5 pt-2 pb-4 bg-gray-900 border border-action rounded-lg shadow-sm shadow-action'>
+              <div className='w-full max-w-sm px-5 pt-2 pb-4 bg-[#202020] rounded-lg shadow-md shadow-action/50'>
                 <textarea
                   id='textarea'
                   value={input}
@@ -134,7 +145,7 @@ function CreateModal({categories, animate}) {
                       className={
                         userDropdown
                           ? 'text-sm text-primary font-semibold cursor-pointer flex items-center select-none border pr-1 gap-0.5 rounded-md pl-2 bg-action border-action'
-                          : 'text-sm text-action font-semibold cursor-pointer flex items-center select-none border border-pink-800 pr-1 gap-0.5 rounded-md pl-2'
+                          : 'text-sm text-action font-semibold cursor-pointer flex items-center select-none border border-action pr-1 gap-0.5 rounded-md pl-2'
                       }
                     >
                       <p>{username}</p>
@@ -180,7 +191,7 @@ function CreateModal({categories, animate}) {
                         className={
                           dropdown
                             ? `text-sm text-primary font-semibold cursor-pointer flex items-center select-none border bg-sky-900 border-sky-900 pr-1 gap-0.5 rounded-md pl-2`
-                            : `text-sm text-action-2 font-semibold cursor-pointer flex items-center select-none border border-sky-900 pr-1 gap-0.5 rounded-md pl-2`
+                            : `text-sm text-action-blue font-semibold cursor-pointer flex items-center select-none border border-sky-900 pr-1 gap-0.5 rounded-md pl-2`
                         }
                       >
                         <p>{category}</p>
@@ -241,9 +252,9 @@ function CreateModal({categories, animate}) {
                 <button
                   type='submit'
                   disabled={!input || category == 'Selecciona una categoría'}
-                  className=' text-primary tracking-wide bg-sky-500 font-semibold rounded-md text-sm py-2 px-12 items-center cursor-pointer disabled:opacity-50'
+                  className=' text-primary tracking-wide bg-action-blue font-medium rounded-xl text-sm py-2 px-12 items-center cursor-pointer disabled:opacity-50'
                 >
-                  Crear
+                  Publicar
                 </button>
               </div>
             </form>

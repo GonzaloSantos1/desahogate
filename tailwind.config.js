@@ -12,20 +12,22 @@ module.exports = {
       },
       colors: {
         background: '#171717',
-        primary: '#e5e7eb',
+        primary: '#ECEDEE',
         secondary: '#9ca3af',
-        'action-2': '#0ea5e9',
-        action: '#ec4899',
-        'action-3': '#eab308',
-        'action-4': '#14b8a6',
-        'action-5': '#f43f5e',
+        action: '#FF4ECD',
+        'action-blue': '#3694FF',
+        'action-yellow': '#F6AD37',
+        'action-green': '#41EC8B',
+        'action-red': '#F4256D',
+        'action-purple': '#9750DD',
       },
     },
   },
   plugins: [],
   safelist: [
     {
-      pattern: /(bg|text|border|hover:bg|hover:text|hover:border)-action-(2|3|4|5)/,
+      pattern:
+        /(bg|text|border|hover:bg|hover:text|hover:border)-action-(blue|yellow|green|red|purple)/,
     },
   ],
 };

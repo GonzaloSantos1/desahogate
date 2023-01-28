@@ -58,7 +58,9 @@ export default function BoardDisplay({data, categories}) {
         <EmptyMessage categories={categories} />
       ) : (
         <>
-          <CreateModal categories={categories} />
+          <div className='hidden md:block'>
+            <CreateModal categories={categories} />
+          </div>
           <ul className='flex flex-wrap justify-center gap-6 md:gap-8'>
             {category !== ''
               ? dataFetched
@@ -101,7 +103,7 @@ export default function BoardDisplay({data, categories}) {
               : [...dataFetched].reverse().map((post) => (
                   <li className='relative' key={post._id}>
                     <Link href={`/board/${post._id}`}>
-                      <button className='w-full max-w-sm min-w-[326px] md:min-w-[384px] px-8 py-4 bg-[#181818] rounded-lg shadow-sm shadow-action-2'>
+                      <button className='w-full max-w-sm min-w-[326px] md:min-w-[384px] px-8 py-4 bg-[#181818] rounded-lg shadow-lg shadow-action/20'>
                         <p className='mt-2 font-medium tracking-wide'>{post.message}</p>
                         <div className='flex justify-between items-end mt-4 text-secondary font-medium'>
                           <div className='flex flex-col justify-start text-start'>
