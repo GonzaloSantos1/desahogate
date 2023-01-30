@@ -74,7 +74,7 @@ function CreateModal({categories, animate}) {
         onClick={() => {
           setModal(!modal);
         }}
-        className={`hidden md:block rounded-2xl px-5 py-2.5 text-center ease-in-out transition duration-300 text-primary bg-action/80 font-medium tracking-wide hover:bg-action hover:text-white text-sm md:absolute md:bottom-0 md:right-0 md:m-4 md:animate-bounce`}
+        className={`hidden md:block rounded-2xl px-5 py-2.5 text-center ease-in-out transition duration-300 text-primary bg-action/80 font-medium tracking-wide hover:bg-action hover:text-white text-sm md:m-4 md:animate-bounce fixed bottom-[1vh] right-0 z-50`}
         type='button'
       >
         Desahogarme
@@ -95,7 +95,7 @@ function CreateModal({categories, animate}) {
       {modal ? (
         !session ? (
           <div
-            className='absolute top-16 md:top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-hidden h-[calc(100%-120px)] md:h-screen inset-0 bg-black/50 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
+            className='absolute top-16 md:-top-10 md:-left-7 z-50 w-screen overflow-x-hidden overflow-y-hidden h-[calc(100%-120px)] md:h-screen  bg-black/50 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
             onClick={() => setModal(false)}
           >
             <div className='md:mt-5 font-medium text-lg text-start md:text-center md:text-md mx-auto px-5 md:px-44 flex flex-col gap-2'>
@@ -139,7 +139,7 @@ function CreateModal({categories, animate}) {
           </div>
         ) : (
           <div
-            className='absolute top-16 md:top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-hidden h-[calc(100%-120px)] md:h-screen inset-0 bg-black/50 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
+            className='absolute top-16 md:-top-10 md:-left-7 z-50 w-screen overflow-x-hidden overflow-y-hidden h-[calc(100%-120px)] md:h-screen  bg-black/50 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
             onClick={() => setModal(false)}
           >
             <div className='md:mt-5 font-medium text-lg text-start md:text-center md:text-md mx-auto px-5 md:px-44 flex flex-col gap-2'>

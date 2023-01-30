@@ -1,10 +1,9 @@
 import {ObjectId} from 'mongodb';
 import clientPromise from '../../../lib/mongodb';
 import {unstable_getServerSession} from 'next-auth/next';
-import {authOptions} from '../auth/[...nextauth]';
 
 export default async (req, res) => {
-  const session = await unstable_getServerSession(req, res, authOptions);
+  const session = await unstable_getServerSession(req, res);
 
   if (req.method !== 'POST' && !session) {
     res.status(405).json({name: 'Method Not Allowed'});

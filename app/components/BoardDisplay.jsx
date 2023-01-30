@@ -57,7 +57,7 @@ export default function BoardDisplay({data, categories}) {
         <EmptyMessage categories={categories} />
       ) : (
         <>
-          <div className='hidden md:block fixed bottom-[1vh] right-0'>
+          <div className='hidden md:block'>
             <CreateModal categories={categories} />
           </div>
           <ul className='flex flex-wrap justify-center gap-3 md:gap-6 mt-3 md:mt-6 mb-3 overflow-y-scroll'>
