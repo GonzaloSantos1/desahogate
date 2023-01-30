@@ -31,7 +31,6 @@ const dateHandler = (postDate) => {
 
 export default function BoardDisplay({data, categories}) {
   const [category, setCategory] = useState(null);
-  const pathname = usePathname();
   const [dataFetched, setDataFetched] = useState(data);
 
   useEffect(() => {
@@ -50,15 +49,15 @@ export default function BoardDisplay({data, categories}) {
   const handleCategory = (cat) => setCategory(cat);
 
   return (
-    <div className='mt-5 md:mt-10'>
+    <div className='mt-5 md:mt-10 relative'>
       <CategoriesFilter categories={categories} handleCategory={handleCategory} />
-      {pathname == '/board?' ? (
-        <LoadingComponent />
+      {!dataFetched ? (
+        <LoadingComponent textSize={'3xl'} text={'Cargando posts...'} size={300} />
       ) : !dataFetched.length ? (
         <EmptyMessage categories={categories} />
       ) : (
         <>
-          <div className='hidden md:block'>
+          <div className='hidden md:block fixed bottom-[1vh] right-0'>
             <CreateModal categories={categories} />
           </div>
           <ul className='flex flex-wrap justify-center gap-3 md:gap-6 mt-3 md:mt-6 mb-3 overflow-y-scroll'>

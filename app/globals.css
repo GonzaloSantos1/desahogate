@@ -7,29 +7,3 @@
 * {
   font-family: 'Quicksand', sans-serif;
 }
-
-.cat-0:hover,
-.cat-0:checked + label {
-  background-color: #f4256d;
-}
-
-.cat-1:hover,
-.cat-1:checked + label {
-  background-color: #f6ad37;
-}
-
-.cat-2:hover,
-.cat-2:checked + label {
-  background-color: #3694ff;
-}
-
-.cat-3:hover,
-.cat-3:checked + label {
-  background-color: #41ec8b;
-}
-
-.cat-4:hover,
-.cat-4:checked + label {
-  background-color: #9750dd;
-  border-color: #9750dd;
-}

@@ -27,7 +27,7 @@ module.exports = {
   safelist: [
     {
       pattern:
-        /(bg|text|border|hover:bg|hover:text|hover:border)-action-(blue|yellow|green|red|purple)/,
+        /(bg|text|border|shadow|hover:bg|hover:text|hover:border|hover:shadow)-action-(blue|yellow|green|red|purple)/,
     },
   ],
 };
