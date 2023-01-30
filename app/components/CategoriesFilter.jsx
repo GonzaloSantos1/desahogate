@@ -21,7 +21,7 @@ function CategoriesFilter(props) {
 
   return (
     <>
-      <ul className='w-full px-2 flex flex-wrap justify-center gap-4'>
+      <ul className='w-full px-2 flex flex-wrap justify-center gap-4 sticky'>
         {categories.map(({name, color, selected}, index) => (
           <li key={index}>
             <input
@@ -43,7 +43,7 @@ function CategoriesFilter(props) {
       </ul>
       <button
         onClick={() => uncheckCategories()}
-        className='flex justify-center items-center mx-auto my-4 hover:underline hover:underline-offset-4'
+        className='flex justify-center items-center mx-auto mt-4 md:mt-7 hover:underline hover:underline-offset-4'
       >
         <IconCircleX size={20} className='inline-flex mx-1' />
 

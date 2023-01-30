@@ -11,7 +11,7 @@ function LoadingComponent({size, text, textSize}) {
         width={size}
         height={size}
         alt='picture of a cat hiding dirt under the carpet'
-        className='hidden md:block'
+        className='block'
       />
       <h2>{text}</h2>
     </div>

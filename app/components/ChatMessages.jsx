@@ -9,6 +9,7 @@ function ChatMessages({postId, categories}) {
   const [refresh, setRefresh] = useState(false);
   const user = useContext(UserContext);
   const loggedUser = user.user.username;
+  const loggedUserId = user.user._id;
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/getPosts/${postId}`)
@@ -77,80 +78,128 @@ function ChatMessages({postId, categories}) {
       </div>
     );
   return (
-    <div className='flex justify-center items-center px-24 py-5 h-full'>
-      <div className='flex flex-col justify-between h-full py-2 items-center border rounded-md border-secondary w-full bg-gray-900'>
-        <div className='bg-black border-b border-secondary w-full px-8 pb-2 text-sm flex justify-between'>
-          <div className='flex flex-col'>
-            <p className='font-bold text-action text-sm'>{data[0].username}</p>
-            <p className='font-semibold text-primary'>{data[0].message}</p>
-          </div>
-          <div className='flex flex-col justify-center items-end'>
-            {categories.map((e, index) => {
-              if (e.name == data[0].category) {
-                return (
-                  <p key={index} className={`text-${e.color} font-semibold`}>
-                    {data[0].category}
-                  </p>
-                );
-              }
-            })}
-            <p className='text-secondary font-semibold'>
-              Creado hace {dateHandler(data[0].created_at)}
+    <>
+      {/* <button className='text-start px-2 w-7' onClick={() => history.back()}>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          className='icon icon-tabler icon-tabler-arrow-left'
+          width='24'
+          height='24'
+          viewBox='0 0 24 24'
+          strokeWidth='2'
+          stroke='currentColor'
+          fill='none'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+        >
+          <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+          <path d='M5 12l14 0'></path>
+          <path d='M5 12l6 6'></path>
+          <path d='M5 12l6 -6'></path>
+        </svg>
+      </button> */}
+      <div className='flex justify-center items-center md:px-12 h-full'>
+        <div className='flex flex-col justify-between h-full items-center w-full bg-[#101010]'>
+          <div className='bg-[#101010] border-b mt-1 border-gray-600 w-full px-3 md:px-8 pb-2 text-md md:text-sm flex justify-between flex-col gap-1'>
+            <div className='flex justify-between'>
+              <p className='font-bold text-action'>{data[0].username}</p>
+              {categories.map((e, index) => {
+                if (e.name == data[0].category) {
+                  return (
+                    <p key={index} className={`text-${e.color} font-semibold`}>
+                      {data[0].category}
+                    </p>
+                  );
+                }
+              })}
+            </div>
+            <p className='font-medium text-primary'>{data[0].message}</p>
+            <p className='text-secondary font-medium text-end text-xs'>
+              Hace {dateHandler(data[0].created_at)}
             </p>
           </div>
-        </div>
-        <div
-          id='post-commentaries'
-          className='w-full h-full p-4 overflow-y-auto flex flex-col-reverse relative'
-        >
-          <ul>
-            {data[0].comments.map((e) => {
-              if (e.username == loggedUser) {
-                return (
-                  <li
-                    key={e.created_at}
-                    className='text-sm font-semibold flex flex-col justify-center items-end rounded-md bg-gray-800 my-1 p-1'
-                  >
-                    <p className='text-action-blue'>{e.username}</p>
-                    <p className=''>{e.text}</p>
-                  </li>
-                );
-              } else {
-                return (
-                  <li key={e.created_at} className='text-sm font-semibold text-start'>
-                    <p className='text-secondary'>{e.username}</p>
-                    <p className=''>{e.text}</p>
-                  </li>
-                );
-              }
-            })}
-          </ul>
-        </div>
-        <button
-          onClick={() => scrollToBottom(0)}
-          className='text-action-blue flex justify-end w-full px-3'
-        >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            className='icon icon-tabler icon-tabler-circle-chevrons-down w-8 h-8'
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-            strokeWidth='2'
-            stroke='currentColor'
-            fill='none'
-            strokeLinecap='round'
-            strokeLinejoin='round'
+          <div
+            id='post-commentaries'
+            className='w-full flex-1 px-2 pb-1 overflow-y-auto flex flex-col-reverse relative'
           >
-            <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
-            <path d='M15 9l-3 3l-3 -3'></path>
-            <path d='M15 13l-3 3l-3 -3'></path>
-            <path d='M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0 -18z'></path>
-          </svg>
-        </button>
-        <ChatInput postId={postId} refreshMessages={refreshMessages} />
+            <ul className='flex flex-col gap-2 items-start text-md'>
+              {data[0].comments.map((e) => {
+                if (data[0].userId == loggedUserId && e.userId == loggedUserId) {
+                  return (
+                    <li
+                      key={e.created_at}
+                      className=' font-bold text-end self-end bg-[#1A1A1A] py-2 pl-4 pr-3 rounded-xl max-w-[350px] md:max-w-[450px]'
+                    >
+                      <p className='text-action'>{e.username}</p>
+                      <p className='font-medium '>{e.text}</p>
+                    </li>
+                  );
+                } else if (e.userId == loggedUserId) {
+                  return (
+                    <li
+                      key={e.created_at}
+                      className=' font-bold text-end self-end bg-[#1A1A1A] py-2 pl-4 pr-3 rounded-xl max-w-[350px] md:max-w-[450px]'
+                    >
+                      <p className='text-action-red'>{e.username}</p>
+                      <p className='font-medium '>{e.text}</p>
+                    </li>
+                  );
+                } else if (data[0].userId == e.userId) {
+                  return (
+                    <li
+                      key={e.created_at}
+                      className=' font-bold text-start bg-[#1A1A1A] py-2 pr-4 pl-3 rounded-xl max-w-[350px] md:max-w-[450px]'
+                    >
+                      <p className='text-action'>{e.username}</p>
+                      <p className='font-medium '>{e.text}</p>
+                    </li>
+                  );
+                } else {
+                  return (
+                    <li
+                      key={e.created_at}
+                      className=' font-bold text-start bg-[#1A1A1A] py-2 pr-4 pl-3 rounded-xl max-w-[350px] md:max-w-[450px]'
+                    >
+                      <p className='text-blue-500'>{e.username}</p>
+                      <p className='font-medium '>{e.text}</p>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          </div>
+          {/* <button
+            onClick={() => scrollToBottom(0)}
+            className='text-action-blue flex justify-end w-full px-3'
+          >
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              className='icon icon-tabler icon-tabler-circle-chevrons-down w-8 h-8'
+              width='24'
+              height='24'
+              viewBox='0 0 24 24'
+              strokeWidth='2'
+              stroke='currentColor'
+              fill='none'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            >
+              <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+              <path d='M15 9l-3 3l-3 -3'></path>
+              <path d='M15 13l-3 3l-3 -3'></path>
+              <path d='M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0 -18z'></path>
+            </svg>
+          </button> */}
+          <ChatInput
+            postId={postId}
+            refreshMessages={refreshMessages}
+            loggedUser={loggedUser}
+            loggedUserId={loggedUserId}
+            data={data[0]}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

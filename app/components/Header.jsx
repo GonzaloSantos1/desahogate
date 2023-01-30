@@ -4,6 +4,8 @@ import Image from 'next/image';
 import React, {useEffect, useState, useContext} from 'react';
 import {useSession, signIn, signOut} from 'next-auth/react';
 import UserContext from '../../lib/userContext';
+import {IconUser, IconLogout, IconChevronUp, IconChevronDown, IconFishBone} from '@tabler/icons';
+import {usePathname, useRouter} from 'next/navigation';
 
 const links = [
   {
@@ -21,89 +23,61 @@ function Header() {
   const [modal, setModal] = useState(false);
   const user = useContext(UserContext);
   const username = user.user.username;
+  const pathname = usePathname();
 
   return (
     <>
       <header
-        className=' flex justify-center md:justify-between px-8 border-b border-gray-800 items-center h-[70px] md:h-14 tracking-wide backdrop-blur-md'
+        className=' flex justify-center md:justify-between px-8 border-b border-gray-800 items-center h-[60px] md:h-14 tracking-wide backdrop-blur-md'
         onClick={() => setModal(false)}
       >
-        <div className='flex items-center gap-3'>
-          <Image
-            src='/assets/images/desahogatex96.png'
-            width={40}
-            height={40}
-            alt='Desahogate logo'
-          />
-          <a href='/' className='font-bold text-4xl cursor-pointere select-none text-center'>
-            desahógate
-          </a>
-        </div>
-        <ul className='hidden md:flex justify-center gap-5 items-center text-lg'>
+        <a href='/' className='font-bold text-4xl cursor-pointere select-none text-center'>
+          desahógate
+        </a>
+
+        <ul className='hidden md:flex justify-center gap-5 items-center text-md font-medium'>
           {links.map(({label, route}) => (
-            <li key={route}>
+            <li key={route} className={pathname == route ? 'text-action-blue' : ''}>
               <Link href={route}>{label}</Link>
             </li>
           ))}
           {!session ? (
             <button
               onClick={() => signIn({callbackUrl: `${window.location.origin}/board`})}
-              className='bg-action/90 text-white px-5 text-md font-semibold tracking-wide py-1 rounded-md'
+              className='bg-action/80 text-white px-5 text-md font-medium py-[6px] rounded-xl flex gap-2 items-center hover:bg-action ease-in-out duration-300'
             >
-              Entrar
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='icon icon-tabler icon-tabler-square-rounded-arrow-right inline-flex'
-                width='24'
-                height='24'
-                viewBox='0 0 24 24'
-                strokeWidth='2'
-                stroke='currentColor'
-                fill='none'
-                strokeLinecap='round'
-                strokeLinejoin='round'
-              >
-                <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
-                <path d='M12 16l4 -4l-4 -4m-4 4h8m-4 -9c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z'></path>
-              </svg>
+              <p className='-mt-[3px]'>Entrar</p>
+              <IconFishBone size={24} stroke={1.5} className='-mt-[2px]' />
             </button>
           ) : (
             <div className='flex justify-center gap-3' onClick={(e) => e.stopPropagation()}>
               <button
                 onClick={() => setModal(!modal)}
-                className='flex justify-center gap-2 items-center text-action'
+                className='flex justify-center items-center text-primary border border-secondary/60 rounded-full pl-3 pr-2 py-1'
               >
-                <p className=' font-semibold'>{username}</p>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  className='icon icon-tabler icon-tabler-square-rounded-chevron-down inline-flex'
-                  width='24'
-                  height='24'
-                  viewBox='0 0 24 24'
-                  strokeWidth='2'
-                  stroke='currentColor'
-                  fill='none'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                >
-                  <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
-                  <path d='M15 11l-3 3l-3 -3m3 -8c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z'></path>
-                </svg>
+                <p className='text-action font-semibold'>{username}</p>
+                {!modal ? <IconChevronDown size={24} /> : <IconChevronUp size={24} />}
               </button>
             </div>
           )}
         </ul>
       </header>
       {modal ? (
-        <div className='font-medium absolute top-10 right-0 flex flex-col justify-center gap-2 px-4 py-2 bg-gray-800 z-50'>
-          <Link href={'/account'} onClick={() => setModal(!modal)}>
-            Mi cuenta
+        <div className='font-medium absolute top-12 right-10 flex flex-col justify-center items-start gap-2 pl-4 pr-8 py-2 bg-[#1A1A1A] z-50 rounded-xl'>
+          <Link
+            href={'/account'}
+            onClick={() => setModal(!modal)}
+            className='flex gap-2 items-center'
+          >
+            <IconUser size={20} stroke={2} />
+            <p>Mi cuenta</p>
           </Link>
           <button
-            onClick={() => signOut({callbackUrl: `${window.location.origin}`})}
-            className='z-50'
+            onClick={() => signOut({callbackUrl: `${window.location.origin}/board`})}
+            className='z-50 flex gap-2 items-center'
           >
-            Salir
+            <IconLogout size={20} stroke={2} />
+            <p>Salir</p>
           </button>
         </div>
       ) : (

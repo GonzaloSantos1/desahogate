@@ -15,7 +15,7 @@ function msToTime(duration) {
     hours = Math.floor((duration / (1000 * 60 * 60)) % 24),
     days = Math.floor((duration / (1000 * 60 * 60 * 24)) % 365);
 
-  if (minutes < 1) return 'Justo ahora';
+  if (days < 1 && hours < 1 && minutes < 1) return 'justo ahora';
 
   if (days < 1) return hours < 1 ? minutes + ' min' : hours + ' h ';
 
@@ -50,7 +50,7 @@ export default function BoardDisplay({data, categories}) {
   const handleCategory = (cat) => setCategory(cat);
 
   return (
-    <div className='mt-10'>
+    <div className='mt-5 md:mt-10'>
       <CategoriesFilter categories={categories} handleCategory={handleCategory} />
       {pathname == '/board?' ? (
         <LoadingComponent />
@@ -61,7 +61,7 @@ export default function BoardDisplay({data, categories}) {
           <div className='hidden md:block'>
             <CreateModal categories={categories} />
           </div>
-          <ul className='flex flex-wrap justify-center gap-6 md:gap-8'>
+          <ul className='flex flex-wrap justify-center gap-3 md:gap-6 mt-3 md:mt-6 mb-3 overflow-y-scroll'>
             {category !== ''
               ? dataFetched
                   .filter((e) => e.category == category)
@@ -69,7 +69,7 @@ export default function BoardDisplay({data, categories}) {
                   .map((post) => (
                     <li className='relative' key={post._id}>
                       <Link href={`/board/${post._id}`}>
-                        <button className='w-full max-w-sm min-w-[326px] md:min-w-[384px] px-8 py-4 bg-[#202020] border border-action rounded-lg shadow-sm shadow-action'>
+                        <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] p-4 bg-[#181818] rounded-lg shadow shadow-gray-500/50 md:hover:-translate-y-1 md:ease-in-out md:transition'>
                           <p className='mt-2 font-medium tracking-wide'>{post.message}</p>
                           <div className='flex justify-between items-end mt-4 text-secondary font-medium'>
                             <div className='flex flex-col justify-start text-start'>
@@ -103,7 +103,7 @@ export default function BoardDisplay({data, categories}) {
               : [...dataFetched].reverse().map((post) => (
                   <li className='relative' key={post._id}>
                     <Link href={`/board/${post._id}`}>
-                      <button className='w-full max-w-sm min-w-[326px] md:min-w-[384px] px-8 py-4 bg-[#181818] rounded-lg shadow-lg shadow-action/20'>
+                      <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] p-4 bg-[#181818] rounded-lg shadow shadow-gray-500/50 md:hover:-translate-y-1 md:ease-in-out md:transition'>
                         <p className='mt-2 font-medium tracking-wide'>{post.message}</p>
                         <div className='flex justify-between items-end mt-4 text-secondary font-medium'>
                           <div className='flex flex-col justify-start text-start'>

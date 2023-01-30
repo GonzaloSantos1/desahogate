@@ -11,7 +11,7 @@ const DetailedPost = ({params}) => {
     {name: 'Otros', color: 'secondary', selected: false},
   ];
   return (
-    <div className='flex flex-col justify-between h-full py-2'>
+    <div className='flex flex-col justify-between h-full'>
       <ChatMessages postId={params.id} categories={categories} />
     </div>
   );
