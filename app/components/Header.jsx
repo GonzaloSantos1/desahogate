@@ -67,14 +67,14 @@ function Header() {
           <Link
             href={'/account'}
             onClick={() => setModal(!modal)}
-            className='flex gap-2 items-center'
+            className='flex gap-2 items-center  hover:text-action-blue ease-in-out duration-300 transition'
           >
             <IconUser size={20} stroke={2} />
             <p>Mi cuenta</p>
           </Link>
           <button
             onClick={() => signOut({callbackUrl: `${window.location.origin}/board`})}
-            className='z-50 flex gap-2 items-center'
+            className='z-50 flex gap-2 items-center hover:text-action-red ease-in-out duration-300 transition'
           >
             <IconLogout size={20} stroke={2} />
             <p>Salir</p>

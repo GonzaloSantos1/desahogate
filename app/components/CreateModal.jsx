@@ -95,7 +95,7 @@ function CreateModal({categories, animate}) {
       {modal ? (
         !session ? (
           <div
-            className='absolute top-16 md:-top-10 md:-left-7 z-50 w-screen overflow-x-hidden overflow-y-hidden h-[calc(100%-120px)] md:h-screen  bg-black/50 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
+            className='absolute top-16 px-4 py-4 md:py-0 md:px-0 left-0 md:-top-10 md:-left-7 z-50 w-screen overflow-x-hidden overflow-y-hidden h-[calc(100%-120px)] md:h-screen  bg-black/50 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
             onClick={() => setModal(false)}
           >
             <div className='md:mt-5 font-medium text-lg text-start md:text-center md:text-md mx-auto px-5 md:px-44 flex flex-col gap-2'>
@@ -139,7 +139,7 @@ function CreateModal({categories, animate}) {
           </div>
         ) : (
           <div
-            className='absolute top-16 md:-top-10 md:-left-7 z-50 w-screen overflow-x-hidden overflow-y-hidden h-[calc(100%-120px)] md:h-screen  bg-black/50 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
+            className='absolute top-16 px-4 py-4 md:py-0 md:px-0 left-0 md:-top-10 md:-left-7 z-50 w-screen overflow-x-hidden overflow-y-hidden h-[calc(100%-120px)] md:h-screen  bg-black/50 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
             onClick={() => setModal(false)}
           >
             <div className='md:mt-5 font-medium text-lg text-start md:text-center md:text-md mx-auto px-5 md:px-44 flex flex-col gap-2'>

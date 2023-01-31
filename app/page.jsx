@@ -1,8 +1,9 @@
 import Image from 'next/image';
+import Footer from './components/Footer';
 
 export default function Home() {
   return (
-    <main className=''>
+    <main className='select-none'>
       <h2 className='mt-5 md:my-10 text-4xl font-extrabold text-action/80 md:text-7xl px-10 mx-auto text-center max-w-5xl'>
         Una plataforma donde llorar y palante.
       </h2>
@@ -80,6 +81,7 @@ export default function Home() {
           className='hidden md:block'
         />
       </div>
+      <Footer />
     </main>
   );
 }

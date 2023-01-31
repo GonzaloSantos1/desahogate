@@ -68,7 +68,7 @@ export default function BoardDisplay({data, categories}) {
                   .map((post) => (
                     <li className='relative' key={post._id}>
                       <Link href={`/board/${post._id}`}>
-                        <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] p-4 bg-[#181818] rounded-lg shadow shadow-gray-500/50 md:hover:-translate-y-1 md:ease-in-out md:transition'>
+                        <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] px-4 py-2 bg-[#181818] rounded-lg shadow shadow-gray-500/50 md:hover:-translate-y-1 md:ease-in-out md:transition'>
                           <p className='mt-2 font-medium tracking-wide'>{post.message}</p>
                           <div className='flex justify-between items-end mt-4 text-secondary font-medium'>
                             <div className='flex flex-col justify-start text-start'>
@@ -102,7 +102,7 @@ export default function BoardDisplay({data, categories}) {
               : [...dataFetched].reverse().map((post) => (
                   <li className='relative' key={post._id}>
                     <Link href={`/board/${post._id}`}>
-                      <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] p-4 bg-[#181818] rounded-lg shadow shadow-gray-500/50 md:hover:-translate-y-1 md:ease-in-out md:transition'>
+                      <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] px-4 py-2 bg-[#181818] rounded-lg shadow shadow-gray-500/50 md:hover:-translate-y-1 md:ease-in-out md:transition'>
                         <p className='mt-2 font-medium tracking-wide'>{post.message}</p>
                         <div className='flex justify-between items-end mt-4 text-secondary font-medium'>
                           <div className='flex flex-col justify-start text-start'>

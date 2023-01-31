@@ -1,19 +1,22 @@
 'use client';
 import React, {useState, useEffect, useRef, useContext} from 'react';
-import {useSession} from 'next-auth/react';
+import {useSession, signOut, signIn} from 'next-auth/react';
 import UserContext from '../../lib/userContext';
 
 function Account() {
   const {data: session, status} = useSession();
   const user = useContext(UserContext);
-  const [username, setUsername] = useState(user.user.username);
+  const [username, setUsername] = useState('');
   const email = user.user.email;
   const [success, setSuccess] = useState(false);
   const [loaderButton, setLoaderButton] = useState(false);
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(false);
 
   const editAccount = (e) => {
     e.preventDefault();
     if (!username) return;
+    if (error) return;
 
     const saveAccount = async () => {
       const res = await fetch(`/api/patchUser/${email}`, {
@@ -38,14 +41,37 @@ function Account() {
       }, 2000);
     };
 
-    saveAccount();
-    successHandler();
+    if (!error) {
+      saveAccount();
+      successHandler();
+    }
   };
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/getUsers`)
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      })
+      .then(() => {
+        if (data.some((users) => users.username == (username || user.user.username))) {
+          setError(true);
+        } else {
+          setError(false);
+        }
+      });
+  }, [username]);
 
   if (!session)
     return (
-      <p className='text-3xl font-medium h-full text-center flex items-center justify-center'>
-        Entra en tu cuenta para ver esta página
+      <p className=' text-primary text-lg md:text-md px-3 text-center mt-[50%] md:mt-[20%]'>
+        <span
+          className='text-action-blue font-semibold inline-flex mr-1.5'
+          onClick={() => signIn()}
+        >
+          Inicia sesión
+        </span>
+        en tu cuenta para ver esta página
       </p>
     );
 
@@ -57,22 +83,63 @@ function Account() {
             type='text'
             id='username'
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className='block px-2.5 pb-2.5 pt-4 w-full text-sm text-action bg-transparent rounded-lg border-1 border-secondary appearance-none  focus:outline-none focus:ring-0 border focus:border-action peer font-semibold'
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            className='block px-2.5 pb-2.5 pt-4 w-full text-sm text-action bg-transparent rounded-xl border-1 border-secondary appearance-none  focus:outline-none focus:ring-0 border focus:border-action peer font-semibold'
             placeholder=' '
           />
           <label
             htmlFor='username'
-            className='absolute text-sm text-secondary duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-black px-2 peer-focus:px-2 peer-focus:text-action peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1'
+            className='absolute text-sm text-secondary duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#101010] px-2 peer-focus:px-2 peer-focus:text-action peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1'
           >
-            Nombre de usuario
+            Cambiar nombre de usuario
           </label>
+          {username.length ? (
+            !error ? (
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                class='icon icon-tabler icon-tabler-circle-check text-action-green absolute right-2 top-3'
+                width='24'
+                height='24'
+                viewBox='0 0 24 24'
+                strokeWidth='2'
+                stroke='currentColor'
+                fill='none'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              >
+                <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+                <path d='M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0'></path>
+                <path d='M9 12l2 2l4 -4'></path>
+              </svg>
+            ) : (
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                class='icon icon-tabler icon-tabler-circle-x text-action-red absolute right-2 top-3'
+                width='24'
+                height='24'
+                viewBox='0 0 24 24'
+                strokeWidth='2'
+                stroke='currentColor'
+                fill='none'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              >
+                <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+                <path d='M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0'></path>
+                <path d='M10 10l4 4m0 -4l-4 4'></path>
+              </svg>
+            )
+          ) : (
+            ''
+          )}
         </div>
 
         <button
           type='submit'
-          disabled={!username}
-          className='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-8 tracking-wide py-2 text-center mr-2 inline-flex items-center'
+          disabled={!username || error}
+          className='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-8 tracking-wide py-2 text-center mr-2 inline-flex items-center disabled:opacity-50'
         >
           {loaderButton ? (
             <>
