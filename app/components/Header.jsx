@@ -25,6 +25,16 @@ function Header() {
   const username = user.user.username;
   const pathname = usePathname();
 
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    signIn();
+  };
+
+  const handleSignOut = (e) => {
+    e.preventDefault();
+    signOut();
+  };
+
   return (
     <>
       <header
@@ -43,7 +53,7 @@ function Header() {
           ))}
           {!session ? (
             <button
-              onClick={() => signIn({callbackUrl: `${window.location.origin}/board`})}
+              onClick={handleSignIn}
               className='bg-action/80 text-white px-5 text-md font-medium py-[6px] rounded-xl flex gap-2 items-center hover:bg-action ease-in-out duration-300'
             >
               <p className='-mt-[3px]'>Entrar</p>
@@ -55,7 +65,7 @@ function Header() {
                 onClick={() => setModal(!modal)}
                 className='flex justify-center items-center text-primary border border-secondary/60 rounded-full pl-3 pr-2 py-1'
               >
-                <p className='text-action font-semibold'>{username}</p>
+                <p className='text-action font-semibold'>{username ?? user.user._id}</p>
                 {!modal ? <IconChevronDown size={24} /> : <IconChevronUp size={24} />}
               </button>
             </div>
@@ -73,7 +83,7 @@ function Header() {
             <p>Mi cuenta</p>
           </Link>
           <button
-            onClick={() => signOut({callbackUrl: `${window.location.origin}/board`})}
+            onClick={handleSignOut}
             className='z-50 flex gap-2 items-center hover:text-action-red ease-in-out duration-300 transition'
           >
             <IconLogout size={20} stroke={2} />
