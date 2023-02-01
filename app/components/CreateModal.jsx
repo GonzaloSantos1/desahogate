@@ -180,7 +180,7 @@ function CreateModal({categories, animate}) {
                   <textarea
                     id='textarea'
                     value={input}
-                    maxLength='250'
+                    maxLength='400'
                     onChange={(e) => setInput(e.target.value)}
                     onKeyUp={countHandler}
                     type='text'
@@ -188,7 +188,7 @@ function CreateModal({categories, animate}) {
                     placeholder='Escribe aquí lo que te preocupa...'
                   />
                   <div className='flex justify-between mt-2 items-end text-secondary font-medium'>
-                    <p className='text-sm select-none'>{`${charactersCount}/250`}</p>
+                    <p className='text-sm select-none'>{`${charactersCount}/400`}</p>
                     <div className='flex flex-col gap-1 items-end relative'>
                       <input id='username' value={username} type='radio' className='sr-only' />
                       <label

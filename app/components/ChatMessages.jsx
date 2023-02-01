@@ -3,6 +3,8 @@ import React, {useEffect, useState, useContext} from 'react';
 import LoadingComponent from './LoadingComponent';
 import ChatInput from './ChatInput';
 import UserContext from '../../lib/userContext';
+import {IconChevronUp, IconChevronDown} from '@tabler/icons';
+import AnimateHeight from 'react-animate-height';
 
 function ChatMessages({postId, categories}) {
   const [data, setData] = useState(null);
@@ -10,6 +12,7 @@ function ChatMessages({postId, categories}) {
   const user = useContext(UserContext);
   const loggedUser = user.user.username;
   const loggedUserId = user.user._id;
+  const [titleHeight, setTitleHeight] = useState('auto');
 
   useEffect(() => {
     fetch(`http://localhost:3000/api/getPosts/${postId}`)
@@ -79,28 +82,10 @@ function ChatMessages({postId, categories}) {
     );
   return (
     <>
-      {/* <button className='text-start px-2 w-7' onClick={() => history.back()}>
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          className='icon icon-tabler icon-tabler-arrow-left'
-          width='24'
-          height='24'
-          viewBox='0 0 24 24'
-          strokeWidth='2'
-          stroke='currentColor'
-          fill='none'
-          strokeLinecap='round'
-          strokeLinejoin='round'
-        >
-          <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
-          <path d='M5 12l14 0'></path>
-          <path d='M5 12l6 6'></path>
-          <path d='M5 12l6 -6'></path>
-        </svg>
-      </button> */}
+      {/** CARD TITLE AND TEXT */}
       <div className='flex justify-center items-center md:px-12 h-full'>
-        <div className='flex flex-col justify-between h-full items-center w-full bg-[#101010]'>
-          <div className='bg-[#101010] border-b mt-1 border-gray-600 w-full px-3 md:px-8 pb-2 text-md md:text-sm flex justify-between flex-col gap-1'>
+        <div className='flex flex-col justify-between h-full items-center w-full bg-transparent'>
+          <div className=' mt-1  w-full px-3 md:px-8 pb-2 text-md md:text-sm flex justify-between flex-col gap-1'>
             <div className='flex justify-between'>
               <p className='font-bold text-action'>{data[0].username}</p>
               {categories.map((e, index) => {
@@ -113,55 +98,82 @@ function ChatMessages({postId, categories}) {
                 }
               })}
             </div>
-            <p className='font-medium text-primary'>{data[0].message}</p>
-            <p className='text-secondary font-medium text-end text-xs'>
-              Hace {dateHandler(data[0].created_at)}
-            </p>
+            {/** Smooth display showing/hiding card text */}
+            <AnimateHeight duration={500} height={titleHeight}>
+              <div className='relative'>
+                <p className='font-medium text-primary'>{data[0].message}</p>
+                <p className='text-secondary font-medium text-end text-xs'>
+                  Hace {dateHandler(data[0].created_at)}
+                </p>
+              </div>
+            </AnimateHeight>
           </div>
+          <hr className='border-gray-600 w-full relative' />
+          {/** button to show/hide the text */}
+          <div className='relative bg-transparent w-full'>
+            <button
+              className='border-b border-l border-r rounded-bl-xl rounded-br-xl px-2 border-gray-600 md:hidden z-50 absolute bg-[#1A1A1A] right-[45%]'
+              onClick={() => setTitleHeight(titleHeight === 0 ? 'auto' : 0)}
+            >
+              {titleHeight !== 0 ? <IconChevronUp /> : <IconChevronDown />}
+            </button>
+          </div>
+          {/** Comments section */}
           <div
             id='post-commentaries'
             className='w-full flex-1 px-2 pb-1 overflow-y-auto flex flex-col-reverse relative'
           >
             <ul className='flex flex-col gap-2 items-start text-md'>
               {data[0].comments.map((e) => {
+                let localeDate = new Date(e.created_at).toLocaleDateString().slice(0, -5);
+                let localeTime = new Date(e.created_at).toLocaleTimeString().slice(0, -3);
+                let time = localeDate + ' ' + localeTime;
                 if (data[0].userId == loggedUserId && e.userId == loggedUserId) {
+                  /** user messages if user = author */
                   return (
                     <li
                       key={e.created_at}
                       className=' font-bold text-end self-end bg-[#1A1A1A] py-2 pl-4 pr-3 rounded-xl max-w-[350px] md:max-w-[450px]'
                     >
                       <p className='text-action'>{e.username}</p>
-                      <p className='font-medium '>{e.text}</p>
+                      <p className='font-medium'>{e.text}</p>
+                      <p className='text-secondary text-xs font-light text-start'>{time}</p>
                     </li>
                   );
                 } else if (e.userId == loggedUserId) {
+                  /** user messages if user != author */
                   return (
                     <li
                       key={e.created_at}
                       className=' font-bold text-end self-end bg-[#1A1A1A] py-2 pl-4 pr-3 rounded-xl max-w-[350px] md:max-w-[450px]'
                     >
                       <p className='text-action-red'>{e.username}</p>
-                      <p className='font-medium '>{e.text}</p>
+                      <p className='font-medium'>{e.text}</p>
+                      <p className='text-secondary text-xs font-light text-start'>{time}</p>
                     </li>
                   );
                 } else if (data[0].userId == e.userId) {
+                  /** author messages if user != author */
                   return (
                     <li
                       key={e.created_at}
                       className=' font-bold text-start bg-[#1A1A1A] py-2 pr-4 pl-3 rounded-xl max-w-[350px] md:max-w-[450px]'
                     >
                       <p className='text-action'>{e.username}</p>
-                      <p className='font-medium '>{e.text}</p>
+                      <p className='font-medium'>{e.text}</p>
+                      <p className='text-secondary text-xs font-light text-end'>{time}</p>
                     </li>
                   );
                 } else {
+                  /** non user/author messages */
                   return (
                     <li
                       key={e.created_at}
                       className=' font-bold text-start bg-[#1A1A1A] py-2 pr-4 pl-3 rounded-xl max-w-[350px] md:max-w-[450px]'
                     >
                       <p className='text-blue-500'>{e.username}</p>
-                      <p className='font-medium '>{e.text}</p>
+                      <p className='font-medium'>{e.text}</p>
+                      <p className='text-secondary text-xs font-light text-end'>{time}</p>
                     </li>
                   );
                 }

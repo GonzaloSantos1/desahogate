@@ -15,7 +15,7 @@ function Account() {
 
   const editAccount = (e) => {
     e.preventDefault();
-    if (!username) return;
+    if (!username || username == ('Anónimo' || 'anonimo' || 'Anonimo' || 'anónimo')) return;
     if (error) return;
 
     const saveAccount = async () => {
@@ -54,7 +54,9 @@ function Account() {
         setData(data);
       })
       .then(() => {
-        if (data.some((users) => users.username == (username || user.user.username))) {
+        if (['Anónimo', 'anonimo', 'Anonimo', 'anónimo'].indexOf(username) > -1) {
+          setError(true);
+        } else if (data.some((users) => users.username == (username || user.user.username))) {
           setError(true);
         } else {
           setError(false);
@@ -77,6 +79,9 @@ function Account() {
 
   return (
     <div className=''>
+      <h1 className='text-action font-bold text-xl my-3 px-4'>
+        <span className='text-primary font-medium text-xl'>Hola,</span> {user.user.username} 👋
+      </h1>
       <form onSubmit={editAccount} className='flex justify-center flex-col gap-2 my-4 items-center'>
         <div className='relative max-w-lg w-80'>
           <input
