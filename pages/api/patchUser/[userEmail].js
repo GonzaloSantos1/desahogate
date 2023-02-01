@@ -11,7 +11,7 @@ export default async (req, res) => {
   }
   const client = await clientPromise;
   const db = client.db('desahogate');
-  const {username} = req.body;
+  const {username, attemps} = req.body;
   const {userEmail} = req.query;
 
   const post = await db.collection('users').updateOne(
@@ -19,7 +19,7 @@ export default async (req, res) => {
       email: userEmail,
     },
     {
-      $set: {username: username},
+      $set: {username: username, attemps: attemps},
     }
   );
 

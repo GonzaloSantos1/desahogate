@@ -12,11 +12,14 @@ function Account() {
   const [loaderButton, setLoaderButton] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
+  let attemps = user.user.attemps ? user.user.attemps : 2;
 
   const editAccount = (e) => {
     e.preventDefault();
     if (!username || username == ('Anónimo' || 'anonimo' || 'Anonimo' || 'anónimo')) return;
     if (error) return;
+    if (attemps < 1) return;
+    attemps -= 1;
 
     const saveAccount = async () => {
       const res = await fetch(`/api/patchUser/${email}`, {
@@ -26,6 +29,7 @@ function Account() {
         },
         body: JSON.stringify({
           username: username,
+          attemps: attemps,
         }),
       });
     };
@@ -64,12 +68,22 @@ function Account() {
       });
   }, [username]);
 
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    signIn();
+  };
+
+  const handleSignOut = (e) => {
+    e.preventDefault();
+    signOut();
+  };
+
   if (!session)
     return (
       <p className=' text-primary text-lg md:text-md px-3 text-center mt-[50%] md:mt-[20%]'>
         <span
-          className='text-action-blue font-semibold inline-flex mr-1.5'
-          onClick={() => signIn()}
+          className='text-action-blue font-semibold inline-flex mr-1.5 cursor-pointer hover:underline hover:underline-offset-2'
+          onClick={handleSignIn}
         >
           Inicia sesión
         </span>
@@ -80,7 +94,8 @@ function Account() {
   return (
     <div className=''>
       <h1 className='text-action font-bold text-xl my-3 px-4'>
-        <span className='text-primary font-medium text-xl'>Hola,</span> {user.user.username} 👋
+        <span className='text-primary font-medium text-xl'>Hola,</span>{' '}
+        {user.user.username ?? user.user._id} 👋
       </h1>
       <form onSubmit={editAccount} className='flex justify-center flex-col gap-2 my-4 items-center'>
         <div className='relative max-w-lg w-80'>
@@ -140,10 +155,10 @@ function Account() {
             ''
           )}
         </div>
-
+        <p className='text-xs'>Cambios de nombre disponibles: {attemps}/2</p>
         <button
           type='submit'
-          disabled={!username || error}
+          disabled={!username || error || attemps < 1}
           className='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-8 tracking-wide py-2 text-center mr-2 inline-flex items-center disabled:opacity-50'
         >
           {loaderButton ? (
@@ -174,7 +189,7 @@ function Account() {
       </form>
       {success && (
         <div
-          class='flex py-3 px-4 mb-4 text-sm text-primary bg-emerald-700 rounded-lg absolute bottom-0 right-5 gap-2 items-center'
+          class='flex py-3 px-4 mb-4 text-sm text-primary bg-emerald-700 rounded-lg absolute bottom-0 md:right-5 gap-2 items-center'
           role='alert'
         >
           <svg
@@ -193,7 +208,9 @@ function Account() {
             <path d='M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0'></path>
             <path d='M9 12l2 2l4 -4'></path>
           </svg>
-          <p className='font-semibold tracking-wide'>Cambios guardados correctamente</p>
+          <p className='font-semibold tracking-wide'>
+            Cambios guardados correctamente, vuelve a iniciar sesión para verlos
+          </p>
         </div>
       )}
     </div>

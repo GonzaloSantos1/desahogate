@@ -135,7 +135,9 @@ function ChatMessages({postId, categories}) {
                       key={e.created_at}
                       className=' font-bold text-end self-end bg-[#1A1A1A] py-2 pl-4 pr-3 rounded-xl max-w-[350px] md:max-w-[450px]'
                     >
-                      <p className='text-action'>{e.username}</p>
+                      <p className='text-action'>
+                        {e.username ? e.username : e.userId.slice(0, -10)}
+                      </p>
                       <p className='font-medium'>{e.text}</p>
                       <p className='text-secondary text-xs font-light text-start'>{time}</p>
                     </li>
@@ -147,7 +149,9 @@ function ChatMessages({postId, categories}) {
                       key={e.created_at}
                       className=' font-bold text-end self-end bg-[#1A1A1A] py-2 pl-4 pr-3 rounded-xl max-w-[350px] md:max-w-[450px]'
                     >
-                      <p className='text-action-red'>{e.username}</p>
+                      <p className='text-action-red'>
+                        {e.username ? e.username : e.userId.slice(0, -10)}
+                      </p>
                       <p className='font-medium'>{e.text}</p>
                       <p className='text-secondary text-xs font-light text-start'>{time}</p>
                     </li>
@@ -159,19 +163,24 @@ function ChatMessages({postId, categories}) {
                       key={e.created_at}
                       className=' font-bold text-start bg-[#1A1A1A] py-2 pr-4 pl-3 rounded-xl max-w-[350px] md:max-w-[450px]'
                     >
-                      <p className='text-action'>{e.username}</p>
+                      <p className='text-action'>
+                        {e.username ? e.username : e.userId.slice(0, -10)}
+                      </p>
                       <p className='font-medium'>{e.text}</p>
                       <p className='text-secondary text-xs font-light text-end'>{time}</p>
                     </li>
                   );
                 } else {
                   /** non user/author messages */
+                  /** if user hasn't changed the name after registering -> show cropped userId instead */
                   return (
                     <li
                       key={e.created_at}
                       className=' font-bold text-start bg-[#1A1A1A] py-2 pr-4 pl-3 rounded-xl max-w-[350px] md:max-w-[450px]'
                     >
-                      <p className='text-blue-500'>{e.username}</p>
+                      <p className='text-blue-500'>
+                        {e.username ? e.username : e.userId.slice(0, -10)}
+                      </p>
                       <p className='font-medium'>{e.text}</p>
                       <p className='text-secondary text-xs font-light text-end'>{time}</p>
                     </li>
