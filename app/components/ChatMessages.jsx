@@ -4,6 +4,7 @@ import LoadingComponent from './LoadingComponent';
 import ChatInput from './ChatInput';
 import UserContext from '../../lib/userContext';
 import {IconChevronUp, IconChevronDown} from '@tabler/icons';
+import {HiBadgeCheck} from 'react-icons/hi';
 import AnimateHeight from 'react-animate-height';
 
 function ChatMessages({postId, categories}) {
@@ -85,7 +86,7 @@ function ChatMessages({postId, categories}) {
       {/** CARD TITLE AND TEXT */}
       <div className='flex justify-center items-center md:px-12 h-full'>
         <div className='flex flex-col justify-between h-full items-center w-full bg-transparent'>
-          <div className=' mt-1  w-full px-3 md:px-8 pb-2 text-md md:text-sm flex justify-between flex-col gap-1'>
+          <div className=' mt-1  w-full px-3 md:px-8 pb-2 text-md flex justify-between flex-col gap-1'>
             <div className='flex justify-between'>
               <p className='font-bold text-action'>{data[0].username}</p>
               {categories.map((e, index) => {
@@ -98,21 +99,27 @@ function ChatMessages({postId, categories}) {
                 }
               })}
             </div>
+            <div className='relative hidden md:block'>
+              <p className='font-medium text-primary leading-[1.1]'>{data[0].message}</p>
+              <p className='text-secondary font-medium text-end text-xs'>
+                Hace {dateHandler(data[0].created_at)}
+              </p>
+            </div>
             {/** Smooth display showing/hiding card text */}
             <AnimateHeight duration={500} height={titleHeight}>
-              <div className='relative'>
-                <p className='font-medium text-primary'>{data[0].message}</p>
+              <div className='relative md:hidden'>
+                <p className='font-medium text-primary leading-[1.1]'>{data[0].message}</p>
                 <p className='text-secondary font-medium text-end text-xs'>
                   Hace {dateHandler(data[0].created_at)}
                 </p>
               </div>
             </AnimateHeight>
           </div>
-          <hr className='border-gray-600 w-full relative' />
+          <hr className='border-gray-800 w-full relative' />
           {/** button to show/hide the text */}
           <div className='relative bg-transparent w-full'>
             <button
-              className='border-b border-l border-r rounded-bl-xl rounded-br-xl px-2 border-gray-600 md:hidden z-50 absolute bg-[#1A1A1A] right-[45%]'
+              className='border-b border-l border-r rounded-bl-xl rounded-br-xl px-2 border-gray-800 md:hidden z-50 absolute bg-[#1A1A1A] right-[45%]'
               onClick={() => setTitleHeight(titleHeight === 0 ? 'auto' : 0)}
             >
               {titleHeight !== 0 ? <IconChevronUp /> : <IconChevronDown />}
@@ -133,13 +140,13 @@ function ChatMessages({postId, categories}) {
                   return (
                     <li
                       key={e.created_at}
-                      className=' font-bold text-end self-end bg-[#1A1A1A] py-2 pl-4 pr-3 rounded-xl max-w-[350px] md:max-w-[450px]'
+                      className='font-semibold text-end self-end bg-[#1A1A1A] py-2 pl-4 pr-3 rounded-xl max-w-[350px] md:max-w-[450px]'
                     >
                       <p className='text-action'>
                         {e.username ? e.username : e.userId.slice(0, -10)}
                       </p>
-                      <p className='font-medium'>{e.text}</p>
-                      <p className='text-secondary text-xs font-light text-start'>{time}</p>
+                      <p className='font-medium leading-[1.1]'>{e.text}</p>
+                      <p className='text-secondary text-xs font-light text-end mt-1'>{time}</p>
                     </li>
                   );
                 } else if (e.userId == loggedUserId) {
@@ -147,13 +154,20 @@ function ChatMessages({postId, categories}) {
                   return (
                     <li
                       key={e.created_at}
-                      className=' font-bold text-end self-end bg-[#1A1A1A] py-2 pl-4 pr-3 rounded-xl max-w-[350px] md:max-w-[450px]'
+                      className='font-semibold text-end self-end bg-[#1A1A1A] py-2 pl-4 pr-3 rounded-xl max-w-[350px] md:max-w-[450px]'
                     >
-                      <p className='text-action-red'>
-                        {e.username ? e.username : e.userId.slice(0, -10)}
-                      </p>
-                      <p className='font-medium'>{e.text}</p>
-                      <p className='text-secondary text-xs font-light text-start'>{time}</p>
+                      <div className='flex items-center gap-1 justify-end'>
+                        {e.verified && (
+                          <span>
+                            <HiBadgeCheck color='#FF4ECD' size={20} />
+                          </span>
+                        )}
+                        <p className='text-action-red text-end'>
+                          {e.username ? e.username : e.userId.slice(0, -10)}
+                        </p>
+                      </div>
+                      <p className='font-medium leading-[1.1]'>{e.text}</p>
+                      <p className='text-secondary text-xs font-light text-end mt-1'>{time}</p>
                     </li>
                   );
                 } else if (data[0].userId == e.userId) {
@@ -161,27 +175,34 @@ function ChatMessages({postId, categories}) {
                   return (
                     <li
                       key={e.created_at}
-                      className=' font-bold text-start bg-[#1A1A1A] py-2 pr-4 pl-3 rounded-xl max-w-[350px] md:max-w-[450px]'
+                      className=' font-semibold text-start bg-[#1A1A1A] py-2 pr-4 pl-3 rounded-xl max-w-[350px] md:max-w-[450px]'
                     >
                       <p className='text-action'>
                         {e.username ? e.username : e.userId.slice(0, -10)}
                       </p>
-                      <p className='font-medium'>{e.text}</p>
+                      <p className='font-medium leading-[1.1]'>{e.text}</p>
                       <p className='text-secondary text-xs font-light text-end'>{time}</p>
                     </li>
                   );
                 } else {
                   /** non user/author messages */
-                  /** if user hasn't changed the name after registering -> show cropped userId instead */
+                  /** if user hasn't changed the name after register -> show cropped userId instead */
                   return (
                     <li
                       key={e.created_at}
-                      className=' font-bold text-start bg-[#1A1A1A] py-2 pr-4 pl-3 rounded-xl max-w-[350px] md:max-w-[450px]'
+                      className='font-semibold text-start bg-[#1A1A1A] py-1 pr-2 pl-3 rounded-xl max-w-[350px] md:max-w-[50%]'
                     >
-                      <p className='text-blue-500'>
-                        {e.username ? e.username : e.userId.slice(0, -10)}
-                      </p>
-                      <p className='font-medium'>{e.text}</p>
+                      <div className='flex items-center gap-1'>
+                        <p className='text-action-blue'>
+                          {e.username ? e.username : e.userId.slice(0, -10)}
+                        </p>
+                        {e.verified && (
+                          <span>
+                            <HiBadgeCheck color='#FF4ECD' size={20} />
+                          </span>
+                        )}
+                      </div>
+                      <p className='font-medium leading-[1.1]'>{e.text}</p>
                       <p className='text-secondary text-xs font-light text-end'>{time}</p>
                     </li>
                   );

@@ -60,7 +60,7 @@ export default function BoardDisplay({data, categories}) {
           <div className='hidden md:block'>
             <CreateModal categories={categories} />
           </div>
-          <ul className='flex flex-wrap justify-center gap-3 md:gap-6 mt-3 md:mt-6 mb-3 overflow-y-scroll'>
+          <ul className='flex flex-wrap justify-center gap-3 md:gap-6 mt-3 md:mt-6 mb-3 overflow-y-scroll py-2'>
             {category !== ''
               ? dataFetched
                   .filter((e) => e.category == category)

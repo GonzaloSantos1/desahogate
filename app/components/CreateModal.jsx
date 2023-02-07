@@ -98,7 +98,7 @@ function CreateModal({categories, animate}) {
             className='absolute top-16 px-4 py-4 md:py-0 md:px-0 left-0 md:-top-10 md:-left-7 z-50 w-screen overflow-x-hidden overflow-y-hidden h-[calc(100%-120px)] md:h-screen  bg-black/50 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
             onClick={() => setModal(false)}
           >
-            <div className='md:mt-5 font-medium text-lg text-start md:text-center md:text-md mx-auto px-5 md:px-44 flex flex-col gap-2'>
+            <div className='md:mt-5 font-light text-base text-start md:text-center md:text-md mx-auto px-3 md:px-44 flex flex-col gap-2 leading-[1.25]'>
               <h1>
                 Esto es una plataforma para desahogarse, donde la gente podrá comentar tu post e
                 intentar ayudarte. Los comentarios provenientes de un perfil verificado
@@ -128,13 +128,13 @@ function CreateModal({categories, animate}) {
               </h1>
             </div>
             <div
-              className='flex flex-col justify-center items-center gap-1 py-2 text-xl w-full h-full'
+              className='flex flex-col justify-center items-center py-2 text-base md:text-md w-full h-full'
               onClick={(e) => e.stopPropagation()}
             >
-              <button onClick={() => signIn()} className='text-action-blue font-semibold'>
+              <button onClick={() => signIn('google')} className='text-action-blue font-semibold'>
                 Inicia sesión
               </button>
-              <p>para poder comentar</p>
+              <p>para poder publicar un mensaje</p>
             </div>
           </div>
         ) : (

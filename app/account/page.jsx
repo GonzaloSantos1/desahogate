@@ -60,7 +60,14 @@ function Account() {
       .then(() => {
         if (['Anónimo', 'anonimo', 'Anonimo', 'anónimo'].indexOf(username) > -1) {
           setError(true);
-        } else if (data.some((users) => users.username == (username || user.user.username))) {
+        } else if (
+          data.some(
+            (users) =>
+              users.username.toLowerCase() == (username.toLowerCase() || user.user.username)
+          )
+        ) {
+          setError(true);
+        } else if (username.length < 5) {
           setError(true);
         } else {
           setError(false);
@@ -70,7 +77,7 @@ function Account() {
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    signIn();
+    signIn('google', {callbackUrl: 'http://localhost:3000/board'});
   };
 
   const handleSignOut = (e) => {
@@ -106,7 +113,7 @@ function Account() {
             onChange={(e) => {
               setUsername(e.target.value);
             }}
-            className='block px-2.5 pb-2.5 pt-4 w-full text-sm text-action bg-transparent rounded-xl border-1 border-secondary appearance-none  focus:outline-none focus:ring-0 border focus:border-action peer font-semibold'
+            className='block px-2.5 py-2.5 w-full text-sm text-primary bg-transparent rounded-xl border-1 border-secondary appearance-none  focus:outline-none focus:ring-0 border focus:border-action peer font-semibold'
             placeholder=' '
           />
           <label
@@ -119,7 +126,7 @@ function Account() {
             !error ? (
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                class='icon icon-tabler icon-tabler-circle-check text-action-green absolute right-2 top-3'
+                class='icon icon-tabler icon-tabler-circle-check text-action-green absolute right-2 top-2'
                 width='24'
                 height='24'
                 viewBox='0 0 24 24'
@@ -136,7 +143,7 @@ function Account() {
             ) : (
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                class='icon icon-tabler icon-tabler-circle-x text-action-red absolute right-2 top-3'
+                class='icon icon-tabler icon-tabler-circle-x text-action-red absolute right-2 top-2'
                 width='24'
                 height='24'
                 viewBox='0 0 24 24'

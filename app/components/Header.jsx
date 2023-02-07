@@ -4,7 +4,10 @@ import Image from 'next/image';
 import React, {useEffect, useState, useContext} from 'react';
 import {useSession, signIn, signOut} from 'next-auth/react';
 import UserContext from '../../lib/userContext';
-import {IconUser, IconLogout, IconChevronUp, IconChevronDown, IconFishBone} from '@tabler/icons';
+import {IconChevronUp, IconChevronDown} from '@tabler/icons';
+import {HiUser} from 'react-icons/hi2';
+import {BiLogOut} from 'react-icons/bi';
+import {IoFish} from 'react-icons/io5';
 import {usePathname, useRouter} from 'next/navigation';
 
 const links = [
@@ -27,7 +30,7 @@ function Header() {
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    signIn();
+    signIn('google', {callbackUrl: 'http://localhost:3000/board'});
   };
 
   const handleSignOut = (e) => {
@@ -45,7 +48,7 @@ function Header() {
           desahógate
         </a>
 
-        <ul className='hidden md:flex justify-center gap-5 items-center text-md font-medium'>
+        <ul className='hidden md:flex justify-center gap-5 items-center text-lg font-semibold'>
           {links.map(({label, route}) => (
             <li key={route} className={pathname == route ? 'text-action-blue' : ''}>
               <Link href={route}>{label}</Link>
@@ -54,10 +57,10 @@ function Header() {
           {!session ? (
             <button
               onClick={handleSignIn}
-              className='bg-action/80 text-white px-5 text-md font-medium py-[6px] rounded-xl flex gap-2 items-center hover:bg-action ease-in-out duration-300'
+              className='bg-action/90 text-white px-5 text-md font-semibold py-[5px] rounded-xl flex gap-2 items-center hover:bg-action ease-in-out duration-300'
             >
-              <p className='-mt-[3px]'>Entrar</p>
-              <IconFishBone size={24} stroke={1.5} className='-mt-[2px]' />
+              <p>Entrar</p>
+              <IoFish size={24} />
             </button>
           ) : (
             <div className='flex justify-center gap-3' onClick={(e) => e.stopPropagation()}>
@@ -79,14 +82,14 @@ function Header() {
             onClick={() => setModal(!modal)}
             className='flex gap-2 items-center  hover:text-action-blue ease-in-out duration-300 transition'
           >
-            <IconUser size={20} stroke={2} />
+            <HiUser size={20} stroke={2} />
             <p>Mi cuenta</p>
           </Link>
           <button
             onClick={handleSignOut}
             className='z-50 flex gap-2 items-center hover:text-action-red ease-in-out duration-300 transition'
           >
-            <IconLogout size={20} stroke={2} />
+            <BiLogOut size={20} stroke={2} />
             <p>Salir</p>
           </button>
         </div>
