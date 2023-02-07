@@ -29,6 +29,7 @@ function ChatInput(props) {
       text: commentToSend,
       created_at: Date.now(),
       username: data.username == 'Anónimo' && data.userId == userId ? 'Anónimo' : username,
+      verified: user.user.verified ? true : false,
     };
 
     const uploadComment = async () => {
@@ -52,7 +53,7 @@ function ChatInput(props) {
     <>
       {!session ? (
         <div className='flex justify-center items-center gap-1 py-2'>
-          <button onClick={() => signIn()} className='text-action-blue font-semibold'>
+          <button onClick={() => signIn('google')} className='text-action-blue font-semibold'>
             Inicia sesión
           </button>
           <p>para poder comentar</p>

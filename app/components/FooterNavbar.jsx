@@ -49,7 +49,7 @@ const FooterNavbar = () => {
           className={`flex flex-col ${selected == 'favorites' && 'text-action'}`}
           onClick={() => setSelected('favorites')}
         >
-          <Link href='favorites'>
+          <Link href='/favorites'>
             <div className='flex flex-col items-center justify-center'>
               <IconStar size={28} stroke={1} />
               <p>Favoritos</p>
@@ -60,7 +60,7 @@ const FooterNavbar = () => {
           className={`flex flex-col ${selected == '/account' && 'text-action'}`}
           onClick={() => setSelected('/account')}
         >
-          <Link href='account'>
+          <Link href='/account'>
             <div className='flex flex-col items-center justify-center'>
               <IconUser size={28} stroke={1} />
               <p>Perfil</p>
