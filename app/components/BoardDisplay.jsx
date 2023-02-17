@@ -32,6 +32,7 @@ const dateHandler = (postDate) => {
 export default function BoardDisplay({data, categories}) {
   const [category, setCategory] = useState(null);
   const [dataFetched, setDataFetched] = useState(data);
+  const pathname = usePathname();
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -47,6 +48,66 @@ export default function BoardDisplay({data, categories}) {
   }, []);
 
   const handleCategory = (cat) => setCategory(cat);
+
+  if (pathname.length > 10) {
+    return (
+      <div className='mt-5 md:mt-10 relative flex justify-center items-center'>
+        {!dataFetched ? (
+          <LoadingComponent textSize={'lg'} text={'Cargando otros posts...'} size={250} />
+        ) : !dataFetched.length ? (
+          <EmptyMessage categories={categories} />
+        ) : (
+          <>
+            <ul className='flex flex-wrap justify-center gap-2 w-full h-full rounded-md overflow-y-scroll py-2 text-xs -mt-10'>
+              {[...dataFetched].reverse().map((post) => {
+                if (post._id !== pathname.slice(7)) {
+                  return (
+                    <li className='relative' key={post._id}>
+                      <Link href={`/board/${post._id}`}>
+                        <button className='w-full max-w-[265px] min-w-[265px] px-4 py-2 bg-[#181818] rounded-lg shadow shadow-gray-500/50'>
+                          {post.comments.length > 10 && (
+                            <div className='absolute -top-2 -left-3 animate-pulse'>
+                              <IconFlame color='#F4256D' size={35} />
+                            </div>
+                          )}
+                          <p className='mt-2 font-medium tracking-wide'>{post.message}</p>
+                          <div className='flex justify-between items-end mt-4 text-secondary font-medium'>
+                            <div className='flex flex-col justify-start text-start'>
+                              <p className=''>{post.comments.length} comentarios</p>
+                              <p className=' relative pl-5'>
+                                <span className='inline-flex absolute left-0 top-0.5'>
+                                  <IconClockHour3 size={15} stroke={2} />
+                                </span>
+                                {dateHandler(post.created_at)}
+                              </p>
+                            </div>
+                            <div className='flex flex-col items-end'>
+                              <p href='#' className='font-semibold  text-action' role='link'>
+                                {post.username}
+                              </p>
+                              {categories.map(({name, color}) => {
+                                if (post.category == name) {
+                                  return (
+                                    <p key={name} className={` text-${color} font-semibold`}>
+                                      {post.category}
+                                    </p>
+                                  );
+                                }
+                              })}
+                            </div>
+                          </div>
+                        </button>
+                      </Link>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          </>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className='mt-5 md:mt-10 relative'>
@@ -69,7 +130,14 @@ export default function BoardDisplay({data, categories}) {
                     <li className='relative' key={post._id}>
                       <Link href={`/board/${post._id}`}>
                         <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] px-4 py-2 bg-[#181818] rounded-lg shadow shadow-gray-500/50 md:hover:-translate-y-1 md:ease-in-out md:transition'>
-                          <p className='mt-2 font-medium tracking-wide'>{post.message}</p>
+                          {post.comments.length > 10 && (
+                            <div className='absolute -top-2.5 -left-4 animate-pulse'>
+                              <IconFlame color='#F4256D' size={45} />
+                            </div>
+                          )}
+                          <p className='mt-2 font-medium tracking-wide md:text-sm'>
+                            {post.message}
+                          </p>
                           <div className='flex justify-between items-end mt-4 text-secondary font-medium'>
                             <div className='flex flex-col justify-start text-start'>
                               <p className='text-sm'>{post.comments.length} comentarios</p>
@@ -102,8 +170,13 @@ export default function BoardDisplay({data, categories}) {
               : [...dataFetched].reverse().map((post) => (
                   <li className='relative' key={post._id}>
                     <Link href={`/board/${post._id}`}>
-                      <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] px-4 py-2 bg-[#181818] rounded-lg shadow shadow-gray-500/50 md:hover:-translate-y-1 md:ease-in-out md:transition'>
-                        <p className='mt-2 font-medium tracking-wide'>{post.message}</p>
+                      <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] px-4 py-2 bg-[#181818] rounded-lg shadow shadow-gray-500/50 md:hover:-translate-y-1 md:ease-in-out md:transition relative'>
+                        {post.comments.length > 10 && (
+                          <div className='absolute -top-2.5 -left-4 animate-pulse'>
+                            <IconFlame color='#F4256D' size={45} />
+                          </div>
+                        )}
+                        <p className='mt-2 font-medium tracking-wide md:text-sm'>{post.message}</p>
                         <div className='flex justify-between items-end mt-4 text-secondary font-medium'>
                           <div className='flex flex-col justify-start text-start'>
                             <p className='text-sm'>{post.comments.length} comentarios</p>

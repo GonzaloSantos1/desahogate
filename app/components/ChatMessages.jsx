@@ -6,6 +6,7 @@ import UserContext from '../../lib/userContext';
 import {IconChevronUp, IconChevronDown} from '@tabler/icons';
 import {HiBadgeCheck} from 'react-icons/hi';
 import AnimateHeight from 'react-animate-height';
+import BoardDisplay from './BoardDisplay';
 
 function ChatMessages({postId, categories}) {
   const [data, setData] = useState(null);
@@ -84,9 +85,9 @@ function ChatMessages({postId, categories}) {
   return (
     <>
       {/** CARD TITLE AND TEXT */}
-      <div className='flex justify-center items-center md:px-12 h-full'>
-        <div className='flex flex-col justify-between h-full items-center w-full bg-transparent'>
-          <div className=' mt-1  w-full px-3 md:px-8 pb-2 text-md flex justify-between flex-col gap-1'>
+      <div className='flex justify-center items-center h-full'>
+        <div className='flex flex-col justify-between h-full items-center w-full bg-transparent flex-1'>
+          <div className=' mt-1 w-full px-3 md:px-4 pb-2 text-md flex justify-between flex-col gap-1'>
             <div className='flex justify-between'>
               <p className='font-bold text-action'>{data[0].username}</p>
               {categories.map((e, index) => {
@@ -100,7 +101,7 @@ function ChatMessages({postId, categories}) {
               })}
             </div>
             <div className='relative hidden md:block'>
-              <p className='font-medium text-primary leading-[1.1]'>{data[0].message}</p>
+              <p className='font-medium text-primary leading-[1.1] md:text-sm'>{data[0].message}</p>
               <p className='text-secondary font-medium text-end text-xs'>
                 Hace {dateHandler(data[0].created_at)}
               </p>
@@ -130,7 +131,7 @@ function ChatMessages({postId, categories}) {
             id='post-commentaries'
             className='w-full flex-1 px-2 pb-1 overflow-y-auto flex flex-col-reverse relative'
           >
-            <ul className='flex flex-col gap-2 items-start text-md'>
+            <ul className='flex flex-col gap-2 items-start text-md md:px-2'>
               {data[0].comments.map((e) => {
                 let localeDate = new Date(e.created_at).toLocaleDateString().slice(0, -5);
                 let localeTime = new Date(e.created_at).toLocaleTimeString().slice(0, -3);
@@ -142,11 +143,11 @@ function ChatMessages({postId, categories}) {
                       key={e.created_at}
                       className='font-semibold text-end self-end bg-[#1A1A1A] py-2 pl-4 pr-3 rounded-xl max-w-[350px] md:max-w-[450px]'
                     >
-                      <p className='text-action'>
+                      <p className='text-action md:text-sm'>
                         {e.username ? e.username : e.userId.slice(0, -10)}
                       </p>
-                      <p className='font-medium leading-[1.1]'>{e.text}</p>
-                      <p className='text-secondary text-xs font-light text-end mt-1'>{time}</p>
+                      <p className='font-medium md:text-sm leading-[1.1]'>{e.text}</p>
+                      <p className='text-secondary text-xs font-light text-start'>{time}</p>
                     </li>
                   );
                 } else if (e.userId == loggedUserId) {
@@ -162,12 +163,12 @@ function ChatMessages({postId, categories}) {
                             <HiBadgeCheck color='#FF4ECD' size={20} />
                           </span>
                         )}
-                        <p className='text-action-red text-end'>
+                        <p className='text-action-red text-end md:text-sm'>
                           {e.username ? e.username : e.userId.slice(0, -10)}
                         </p>
                       </div>
-                      <p className='font-medium leading-[1.1]'>{e.text}</p>
-                      <p className='text-secondary text-xs font-light text-end mt-1'>{time}</p>
+                      <p className='font-medium md:text-sm leading-[1.1]'>{e.text}</p>
+                      <p className='text-secondary text-xs font-light text-start'>{time}</p>
                     </li>
                   );
                 } else if (data[0].userId == e.userId) {
@@ -177,10 +178,10 @@ function ChatMessages({postId, categories}) {
                       key={e.created_at}
                       className=' font-semibold text-start bg-[#1A1A1A] py-2 pr-4 pl-3 rounded-xl max-w-[350px] md:max-w-[450px]'
                     >
-                      <p className='text-action'>
+                      <p className='text-action md:text-sm'>
                         {e.username ? e.username : e.userId.slice(0, -10)}
                       </p>
-                      <p className='font-medium leading-[1.1]'>{e.text}</p>
+                      <p className='font-medium md:text-sm leading-[1.1]'>{e.text}</p>
                       <p className='text-secondary text-xs font-light text-end'>{time}</p>
                     </li>
                   );
@@ -193,7 +194,7 @@ function ChatMessages({postId, categories}) {
                       className='font-semibold text-start bg-[#1A1A1A] py-1 pr-2 pl-3 rounded-xl max-w-[350px] md:max-w-[50%]'
                     >
                       <div className='flex items-center gap-1'>
-                        <p className='text-action-blue'>
+                        <p className='text-action-blue md:text-sm'>
                           {e.username ? e.username : e.userId.slice(0, -10)}
                         </p>
                         {e.verified && (
@@ -202,7 +203,7 @@ function ChatMessages({postId, categories}) {
                           </span>
                         )}
                       </div>
-                      <p className='font-medium leading-[1.1]'>{e.text}</p>
+                      <p className='font-medium md:text-sm leading-[1.1]'>{e.text}</p>
                       <p className='text-secondary text-xs font-light text-end'>{time}</p>
                     </li>
                   );
@@ -239,6 +240,9 @@ function ChatMessages({postId, categories}) {
             loggedUserId={loggedUserId}
             data={data[0]}
           />
+        </div>
+        <div className='w-[20%] h-full border-gray-800 overflow-scroll hidden md:block'>
+          <BoardDisplay categories={categories} />
         </div>
       </div>
     </>

@@ -74,7 +74,7 @@ function CreateModal({categories, animate}) {
         onClick={() => {
           setModal(!modal);
         }}
-        className={`hidden md:block rounded-2xl px-5 py-2.5 text-center ease-in-out transition duration-300 text-primary bg-action/80 font-medium tracking-wide hover:bg-action hover:text-white text-sm md:m-4 md:animate-bounce fixed bottom-[1vh] right-0 z-50`}
+        className={`hidden md:block rounded-2xl px-5 py-2.5 text-center ease-in-out transition duration-300 text-primary bg-action font-medium tracking-wide hover:text-white hover:font-semibold text-sm md:m-4 md:animate-bounce fixed bottom-[1vh] right-0 z-50`}
         type='button'
       >
         Desahogarme
@@ -184,7 +184,7 @@ function CreateModal({categories, animate}) {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyUp={countHandler}
                     type='text'
-                    className='mt-2 font-medium tracking-wide bg-transparent w-full h-56 md:h-44 border-none focus:border-none focus:ring-0 placeholder:italic focus:outline-none resize-none text-primary'
+                    className='mt-2 font-medium tracking-wide bg-transparent w-full h-56 md:h-44 border-none focus:border-none focus:ring-0 placeholder:italic focus:outline-none resize-none text-primary md:text-sm'
                     placeholder='Escribe aquí lo que te preocupa...'
                   />
                   <div className='flex justify-between mt-2 items-end text-secondary font-medium'>

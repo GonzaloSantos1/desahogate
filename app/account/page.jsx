@@ -13,6 +13,7 @@ function Account() {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   let attemps = user.user.attemps ? user.user.attemps : 2;
+  const [activity, setActivity] = useState([]);
 
   const editAccount = (e) => {
     e.preventDefault();
@@ -100,8 +101,8 @@ function Account() {
 
   return (
     <div className=''>
-      <h1 className='text-action font-bold text-xl my-3 px-4'>
-        <span className='text-primary font-medium text-xl'>Hola,</span>{' '}
+      <h1 className='text-action font-bold text-3xl my-5 px-4 md:px-36'>
+        <span className='text-primary font-medium'>Hola,</span>{' '}
         {user.user.username ?? user.user._id} 👋
       </h1>
       <form onSubmit={editAccount} className='flex justify-center flex-col gap-2 my-4 items-center'>
@@ -194,6 +195,7 @@ function Account() {
           )}
         </button>
       </form>
+      <h2 className='md:px-36 mt-2 text-xl font-semibold text-gray-200'>Tu actividad</h2>
       {success && (
         <div
           class='flex py-3 px-4 mb-4 text-sm text-primary bg-emerald-700 rounded-lg absolute bottom-0 md:right-5 gap-2 items-center'

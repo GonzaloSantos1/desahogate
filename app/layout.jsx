@@ -1,6 +1,5 @@
 'use client';
 import Header from './components/Header';
-import FooterNavbar from './components/FooterNavbar';
 import './globals.css';
 import React, {Suspense} from 'react';
 import Loading from './loading';
@@ -21,7 +20,6 @@ export default function RootLayout({children, ...props}) {
                 {children}
               </div>
             </Suspense>
-            <FooterNavbar />
           </User>
         </SessionProvider>
       </body>
