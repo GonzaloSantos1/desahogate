@@ -44,7 +44,7 @@ function CreateModal({categories, animate}) {
     };
 
     const uploadPost = async () => {
-      const res = await fetch('/api/addPost', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/addPost`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -74,28 +74,15 @@ function CreateModal({categories, animate}) {
         onClick={() => {
           setModal(!modal);
         }}
-        className={`hidden md:block rounded-2xl px-5 py-2.5 text-center ease-in-out transition duration-300 text-primary bg-action font-medium tracking-wide hover:text-white hover:font-semibold text-sm md:m-4 md:animate-bounce fixed bottom-[1vh] right-0 z-50`}
+        className={`block rounded-2xl px-5 py-2.5 text-center ease-in-out transition duration-300 text-primary bg-action font-medium tracking-wide hover:text-white hover:font-semibold text-sm md:m-4 animate-bounce fixed bottom-[1vh] right-2 md:right-0 z-10`}
         type='button'
       >
         Desahogarme
       </button>
-      <button
-        onClick={() => {
-          setModal(!modal);
-        }}
-        className={` rounded-full p-1.5 md:hidden ${
-          modal
-            ? 'rotate-45 bg-[#101010] text-action border border-action'
-            : 'bg-action border-action'
-        }`}
-        type='button'
-      >
-        <IconPlus size={28} stroke={2} />
-      </button>
       {modal ? (
         !session ? (
           <div
-            className='absolute top-16 px-4 py-4 md:py-0 md:px-0 left-0 md:-top-10 md:-left-7 z-50 w-screen overflow-x-hidden overflow-y-hidden h-[calc(100%-120px)] md:h-screen  bg-black/50 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
+            className='absolute top-0 px-4 py-4 md:py-0 md:px-0 left-0 md:-top-10 md:-left-7 z-10 w-screen overflow-x-hidden overflow-y-hidden h-screen bg-black/50 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
             onClick={() => setModal(false)}
           >
             <div className='md:mt-5 font-light text-base text-start md:text-center md:text-md mx-auto px-3 md:px-44 flex flex-col gap-2 leading-[1.25]'>
@@ -127,11 +114,14 @@ function CreateModal({categories, animate}) {
                 profesional.
               </h1>
             </div>
-            <div
-              className='flex flex-col justify-center items-center py-2 text-base md:text-md w-full h-full'
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button onClick={() => signIn('google')} className='text-action-blue font-semibold'>
+            <div className='flex flex-col justify-center items-center py-2 text-base md:text-md w-full h-full'>
+              <button
+                onClick={(e) => {
+                  signIn('google');
+                  e.stopPropagation();
+                }}
+                className='text-action-blue font-semibold'
+              >
                 Inicia sesión
               </button>
               <p>para poder publicar un mensaje</p>
@@ -139,7 +129,7 @@ function CreateModal({categories, animate}) {
           </div>
         ) : (
           <div
-            className='absolute top-16 px-4 py-4 md:py-0 md:px-0 left-0 md:-top-10 md:-left-7 z-50 w-screen overflow-x-hidden overflow-y-hidden h-[calc(100%-120px)] md:h-screen  bg-black/50 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
+            className='absolute top-0 px-4 py-4 md:py-0 md:px-0 left-0 md:-top-10 md:-left-7 z-10 w-screen overflow-x-hidden overflow-y-hidden h-screen bg-black/50 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
             onClick={() => setModal(false)}
           >
             <div className='md:mt-5 font-medium text-lg text-start md:text-center md:text-md mx-auto px-5 md:px-44 flex flex-col gap-2'>
@@ -171,7 +161,10 @@ function CreateModal({categories, animate}) {
                 profesional.
               </h1>
             </div>
-            <div className=' w-full h-full max-w-md md:h-auto' onClick={(e) => e.stopPropagation()}>
+            <div
+              className=' w-full max-h-[375px] max-w-md md:h-auto'
+              onClick={(e) => e.stopPropagation()}
+            >
               <form
                 onSubmit={createPost}
                 className='flex flex-col justify-center gap-5 items-center'
@@ -313,7 +306,7 @@ function CreateModal({categories, animate}) {
                     {loaderButton ? (
                       <>
                         <svg
-                          ariaHidden='true'
+                          aria-hidden='true'
                           role='status'
                           className='inline-flex w-4 h-4 mr-3 text-white animate-spin'
                           viewBox='0 0 100 101'

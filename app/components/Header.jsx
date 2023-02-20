@@ -30,7 +30,7 @@ function Header() {
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    signIn('google', {callbackUrl: 'http://localhost:3000/board'});
+    signIn('google', {callbackUrl: `${process.env.NEXT_PUBLIC_URL}/board`});
   };
 
   const handleSignOut = (e) => {
@@ -41,7 +41,7 @@ function Header() {
   return (
     <>
       <header
-        className='flex justify-between px-6 md:px-8 border-b border-gray-800 items-center h-[60px] md:h-14 tracking-wide backdrop-blur-md z-50'
+        className='flex justify-between px-6 md:px-8 border-b border-gray-800 items-center h-[60px] md:h-14 tracking-wide  z-30'
         onClick={() => setModal(false)}
       >
         <a href='/' className='font-bold text-4xl cursor-pointere select-none text-center'>
@@ -74,19 +74,13 @@ function Header() {
             </div>
           )}
         </ul>
-        <button className='flex md:hidden relative' onClick={() => setHamburger(!hamburger)}>
+        <div
+          className='flex md:hidden relative z-50 cursor-pointer'
+          onClick={() => setHamburger(!hamburger)}
+        >
           <IconMenu2 stroke={3} size={28} color={`${hamburger ? '#FF4ECD' : '#FFFF'}`} />
           {hamburger && (
-            <div className='font-medium absolute top-8 -right-1 flex flex-col justify-center items-start gap-3 py-5 bg-[#1A1A1A] z-50 rounded-xl px-1 border border-action'>
-              {user.user.username && (
-                <Link
-                  href={'/account'}
-                  className='flex gap-2 items-center w-full hover:text-action-blue ease-in-out duration-300 transition pl-3 pr-4'
-                >
-                  <HiUser size={20} stroke={2} color='#FF4ECD' />
-                  <p className='text-action'>{user.user.username}</p>
-                </Link>
-              )}
+            <div className='font-medium absolute top-8 -right-1 flex flex-col justify-center items-start gap-3 py-5 bg-[#1A1A1A] z-50 rounded-xl px-1 w-36 border border-gray-800'>
               <Link
                 href={'/'}
                 className='flex gap-2 items-center w-full hover:text-action-blue ease-in-out duration-300 transition pl-3 pr-4'
@@ -101,6 +95,16 @@ function Header() {
                 <IconLayoutDashboard size={20} stroke={2} />
                 <p>Board</p>
               </Link>
+              <hr className='w-full border-gray-800 border-[0.5px]' />
+              {user.user.username && (
+                <Link
+                  href={'/account'}
+                  className='flex gap-2 items-center w-full hover:text-action-blue ease-in-out duration-300 transition pl-3 pr-4'
+                >
+                  <HiUser size={20} stroke={2} />
+                  <p>Mi cuenta</p>
+                </Link>
+              )}
               {!user.user.username ? (
                 <button
                   onClick={handleSignIn}
@@ -120,21 +124,21 @@ function Header() {
               )}
             </div>
           )}
-        </button>
+        </div>
       </header>
       {modal ? (
-        <div className='font-medium absolute top-12 right-10 flex flex-col justify-center items-start gap-2 py-2 bg-[#1A1A1A] rounded-xl'>
+        <div className='font-medium absolute top-12 right-10 flex flex-col justify-center items-start py-1 bg-[#1A1A1A] rounded-xl z-50'>
           <Link
             href={'/account'}
             onClick={() => setModal(!modal)}
-            className='flex gap-2 items-center w-full hover:text-action-blue ease-in-out duration-300 transition pl-3 pr-4'
+            className='flex gap-2 items-center w-full hover:text-action-blue ease-in-out duration-300 transition pl-3 pr-4 hover:bg-white/10 py-2'
           >
             <HiUser size={20} stroke={2} />
             <p>Mi cuenta</p>
           </Link>
           <button
             onClick={handleSignOut}
-            className='z-50 flex gap-2 items-center w-full hover:text-action-red ease-in-out duration-300 transition pl-3 pr-4'
+            className='z-50 flex gap-2 items-center w-full text-action-red ease-in-out duration-300 transition pl-3 pr-4 hover:bg-white/10 py-2'
           >
             <BiLogOut size={20} stroke={2} />
             <p>Salir</p>

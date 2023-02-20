@@ -36,7 +36,7 @@ export default function BoardDisplay({data, categories}) {
 
   useEffect(() => {
     let interval = setInterval(() => {
-      fetch(`http://localhost:3000/api/getPosts`)
+      fetch(`${process.env.NEXT_PUBLIC_URL}/api/getPosts`)
         .then((res) => res.json())
         .then((data) => {
           setDataFetched(data);
@@ -62,9 +62,9 @@ export default function BoardDisplay({data, categories}) {
               {[...dataFetched].reverse().map((post) => {
                 if (post._id !== pathname.slice(7)) {
                   return (
-                    <li className='relative' key={post._id}>
+                    <li className='relative max-w-[95%] min-w-[95%]' key={post._id}>
                       <Link href={`/board/${post._id}`}>
-                        <button className='w-full max-w-[265px] min-w-[265px] px-4 py-2 bg-[#181818] rounded-lg shadow shadow-gray-500/50'>
+                        <button className='w-full  px-4 py-2 bg-[#181818] rounded-lg shadow shadow-gray-500/50'>
                           {post.comments.length > 10 && (
                             <div className='absolute -top-2 -left-3 animate-pulse'>
                               <IconFlame color='#F4256D' size={35} />
@@ -110,7 +110,7 @@ export default function BoardDisplay({data, categories}) {
   }
 
   return (
-    <div className='mt-5 md:mt-10 relative'>
+    <div className='pt-5 md:mt-10 relative'>
       <CategoriesFilter categories={categories} handleCategory={handleCategory} />
       {!dataFetched ? (
         <LoadingComponent textSize={'3xl'} text={'Cargando posts...'} size={300} />
@@ -118,7 +118,7 @@ export default function BoardDisplay({data, categories}) {
         <EmptyMessage categories={categories} />
       ) : (
         <>
-          <div className='hidden md:block'>
+          <div className='block'>
             <CreateModal categories={categories} />
           </div>
           <ul className='flex flex-wrap justify-center gap-3 md:gap-6 mt-3 md:mt-6 mb-3 overflow-y-scroll py-2'>

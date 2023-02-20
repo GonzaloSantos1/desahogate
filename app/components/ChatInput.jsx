@@ -33,7 +33,7 @@ function ChatInput(props) {
     };
 
     const uploadComment = async () => {
-      const res = await fetch(`/api/addPostComment/${postId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/addPostComment/${postId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ function ChatInput(props) {
             onSubmit={addComment}
             className='flex overflow-hidden w-full text-md md:text-sm h-10 relative justify-between md:px-4 pb-2'
           >
-            <div className='border border-gray-800 w-full flex rounded-md overflow-hidden'>
+            <div className='border border-gray-800 w-full flex rounded-md overflow-hidden mx-2 md:mx-0'>
               <input
                 type='text'
                 value={input}
@@ -78,10 +78,10 @@ function ChatInput(props) {
                 className='bg-action text-white font-medium px-6 py-[5px] disabled:bg-[#1A1A1A] disabled:text-primary disabled:cursor-not-allowed ease-in-out'
               >
                 {!sending ? (
-                  'Enviar'
+                  <p className='-mt-0.5'>Enviar</p>
                 ) : (
                   <svg
-                    ariaHidden='true'
+                    aria-hidden='true'
                     role='status'
                     className='inline-flex w-6 h-6 text-action animate-spin'
                     viewBox='0 0 100 101'

@@ -13,7 +13,7 @@ const User = ({children}) => {
       initialMount.current = false;
     } else {
       if (session) {
-        fetch(`http://localhost:3000/api/getUser/${session?.user?.email}`)
+        fetch(`${process.env.NEXT_PUBLIC_URL}/api/getUser/${session?.user?.email}`)
           .then((res) => res.json())
           .then((data) => {
             setUser(data[0]);

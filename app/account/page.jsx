@@ -23,7 +23,7 @@ function Account() {
     attemps -= 1;
 
     const saveAccount = async () => {
-      const res = await fetch(`/api/patchUser/${email}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/patchUser/${email}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ function Account() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/getUsers`)
+    fetch(`${process.env.NEXT_PUBLIC_URL}/api/getUsers`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -68,7 +68,7 @@ function Account() {
           )
         ) {
           setError(true);
-        } else if (username.length < 5) {
+        } else if (username.length < 5 || username.indexOf(' ') >= 0) {
           setError(true);
         } else {
           setError(false);
@@ -78,7 +78,7 @@ function Account() {
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    signIn('google', {callbackUrl: 'http://localhost:3000/board'});
+    signIn('google', {callbackUrl: '/board'});
   };
 
   const handleSignOut = (e) => {
@@ -127,7 +127,7 @@ function Account() {
             !error ? (
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                class='icon icon-tabler icon-tabler-circle-check text-action-green absolute right-2 top-2'
+                className='icon icon-tabler icon-tabler-circle-check text-action-green absolute right-2 top-2'
                 width='24'
                 height='24'
                 viewBox='0 0 24 24'
@@ -144,7 +144,7 @@ function Account() {
             ) : (
               <svg
                 xmlns='http://www.w3.org/2000/svg'
-                class='icon icon-tabler icon-tabler-circle-x text-action-red absolute right-2 top-2'
+                className='icon icon-tabler icon-tabler-circle-x text-action-red absolute right-2 top-2'
                 width='24'
                 height='24'
                 viewBox='0 0 24 24'
@@ -172,7 +172,7 @@ function Account() {
           {loaderButton ? (
             <>
               <svg
-                ariaHidden='true'
+                aria-hidden='true'
                 role='status'
                 className='inline-flex w-4 h-4 mr-3 text-white animate-spin'
                 viewBox='0 0 100 101'
@@ -198,12 +198,12 @@ function Account() {
       <h2 className='md:px-36 mt-2 text-xl font-semibold text-gray-200'>Tu actividad</h2>
       {success && (
         <div
-          class='flex py-3 px-4 mb-4 text-sm text-primary bg-emerald-700 rounded-lg absolute bottom-0 md:right-5 gap-2 items-center'
+          className='flex py-3 px-4 mb-4 text-sm text-primary bg-emerald-700 rounded-lg absolute bottom-0 md:right-5 gap-2 items-center'
           role='alert'
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
-            class='icon icon-tabler icon-tabler-circle-check'
+            className='icon icon-tabler icon-tabler-circle-check'
             width='24'
             height='24'
             viewBox='0 0 24 24'

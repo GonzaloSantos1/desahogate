@@ -17,7 +17,7 @@ function ChatMessages({postId, categories}) {
   const [titleHeight, setTitleHeight] = useState('auto');
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/getPosts/${postId}`)
+    fetch(`${process.env.NEXT_PUBLIC_URL}/api/getPosts/${postId}`)
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -28,7 +28,7 @@ function ChatMessages({postId, categories}) {
 
   useEffect(() => {
     let interval = setInterval(() => {
-      fetch(`http://localhost:3000/api/getPosts/${postId}`)
+      fetch(`${process.env.NEXT_PUBLIC_URL}/api/getPosts/${postId}`)
         .then((res) => res.json())
         .then((data) => {
           setData(data);
