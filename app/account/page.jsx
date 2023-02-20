@@ -19,7 +19,7 @@ function Account() {
     e.preventDefault();
     if (!username || username == ('Anónimo' || 'anonimo' || 'Anonimo' || 'anónimo')) return;
     if (error) return;
-    if (attemps < 1) return;
+    if (attemps == 0) return;
     attemps -= 1;
 
     const saveAccount = async () => {
@@ -64,7 +64,7 @@ function Account() {
         } else if (
           data.some(
             (users) =>
-              users.username.toLowerCase() == (username.toLowerCase() || user.user.username)
+              users?.username?.toLowerCase() == (username?.toLowerCase() || user.user.username)
           )
         ) {
           setError(true);
@@ -166,7 +166,7 @@ function Account() {
         <p className='text-xs'>Cambios de nombre disponibles: {attemps}/2</p>
         <button
           type='submit'
-          disabled={!username || error || attemps < 1}
+          disabled={!username || error || attemps == 0}
           className='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-8 tracking-wide py-2 text-center mr-2 inline-flex items-center disabled:opacity-50'
         >
           {loaderButton ? (
