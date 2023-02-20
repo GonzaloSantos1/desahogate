@@ -4,7 +4,7 @@ import Footer from './components/Footer';
 export default function Home() {
   return (
     <main className='select-none'>
-      <h2 className='mt-14 text-4xl font-semibold text-action/80 md:text-7xl px-10 mx-auto text-center max-w-5xl tracking-wide font-[Poppins]'>
+      <h2 className='mt-8 text-4xl font-semibold text-action/80 md:text-7xl px-10 mx-auto text-center max-w-5xl tracking-wide font-[Poppins]'>
         Una plataforma donde llorar y palante.
       </h2>
       <div className='flex flex-col md:flex-row gap-2 md:gap-0 justify-start py-14 md:py-24 px-2 font-medium items-center md:justify-center'>
@@ -24,6 +24,7 @@ export default function Home() {
           height={250}
           alt='picture of a sad cat looking thru a window'
           className='block md:hidden'
+          priority
         />
         <Image
           src='/assets/images/purr-sad-dark.png'
@@ -31,6 +32,7 @@ export default function Home() {
           height={450}
           alt='picture of a sad cat looking thru a window'
           className='hidden md:block'
+          priority
         />
       </div>
       <div className='flex flex-col md:flex-row-reverse justify-start py-14 md:py-24 gap-2 md:gap-0 px-2 font-medium items-center md:justify-center bg-white text-gray-900'>
@@ -59,7 +61,7 @@ export default function Home() {
           className='hidden md:block'
         />
       </div>
-      <div className='flex flex-col md:flex-row gap-2 md:gap-0 justify-start py-14 md:py-24 px-2 font-medium items-center md:justify-center'>
+      <div className='flex flex-col md:flex-row gap-2 md:gap-0 justify-start pt-10 md:py-24 px-2 font-medium items-center md:justify-center'>
         <div className='flex flex-col text-center gap-2 md:max-w-lg md:items-start'>
           <p className='text-3xl font-semibold md:text-4xl md:text-start font-[Poppins] md:max-w-md'>
             Pórtate bien

@@ -16,7 +16,7 @@ export default function RootLayout({children, ...props}) {
           <User>
             <Header />
             <Suspense fallback={<Loading />}>
-              <div id='body-div' className='flex-1 overflow-y-scroll relative'>
+              <div id='body-div' className='flex-1 overflow-y-scroll relative pb-10'>
                 {children}
               </div>
             </Suspense>
