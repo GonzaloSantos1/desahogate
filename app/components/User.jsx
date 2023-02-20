@@ -6,6 +6,7 @@ const User = ({children}) => {
   const {data: session} = useSession();
   const [user, setUser] = useState([]);
   const initialMount = useRef(true);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     // to stop useEffect from rendering at the mounting of the app
@@ -22,7 +23,15 @@ const User = ({children}) => {
     }
   }, [session]);
 
-  return <UserContext.Provider value={{user}}>{children}</UserContext.Provider>;
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_URL}/api/getPosts`)
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      });
+  }, []);
+
+  return <UserContext.Provider value={{user, data}}>{children}</UserContext.Provider>;
 };
 
 export default User;

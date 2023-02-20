@@ -1,18 +1,13 @@
-import React from 'react';
+'use client';
+import React, {useContext} from 'react';
 import CreateModal from '../components/CreateModal';
+import UserContext from '../../lib/userContext';
 import BoardDisplay from '../components/BoardDisplay';
 
-async function getData() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/getPosts`);
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
+export default function Board() {
+  const user = useContext(UserContext);
+  const data = user.data;
 
-  return res.json();
-}
-
-export default async function Board() {
-  const data = await getData();
   const categories = [
     {name: 'Relaciones de pareja', color: 'action-red', selected: false},
     {name: 'Trabajo', color: 'action-yellow', selected: false},
@@ -23,7 +18,7 @@ export default async function Board() {
 
   return (
     <div className='md:my-4 md:px-8 '>
-      {data.lenght && <CreateModal categories={categories} />}
+      <CreateModal categories={categories} />
       <BoardDisplay data={data} categories={categories} />
     </div>
   );

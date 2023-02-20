@@ -36,7 +36,7 @@ export default function BoardDisplay({data, categories}) {
 
   useEffect(() => {
     let interval = setInterval(() => {
-      fetch(`${process.env.NEXT_PUBLIC_URL}/api/getPosts`)
+      fetch(`http://localhost:3000/api/getPosts`)
         .then((res) => res.json())
         .then((data) => {
           setDataFetched(data);
@@ -110,7 +110,7 @@ export default function BoardDisplay({data, categories}) {
   }
 
   return (
-    <div className='pt-5 md:mt-10 relative'>
+    <div className='pt-5 md:pt-10 relative'>
       <CategoriesFilter categories={categories} handleCategory={handleCategory} />
       {!dataFetched ? (
         <LoadingComponent textSize={'3xl'} text={'Cargando posts...'} size={300} />
