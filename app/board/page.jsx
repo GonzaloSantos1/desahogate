@@ -18,7 +18,6 @@ export default function Board() {
 
   return (
     <div className='md:my-4 md:px-8 '>
-      <CreateModal categories={categories} />
       <BoardDisplay data={data} categories={categories} />
     </div>
   );

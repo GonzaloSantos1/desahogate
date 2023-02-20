@@ -87,8 +87,9 @@ function CreateModal({categories, animate}) {
           >
             <div className='md:mt-5 font-light text-base text-start md:text-center md:text-md mx-auto px-3 md:px-44 flex flex-col gap-2 leading-[1.25]'>
               <h1>
-                Esto es una plataforma para desahogarse, donde la gente podrá comentar tu post e
-                intentar ayudarte. Los comentarios provenientes de un perfil verificado
+                Esta plataforma no susituye en ningún caso ayuda profesional. La gente podrá
+                comentar tu post e intentar animarte. Los comentarios provenientes de un perfil
+                verificado
                 <span className='inline-flex text-center px-1 items-center relative w-7'>
                   <svg
                     fill='none'
@@ -108,10 +109,6 @@ function CreateModal({categories, animate}) {
                   </svg>
                 </span>
                 son de un profesional de la salud mental.
-              </h1>
-              <h1>
-                Igualmente, recordamos que esta plataforma no susituye en ningún caso ayuda
-                profesional.
               </h1>
             </div>
             <div className='flex flex-col justify-center items-center py-2 text-base md:text-md w-full h-full'>
@@ -134,8 +131,9 @@ function CreateModal({categories, animate}) {
           >
             <div className='md:mt-5 font-medium text-lg text-start md:text-center md:text-md mx-auto px-5 md:px-44 flex flex-col gap-2'>
               <h1>
-                Esto es una plataforma para desahogarse, donde la gente podrá comentar tu post e
-                intentar ayudarte. Los comentarios provenientes de un perfil verificado
+                Esta plataforma no susituye en ningún caso ayuda profesional. La gente podrá
+                comentar tu post e intentar animarte. Los comentarios provenientes de un perfil
+                verificado
                 <span className='inline-flex text-center px-1 items-center relative w-7'>
                   <svg
                     fill='none'
@@ -156,10 +154,6 @@ function CreateModal({categories, animate}) {
                 </span>
                 son de un profesional de la salud mental.
               </h1>
-              <h1>
-                Igualmente, recordamos que esta plataforma no susituye en ningún caso ayuda
-                profesional.
-              </h1>
             </div>
             <div
               className=' w-full max-h-[375px] max-w-md md:h-auto'
@@ -177,7 +171,7 @@ function CreateModal({categories, animate}) {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyUp={countHandler}
                     type='text'
-                    className='mt-2 font-medium tracking-wide bg-transparent w-full h-56 md:h-44 border-none focus:border-none focus:ring-0 placeholder:italic focus:outline-none resize-none text-primary md:text-sm'
+                    className='mt-2 font-medium tracking-wide bg-transparent w-full h-56 md:h-44 border-none focus:border-none focus:ring-0 placeholder:italic focus:outline-none resize-none text-primary'
                     placeholder='Escribe aquí lo que te preocupa...'
                   />
                   <div className='flex justify-between mt-2 items-end text-secondary font-medium'>

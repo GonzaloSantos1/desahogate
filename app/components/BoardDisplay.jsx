@@ -35,6 +35,14 @@ export default function BoardDisplay({data, categories}) {
   const pathname = usePathname();
 
   useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_URL}/api/getPosts`)
+      .then((res) => res.json())
+      .then((data) => {
+        setDataFetched(data);
+      });
+  }, []);
+
+  useEffect(() => {
     let interval = setInterval(() => {
       fetch(`${process.env.NEXT_PUBLIC_URL}/api/getPosts`)
         .then((res) => res.json())
