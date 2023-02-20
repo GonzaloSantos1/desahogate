@@ -36,7 +36,7 @@ export default function BoardDisplay({data, categories}) {
 
   useEffect(() => {
     let interval = setInterval(() => {
-      fetch(`http://localhost:3000/api/getPosts`)
+      fetch(`${process.env.NEXT_PUBLIC_URL}/api/getPosts`)
         .then((res) => res.json())
         .then((data) => {
           setDataFetched(data);
