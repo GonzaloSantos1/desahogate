@@ -53,7 +53,7 @@ function ChatInput(props) {
     <>
       {!session ? (
         <div className='flex justify-center items-center gap-1 py-2'>
-          <button onClick={() => signIn('google')} className='text-action-blue font-semibold'>
+          <button onClick={() => signIn('google')} className='text-action-blue font-medium'>
             Inicia sesión
           </button>
           <p>para poder comentar</p>
@@ -64,18 +64,18 @@ function ChatInput(props) {
             onSubmit={addComment}
             className='flex overflow-hidden w-full text-md md:text-sm h-10 relative justify-between md:px-4 pb-2'
           >
-            <div className='border border-gray-800 w-full flex rounded-md overflow-hidden mx-2 md:mx-0'>
+            <div className='border border-palette-gray w-full flex rounded-md overflow-hidden mx-2 md:mx-0'>
               <input
                 type='text'
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder='Escribe algo bonito aquí...'
-                className='flex-1 bg-[#101010] px-3 focus:outline-none w-full rounded-md'
+                className='flex-1 bg-palette-black px-3 focus:outline-none w-full rounded-md'
               />
               <button
                 type='submit'
                 disabled={!input || disabled}
-                className='bg-action text-white font-medium px-6 py-[5px] disabled:bg-[#1A1A1A] disabled:text-primary disabled:cursor-not-allowed ease-in-out'
+                className='bg-palette-purple text-primary font-medium px-6 py-[5px] disabled:bg-palette-gray disabled:text-secondary disabled:cursor-not-allowed ease-in-out'
               >
                 {!sending ? (
                   <p className='-mt-0.5'>Enviar</p>
@@ -83,7 +83,7 @@ function ChatInput(props) {
                   <svg
                     aria-hidden='true'
                     role='status'
-                    className='inline-flex w-6 h-6 text-action animate-spin'
+                    className='inline-flex w-6 h-6 text-purple animate-spin'
                     viewBox='0 0 100 101'
                     fill='none'
                     stroke='2'

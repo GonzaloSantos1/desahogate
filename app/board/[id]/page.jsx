@@ -8,7 +8,7 @@ const DetailedPost = ({params}) => {
     {name: 'Trabajo', color: 'action-yellow', selected: false},
     {name: 'Familia', color: 'action-blue', selected: false},
     {name: 'Amigos', color: 'action-green', selected: false},
-    {name: 'Otros', color: 'secondary', selected: false},
+    {name: 'Otros', color: 'action-purple', selected: false},
   ];
   return (
     <div className='flex flex-col justify-between h-full'>

@@ -1,7 +1,12 @@
 'use client';
 import React, {useState, useEffect} from 'react';
 import Link from 'next/link';
-import {IconFlame, IconClockHour3} from '@tabler/icons';
+import {
+  IconFlame,
+  IconClockHour3,
+  IconMessageCircle2,
+  IconDeviceComputerCameraOff,
+} from '@tabler/icons';
 import CategoriesFilter from './CategoriesFilter';
 import EmptyMessage from './EmptyMessage';
 import CreateModal from './CreateModal';
@@ -40,7 +45,7 @@ export default function BoardDisplay({data, categories}) {
       .then((data) => {
         setDataFetched(data);
       });
-  }, []);
+  }, [dataFetched]);
 
   useEffect(() => {
     let interval = setInterval(() => {
@@ -72,16 +77,21 @@ export default function BoardDisplay({data, categories}) {
                   return (
                     <li className='relative max-w-[95%] min-w-[95%]' key={post._id}>
                       <Link href={`/board/${post._id}`}>
-                        <button className='w-full  px-4 py-2 bg-[#181818] rounded-lg shadow shadow-gray-500/50'>
+                        <button className='w-full  px-4 py-2 bg-palette-gray rounded-lg'>
                           {post.comments.length > 10 && (
                             <div className='absolute -top-2 -left-3 animate-pulse'>
                               <IconFlame color='#F4256D' size={35} />
                             </div>
                           )}
-                          <p className='mt-2 font-medium tracking-wide'>{post.message}</p>
-                          <div className='flex justify-between items-end mt-4 text-secondary font-medium'>
+                          <p className='mt-2 font-light tracking-wide'>{post.message}</p>
+                          <div className='flex justify-between items-end mt-4 text-secondary font-light'>
                             <div className='flex flex-col justify-start text-start'>
-                              <p className=''>{post.comments.length} comentarios</p>
+                              <p className='flex gap-1'>
+                                <span>
+                                  <IconMessageCircle2 size={15} stroke={2} />
+                                </span>
+                                {post.comments.length}
+                              </p>
                               <p className=' relative pl-5'>
                                 <span className='inline-flex absolute left-0 top-0.5'>
                                   <IconClockHour3 size={15} stroke={2} />
@@ -90,13 +100,16 @@ export default function BoardDisplay({data, categories}) {
                               </p>
                             </div>
                             <div className='flex flex-col items-end'>
-                              <p href='#' className='font-semibold  text-action' role='link'>
+                              <p href='#' className='font-medium  text-action' role='link'>
                                 {post.username}
                               </p>
                               {categories.map(({name, color}) => {
                                 if (post.category == name) {
                                   return (
-                                    <p key={name} className={` text-${color} font-semibold`}>
+                                    <p
+                                      key={name}
+                                      className={` text-${color} font-medium lowercase`}
+                                    >
                                       {post.category}
                                     </p>
                                   );
@@ -118,7 +131,7 @@ export default function BoardDisplay({data, categories}) {
   }
 
   return (
-    <div className='pt-5 md:pt-10 relative'>
+    <div className='relative'>
       <CategoriesFilter categories={categories} handleCategory={handleCategory} />
       {!dataFetched ? (
         <LoadingComponent textSize={'3xl'} text={'Cargando posts...'} size={300} />
@@ -137,18 +150,21 @@ export default function BoardDisplay({data, categories}) {
                   .map((post) => (
                     <li className='relative' key={post._id}>
                       <Link href={`/board/${post._id}`}>
-                        <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] px-4 py-2 bg-[#181818] rounded-lg shadow shadow-gray-500/50 md:hover:-translate-y-1 md:ease-in-out md:transition'>
+                        <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] px-4 py-2 bg-palette-gray rounded-lg shadow shadow-gray-500/50 md:hover:-translate-y-1 md:ease-in-out md:transition'>
                           {post.comments.length > 10 && (
                             <div className='absolute -top-2.5 -left-4 animate-pulse'>
                               <IconFlame color='#F4256D' size={45} />
                             </div>
                           )}
-                          <p className='mt-2 font-medium tracking-wide md:text-sm'>
-                            {post.message}
-                          </p>
-                          <div className='flex justify-between items-end mt-4 text-secondary font-medium'>
+                          <p className='mt-2 font-light tracking-wide md:text-sm'>{post.message}</p>
+                          <div className='flex justify-between items-end mt-4 text-secondary font-light'>
                             <div className='flex flex-col justify-start text-start'>
-                              <p className='text-sm'>{post.comments.length} comentarios</p>
+                              <p className='text-sm flex gap-1'>
+                                <span className='mt-0.5'>
+                                  <IconMessageCircle2 size={15} stroke={2} />
+                                </span>
+                                {post.comments.length}
+                              </p>
                               <p className='text-sm relative pl-5'>
                                 <span className='inline-flex absolute left-0 top-0.5'>
                                   <IconClockHour3 size={15} stroke={2} />
@@ -157,13 +173,16 @@ export default function BoardDisplay({data, categories}) {
                               </p>
                             </div>
                             <div className='flex flex-col items-end'>
-                              <p href='#' className='font-semibold text-sm text-action' role='link'>
+                              <p href='#' className='font-medium text-sm text-action' role='link'>
                                 {post.username}
                               </p>
                               {categories.map(({name, color}) => {
                                 if (post.category == name) {
                                   return (
-                                    <p key={name} className={`text-sm text-${color} font-semibold`}>
+                                    <p
+                                      key={name}
+                                      className={`text-sm text-${color} font-medium lowercase`}
+                                    >
                                       {post.category}
                                     </p>
                                   );
@@ -178,16 +197,21 @@ export default function BoardDisplay({data, categories}) {
               : [...dataFetched].reverse().map((post) => (
                   <li className='relative' key={post._id}>
                     <Link href={`/board/${post._id}`}>
-                      <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] px-4 py-2 bg-[#181818] rounded-lg shadow shadow-gray-500/50 md:hover:-translate-y-1 md:ease-in-out md:transition relative'>
+                      <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] px-4 py-2 bg-palette-gray rounded-lg md:hover:-translate-y-1 md:ease-in-out md:transition relative'>
                         {post.comments.length > 10 && (
                           <div className='absolute -top-2.5 -left-4 animate-pulse'>
                             <IconFlame color='#F4256D' size={45} />
                           </div>
                         )}
-                        <p className='mt-2 font-medium tracking-wide md:text-sm'>{post.message}</p>
-                        <div className='flex justify-between items-end mt-4 text-secondary font-medium'>
+                        <p className='mt-2 font-light tracking-wide md:text-sm'>{post.message}</p>
+                        <div className='flex justify-between items-end mt-4 text-secondary font-light'>
                           <div className='flex flex-col justify-start text-start'>
-                            <p className='text-sm'>{post.comments.length} comentarios</p>
+                            <p className='text-sm flex gap-1'>
+                              <span className='mt-0.5'>
+                                <IconMessageCircle2 size={15} stroke={2} />
+                              </span>
+                              {post.comments.length}
+                            </p>
                             <p className='text-sm relative pl-5'>
                               <span className='inline-flex absolute left-0 top-0.5'>
                                 <IconClockHour3 size={15} stroke={2} />
@@ -196,13 +220,16 @@ export default function BoardDisplay({data, categories}) {
                             </p>
                           </div>
                           <div className='flex flex-col items-end'>
-                            <p href='#' className='font-semibold text-sm text-action' role='link'>
+                            <p href='#' className='font-medium text-sm text-action' role='link'>
                               {post.username}
                             </p>
                             {categories.map(({name, color}) => {
                               if (post.category == name) {
                                 return (
-                                  <p key={name} className={`text-sm text-${color} font-semibold`}>
+                                  <p
+                                    key={name}
+                                    className={`text-sm text-${color} font-medium lowercase`}
+                                  >
                                     {post.category}
                                   </p>
                                 );

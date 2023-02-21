@@ -74,7 +74,7 @@ function CreateModal({categories, animate}) {
         onClick={() => {
           setModal(!modal);
         }}
-        className={`block rounded-2xl px-5 py-2.5 text-center ease-in-out transition duration-300 text-primary bg-action font-medium tracking-wide hover:text-white hover:font-semibold text-sm md:m-4 animate-bounce fixed bottom-[1vh] right-2 md:right-0 z-10`}
+        className={`block rounded-2xl px-5 py-2.5 text-center ease-in-out transition duration-300 text-primary bg-gradient-to-b from-palette-purple to-action font-medium font-[Poppins] tracking-wide hover:text-primary hover:from-action hover:to-action text-sm md:m-4 shadow shadow-palette-black fixed bottom-[1vh] right-2 md:right-0 z-10`}
         type='button'
       >
         Desahogarme
@@ -82,10 +82,10 @@ function CreateModal({categories, animate}) {
       {modal ? (
         !session ? (
           <div
-            className='absolute top-0 px-4 py-4 md:py-0 md:px-0 left-0 md:-top-10 md:-left-7 z-10 w-screen overflow-x-hidden overflow-y-hidden h-screen bg-black/50 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
+            className='absolute top-0 px-4 py-4 md:px-0 left-0 md:-top-10 md:-left-7 z-10 w-screen overflow-x-hidden overflow-y-hidden h-screen bg-palette-black/50 backdrop-blur-md flex justify-start md:justify-center items-center flex-col gap-6 md:gap-10'
             onClick={() => setModal(false)}
           >
-            <div className='md:mt-5 font-light text-base text-start md:text-center md:text-md mx-auto px-3 md:px-44 flex flex-col gap-2 leading-[1.25]'>
+            <div className='md:-mt-20 mt-6 font-light text-base text-start md:text-center md:text-md mx-auto px-3 md:px-44 flex flex-col gap-2 leading-[1.25]'>
               <h1>
                 Esta plataforma no susituye en ningún caso ayuda profesional. La gente podrá
                 comentar tu post e intentar animarte. Los comentarios provenientes de un perfil
@@ -117,7 +117,7 @@ function CreateModal({categories, animate}) {
                   signIn('google');
                   e.stopPropagation();
                 }}
-                className='text-action-blue font-semibold'
+                className='text-action-blue font-medium'
               >
                 Inicia sesión
               </button>
@@ -126,14 +126,14 @@ function CreateModal({categories, animate}) {
           </div>
         ) : (
           <div
-            className='absolute top-0 px-4 py-4 md:py-0 md:px-0 left-0 md:-top-10 md:-left-7 z-10 w-screen overflow-x-hidden overflow-y-hidden h-screen bg-black/50 backdrop-blur-md flex justify-start items-center flex-col gap-6 md:gap-10'
+            className='fixed inset-0 modal-container mt-10 z-10 w-screen overflow-x-hidden overflow-y-hidden h-full bg-palette-black/50 backdrop-blur-md flex justify-start pt-24 px-4 items-center flex-col gap-6 md:gap-10'
             onClick={() => setModal(false)}
           >
-            <div className='md:mt-5 font-medium text-lg text-start md:text-center md:text-md mx-auto px-5 md:px-44 flex flex-col gap-2'>
+            <div className='md:-mt-20font-light text-base text-start md:text-center md:text-md mx-auto px-3 md:px-44 flex flex-col gap-2 leading-[1.25]'>
               <h1>
                 Esta plataforma no susituye en ningún caso ayuda profesional. La gente podrá
-                comentar tu post e intentar animarte. Los comentarios provenientes de un perfil
-                verificado
+                comentar tu post e intentar animarte. <br />
+                Los comentarios provenientes de un perfil verificado
                 <span className='inline-flex text-center px-1 items-center relative w-7'>
                   <svg
                     fill='none'
@@ -163,7 +163,7 @@ function CreateModal({categories, animate}) {
                 onSubmit={createPost}
                 className='flex flex-col justify-center gap-5 items-center'
               >
-                <div className='w-full max-w-sm px-5 pt-2 pb-4 bg-[#181818] rounded-lg shadow shadow-gray-500/50 text-lg md:text-md'>
+                <div className='w-full max-w-sm px-5 pt-2 pb-4 bg-palette-gray rounded-lg text-md md:text-sm'>
                   <textarea
                     id='textarea'
                     value={input}
@@ -171,11 +171,11 @@ function CreateModal({categories, animate}) {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyUp={countHandler}
                     type='text'
-                    className='mt-2 font-medium tracking-wide bg-transparent w-full h-56 md:h-44 border-none focus:border-none focus:ring-0 placeholder:italic focus:outline-none resize-none text-primary'
+                    className='mt-2 font-light tracking-wide bg-transparent w-full h-56 md:h-44 border-none focus:border-none focus:ring-0 placeholder:italic focus:outline-none resize-none text-primary'
                     placeholder='Escribe aquí lo que te preocupa...'
                   />
                   <div className='flex justify-between mt-2 items-end text-secondary font-medium'>
-                    <p className='text-sm select-none'>{`${charactersCount}/400`}</p>
+                    <p className='text-sm select-none font-light'>{`${charactersCount}/400`}</p>
                     <div className='flex flex-col gap-1 items-end relative'>
                       <input id='username' value={username} type='radio' className='sr-only' />
                       <label
@@ -187,8 +187,8 @@ function CreateModal({categories, animate}) {
                         }}
                         className={
                           userDropdown
-                            ? 'text-sm text-primary font-semibold cursor-pointer flex items-center select-none border pr-1 gap-0.5 rounded-md pl-2 bg-action border-action'
-                            : 'text-sm text-action font-semibold cursor-pointer flex items-center select-none border border-action pr-1 gap-0.5 rounded-md pl-2'
+                            ? 'text-sm text-primary font-medium cursor-pointer flex items-center select-none border pr-1 gap-0.5 rounded-md pl-2 bg-action border-action'
+                            : 'text-sm text-action font-medium cursor-pointer flex items-center select-none border border-action pr-1 gap-0.5 rounded-md pl-2'
                         }
                       >
                         <p>{username}</p>
@@ -197,24 +197,30 @@ function CreateModal({categories, animate}) {
                       {!userDropdown ? (
                         ''
                       ) : (
-                        <ul className='absolute flex flex-col text-end bg-gray-800 rounded-md bottom-[51px] select-none overflow-hidden'>
+                        <ul className='absolute flex flex-col text-end bg-palette-black rounded-md bottom-[51px] select-none overflow-hidden'>
                           {username == 'Anónimo' ? (
-                            <li
-                              onClick={() => {
-                                setUsername(userProfileName);
-                                setUserDropdown(!userDropdown);
-                              }}
-                              className='text-sm text-action font-semibold px-4 py-0.5 relative cursor-pointer hover:bg-gray-700'
-                            >
-                              {userProfileName}
-                            </li>
+                            userProfileName ? (
+                              <li
+                                onClick={() => {
+                                  setUsername(userProfileName);
+                                  setUserDropdown(!userDropdown);
+                                }}
+                                className='text-sm text-action font-medium px-4 py-0.5 relative cursor-pointer hover:bg-palette-black'
+                              >
+                                {userProfileName}
+                              </li>
+                            ) : (
+                              <p className='text-light text-xs text-center py-1'>
+                                Cambia tu nombre de usuario para poder seleccionarlo
+                              </p>
+                            )
                           ) : (
                             <li
                               onClick={() => {
                                 setUsername('Anónimo');
                                 setUserDropdown(!userDropdown);
                               }}
-                              className='text-sm text-action font-semibold px-4 py-0.5 relative cursor-pointer hover:bg-gray-700'
+                              className='text-sm text-action font-medium px-4 py-0.5 relative cursor-pointer hover:bg-palette-black'
                             >
                               Anónimo
                             </li>
@@ -233,8 +239,8 @@ function CreateModal({categories, animate}) {
                           }}
                           className={
                             dropdown
-                              ? `text-sm text-primary font-semibold cursor-pointer flex items-center select-none border bg-sky-900 border-sky-900 pr-1 gap-0.5 rounded-md pl-2`
-                              : `text-sm text-action-blue font-semibold cursor-pointer flex items-center select-none border border-sky-900 pr-1 gap-0.5 rounded-md pl-2`
+                              ? `text-sm text-primary font-medium cursor-pointer flex items-center select-none border bg-sky-900 border-sky-900 pr-1 gap-0.5 rounded-md pl-2`
+                              : `text-sm text-action-blue font-medium cursor-pointer flex items-center select-none border border-sky-900 pr-1 gap-0.5 rounded-md pl-2`
                           }
                         >
                           <p>{category}</p>
@@ -254,8 +260,8 @@ function CreateModal({categories, animate}) {
                                 }}
                                 className={
                                   dropdown
-                                    ? `text-sm text-primary font-semibold cursor-pointer flex items-center select-none border bg-${color} border-${color} pr-1 gap-0.5 rounded-md pl-2`
-                                    : `text-sm text-${color} font-semibold cursor-pointer flex items-center select-none border border-${color} pr-1 gap-0.5 rounded-md pl-2`
+                                    ? `text-sm text-primary font-medium cursor-pointer flex items-center select-none border bg-${color} border-${color} pr-1 gap-0.5 rounded-md pl-2`
+                                    : `text-sm text-${color} font-medium cursor-pointer flex items-center select-none border border-${color} pr-1 gap-0.5 rounded-md pl-2`
                                 }
                               >
                                 <p>{category}</p>
@@ -269,7 +275,7 @@ function CreateModal({categories, animate}) {
                       {!dropdown ? (
                         ''
                       ) : (
-                        <ul className='absolute flex flex-col text-end bg-gray-800 rounded-md bottom-6 w-44 select-none overflow-hidden'>
+                        <ul className='absolute flex flex-col text-end bg-palette-black rounded-md bottom-6 w-44 select-none overflow-hidden'>
                           {categories.map(({name, color}) =>
                             name == category ? (
                               ''
@@ -280,7 +286,7 @@ function CreateModal({categories, animate}) {
                                   setDropdown(!dropdown);
                                 }}
                                 key={name}
-                                className={`text-sm text-${color} font-semibold px-4 py-1 relative cursor-pointer hover:bg-gray-700`}
+                                className={`text-sm text-${color} font-medium px-4 py-1 relative cursor-pointer hover:bg-palette-black`}
                               >
                                 {name}
                               </li>
@@ -295,14 +301,14 @@ function CreateModal({categories, animate}) {
                   <button
                     type='submit'
                     disabled={!input || category == 'Selecciona una categoría'}
-                    className='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-8 tracking-wide py-2 text-center mr-2 inline-flex items-center disabled:opacity-50'
+                    className='text-primary bg-action-blue/80 hover:bg-action-blue font-medium font-[Poppins] rounded-lg text-sm px-8 tracking-wide py-2 text-center mr-2 inline-flex items-center disabled:opacity-50'
                   >
                     {loaderButton ? (
                       <>
                         <svg
                           aria-hidden='true'
                           role='status'
-                          className='inline-flex w-4 h-4 mr-3 text-white animate-spin'
+                          className='inline-flex w-4 h-4 mr-3 text-primary animate-spin'
                           viewBox='0 0 100 101'
                           fill='none'
                           xmlns='http://www.w3.org/2000/svg'

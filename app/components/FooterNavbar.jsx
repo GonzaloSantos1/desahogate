@@ -10,7 +10,7 @@ const categories = [
   {name: 'Trabajo', color: 'action-yellow', selected: false},
   {name: 'Familia', color: 'action-blue', selected: false},
   {name: 'Amigos', color: 'action-green', selected: false},
-  {name: 'Otros', color: 'action-purple', selected: false},
+  {name: 'Otros', color: 'palette-purple', selected: false},
 ];
 
 const FooterNavbar = () => {
@@ -18,7 +18,7 @@ const FooterNavbar = () => {
   const [selected, setSelected] = useState(pathname);
 
   return (
-    <nav className='border-t border-gray-800'>
+    <nav className='border-t border-palette-gray'>
       <ul className='flex justify-around items-center md:hidden h-14 text-xs px-2'>
         <li
           className={`flex flex-col ${selected == '/' && 'text-action'}`}

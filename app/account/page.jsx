@@ -100,12 +100,15 @@ function Account() {
     );
 
   return (
-    <div className=''>
-      <h1 className='text-action font-bold text-3xl my-5 px-4 md:px-36'>
+    <div>
+      <h1 className='text-palette-purple font-medium text-2xl my-5 px-4 md:px-36 font-[Poppins]'>
         <span className='text-primary font-medium'>Hola,</span>{' '}
-        {user.user.username ?? user.user._id} 👋
+        {user.user.username ?? user.user.email} 👋
       </h1>
-      <form onSubmit={editAccount} className='flex justify-center flex-col gap-2 my-4 items-center'>
+      <form
+        onSubmit={editAccount}
+        className='flex justify-center flex-col gap-2 my-4 items-center font-[Poppins]'
+      >
         <div className='relative max-w-lg w-80'>
           <input
             type='text'
@@ -114,12 +117,12 @@ function Account() {
             onChange={(e) => {
               setUsername(e.target.value);
             }}
-            className='block px-2.5 py-2.5 w-full text-sm text-primary bg-transparent rounded-xl border-1 border-secondary appearance-none  focus:outline-none focus:ring-0 border focus:border-action peer font-semibold'
+            className='block px-2.5 py-2.5 w-full text-sm text-primary bg-transparent rounded-xl border-1 border-secondary appearance-none focus:outline-none focus:ring-0 border focus:border-action peer'
             placeholder=' '
           />
           <label
             htmlFor='username'
-            className='absolute text-sm text-secondary duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-[#101010] px-2 peer-focus:px-2 peer-focus:text-action peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1'
+            className='absolute text-sm text-secondary duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-palette-black px-2 peer-focus:px-2 peer-focus:text-action peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1'
           >
             Cambiar nombre de usuario
           </label>
@@ -167,14 +170,14 @@ function Account() {
         <button
           type='submit'
           disabled={!username || error || attemps == 0}
-          className='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-8 tracking-wide py-2 text-center mr-2 inline-flex items-center disabled:opacity-50'
+          className='text-primary bg-palette-blue/80 hover:bg-palette-blue rounded-lg text-sm px-8 tracking-wide py-2 text-center mr-2 inline-flex items-center disabled:opacity-50'
         >
           {loaderButton ? (
             <>
               <svg
                 aria-hidden='true'
                 role='status'
-                className='inline-flex w-4 h-4 mr-3 text-white animate-spin'
+                className='inline-flex w-4 h-4 mr-3 text-primary animate-spin'
                 viewBox='0 0 100 101'
                 fill='none'
                 xmlns='http://www.w3.org/2000/svg'
@@ -195,7 +198,9 @@ function Account() {
           )}
         </button>
       </form>
-      <h2 className='md:px-36 mt-2 text-xl font-semibold text-gray-200'>Tu actividad</h2>
+      <h2 className='md:px-36 mt-2 text-xl font-medium text-gray-200 font-[Poppins]'>
+        Tu actividad
+      </h2>
       {success && (
         <div
           className='flex py-3 px-4 mb-4 text-sm text-primary bg-emerald-700 rounded-lg absolute bottom-0 md:right-5 gap-2 items-center'

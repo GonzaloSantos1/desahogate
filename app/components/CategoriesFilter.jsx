@@ -22,7 +22,7 @@ function CategoriesFilter(props) {
 
   return (
     <>
-      <ul className='w-full px-2 flex flex-wrap justify-center gap-4 pb-2'>
+      <ul className='w-full px-2 flex flex-wrap justify-center gap-2 md:gap-4 pb-2 h-[90px] md:h-auto mt-5 md:mt-10'>
         {categories.map(({name, color}, index) => (
           <li key={index}>
             <input
@@ -36,14 +36,14 @@ function CategoriesFilter(props) {
                   handleCategory(name);
                 }
               }}
-              className={`sr-only peer cat-${index}`}
+              className={`sr-only peer`}
               value={name}
               name='categories-list'
             />
             <label
               htmlFor={name}
-              className={`px-3 py-1 border-2 font-semibold ease-in-out transition duration-300 rounded-full border-${color} select-none hover:shadow-${color} hover:shadow-lg hover:bg-${color} cursor-pointer cat-${index} ${
-                category == name ? `bg-${color} text-[#101010]` : `text-${color}`
+              className={`px-3 py-1 border-2 font-medium ease-in-out transition duration-300 rounded-full border-${color} select-none cursor-pointer ${
+                category == name ? `bg-${color} text-palette-black` : `text-${color}`
               } lowercase`}
             >
               {name}

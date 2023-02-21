@@ -15,11 +15,15 @@ module.exports = {
         primary: '#ECEDEE',
         secondary: '#9ca3af',
         action: '#FF4ECD',
-        'action-blue': '#3694FF',
+        'action-blue': '#008FF6',
         'action-yellow': '#F6AD37',
         'action-green': '#41EC8B',
         'action-red': '#F4256D',
-        'action-purple': '#9750DD',
+        'action-purple': '#9e69ff',
+        'palette-blue': '#008FF6',
+        'palette-purple': '#9e69ff',
+        'palette-gray': '#25282c',
+        'palette-black': '#141617',
       },
     },
   },
@@ -27,7 +31,7 @@ module.exports = {
   safelist: [
     {
       pattern:
-        /(bg|text|border|shadow|hover:bg|hover:text|hover:border|hover:shadow)-action-(blue|yellow|green|red|purple)/,
+        /(bg|text|border|shadow|hover:bg|hover:text|hover:border|hover:shadow)-(action|palette)-(blue|yellow|green|red|purple|black|gray)/,
     },
   ],
 };
