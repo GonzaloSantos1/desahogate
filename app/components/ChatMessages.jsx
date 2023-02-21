@@ -129,7 +129,7 @@ function ChatMessages({postId, categories}) {
           {/** Comments section */}
           <div
             id='post-commentaries'
-            className='w-full flex-1 px-2 pb-1 overflow-y-auto flex flex-col-reverse relative'
+            className='w-full flex-1 px-2 pb-1 overflow-y-auto flex flex-col-reverse relative scroll-none'
           >
             <ul className='flex flex-col gap-2 items-start text-md md:px-2'>
               {data[0].comments.map((e) => {
@@ -245,7 +245,7 @@ function ChatMessages({postId, categories}) {
           <h2 className='font-medium text-sm w-full text-center my-2 text-palette-blue'>
             Otras publicaciones
           </h2>
-          <div className='h-full pb-10 overflow-scroll'>
+          <div className='h-full pb-10 overflow-scroll scroll-none'>
             <BoardDisplay categories={categories} />
           </div>
         </div>
