@@ -9,17 +9,6 @@ import {BiLogIn, BiLogOut} from 'react-icons/bi';
 import {IoFish} from 'react-icons/io5';
 import {usePathname, useRouter} from 'next/navigation';
 
-const links = [
-  {
-    label: 'Home',
-    route: '/',
-  },
-  {
-    label: 'Board',
-    route: '/board',
-  },
-];
-
 function Header() {
   const {data: session} = useSession();
   const [modal, setModal] = useState(false);
@@ -52,7 +41,7 @@ function Header() {
         </a>
 
         <nav className='hidden md:flex justify-center gap-5 items-center text-sm font-medium'>
-          <a href='/' className={pathname == '' ? 'text-action-blue' : ''}>
+          <a href='/' className={pathname == '/' ? 'text-action-blue' : ''}>
             Home
           </a>
           <a href='/board' className={pathname == '/board' ? 'text-action-blue' : ''}>
@@ -62,7 +51,7 @@ function Header() {
           {!session ? (
             <button
               onClick={handleSignIn}
-              className='bg-palette-purple text-primary px-5 text-sm font-medium py-[5px] rounded-xl flex gap-2 items-center ease-in-out duration-300'
+              className='border-palette-purple border text-palette-purple hover:bg-palette-purple hover:text-palette-black px-3 text-sm font-medium py-[3.5px] rounded-xl flex gap-2 items-center ease-in-out duration-300'
             >
               <p>Entrar</p>
               <IoFish size={24} />

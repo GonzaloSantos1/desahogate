@@ -42,7 +42,7 @@ function CategoriesFilter(props) {
             />
             <label
               htmlFor={name}
-              className={`px-3 py-1 border-2 font-medium ease-in-out transition duration-300 rounded-full border-${color} select-none cursor-pointer ${
+              className={`px-3 py-1 border-2 font-medium text-sm ease-in-out transition duration-300 rounded-full border-${color} select-none cursor-pointer ${
                 category == name ? `bg-${color} text-palette-black` : `text-${color}`
               } lowercase`}
             >

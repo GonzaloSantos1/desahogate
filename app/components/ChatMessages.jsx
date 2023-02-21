@@ -4,9 +4,10 @@ import LoadingComponent from './LoadingComponent';
 import ChatInput from './ChatInput';
 import UserContext from '../../lib/userContext';
 import {IconChevronUp, IconChevronDown} from '@tabler/icons';
-import {HiBadgeCheck} from 'react-icons/hi';
 import AnimateHeight from 'react-animate-height';
 import BoardDisplay from './BoardDisplay';
+import CommentMenu from './CommentMenu';
+import Comments from './Comments';
 
 function ChatMessages({postId, categories}) {
   const [data, setData] = useState(null);
@@ -136,109 +137,67 @@ function ChatMessages({postId, categories}) {
                 let localeDate = new Date(e.created_at).toLocaleDateString().slice(0, -5);
                 let localeTime = new Date(e.created_at).toLocaleTimeString().slice(0, -3);
                 let time = localeDate + ' ' + localeTime;
+                let username = e.username;
+                let timestamp = e.created_at;
+                let text = e.text;
+                let verified = e.verified;
                 if (data[0].userId == loggedUserId && e.userId == loggedUserId) {
                   /** user messages if user = author */
                   return (
-                    <li
-                      key={e.created_at}
-                      className='font-medium text-end self-end bg-palette-gray py-2 pl-4 pr-3 rounded-xl max-w-[350px] md:max-w-[450px]'
-                    >
-                      <p className='text-action md:text-sm'>
-                        {e.username ? e.username : 'Anónimo'}
-                      </p>
-                      <p className='font-light md:text-sm leading-[1.1]'>{e.text}</p>
-                      <p className='text-secondary text-xs font-light text-start'>{time}</p>
-                    </li>
+                    <Comments
+                      key={timestamp}
+                      time={time}
+                      text={text}
+                      username={username}
+                      user={'userAuthor'}
+                    />
                   );
                 } else if (e.userId == loggedUserId) {
                   /** user messages if user != author */
                   return (
-                    <li
-                      key={e.created_at}
-                      className='font-medium text-end self-end bg-palette-gray py-2 pl-4 pr-3 rounded-xl max-w-[350px] md:max-w-[450px]'
-                    >
-                      <div className='flex items-center gap-1 justify-end'>
-                        {e.verified && (
-                          <span>
-                            <HiBadgeCheck color='#FF4ECD' size={20} />
-                          </span>
-                        )}
-                        <p className='text-action-red text-end md:text-sm'>
-                          {e.username ? e.username : 'Anónimo'}
-                        </p>
-                      </div>
-                      <p className='font-light md:text-sm leading-[1.1]'>{e.text}</p>
-                      <p className='text-secondary text-xs font-light text-start'>{time}</p>
-                    </li>
+                    <Comments
+                      key={timestamp}
+                      time={time}
+                      text={text}
+                      username={username}
+                      user={'userNoAuthor'}
+                      verified={verified}
+                    />
                   );
                 } else if (data[0].userId == e.userId) {
                   /** author messages if user != author */
                   return (
-                    <li
-                      key={e.created_at}
-                      className=' font-medium text-start bg-palette-gray py-2 pr-4 pl-3 rounded-xl max-w-[350px] md:max-w-[450px]'
-                    >
-                      <p className='text-action md:text-sm'>
-                        {e.username ? e.username : 'Anónimo'}
-                      </p>
-                      <p className='font-light md:text-sm leading-[1.1]'>{e.text}</p>
-                      <p className='text-secondary text-xs font-light text-end'>{time}</p>
-                    </li>
+                    <Comments
+                      key={timestamp}
+                      time={time}
+                      text={text}
+                      username={username}
+                      user={'authorNoUser'}
+                    />
                   );
                 } else {
                   /** non user/author messages */
                   /** if user hasn't changed the name after register -> show cropped userId instead */
                   return (
-                    <li
-                      key={e.created_at}
-                      className='font-medium text-start bg-palette-gray py-1 pr-2 pl-3 rounded-xl max-w-[350px] md:max-w-[50%]'
-                    >
-                      <div className='flex items-center gap-1'>
-                        <p className='text-action-blue md:text-sm'>
-                          {e.username ? e.username : 'Anónimo'}
-                        </p>
-                        {e.verified && (
-                          <span>
-                            <HiBadgeCheck color='#FF4ECD' size={20} />
-                          </span>
-                        )}
-                      </div>
-                      <p className='font-light md:text-sm leading-[1.1]'>{e.text}</p>
-                      <p className='text-secondary text-xs font-light text-end'>{time}</p>
-                    </li>
+                    <Comments
+                      key={timestamp}
+                      time={time}
+                      text={text}
+                      username={username}
+                      user={'noUser'}
+                      verified={verified}
+                    />
                   );
                 }
               })}
             </ul>
           </div>
-          {/* <button
-            onClick={() => scrollToBottom(0)}
-            className='text-action-blue flex justify-end w-full px-3'
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              className='icon icon-tabler icon-tabler-circle-chevrons-down w-8 h-8'
-              width='24'
-              height='24'
-              viewBox='0 0 24 24'
-              strokeWidth='2'
-              stroke='currentColor'
-              fill='none'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            >
-              <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
-              <path d='M15 9l-3 3l-3 -3'></path>
-              <path d='M15 13l-3 3l-3 -3'></path>
-              <path d='M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0 -18z'></path>
-            </svg>
-          </button> */}
           <ChatInput
             postId={postId}
             refreshMessages={refreshMessages}
             loggedUser={loggedUser}
             loggedUserId={loggedUserId}
-            data={data[0]}
+            data={data}
           />
         </div>
         <div className='w-[20%] h-full border-l border-palette-gray overflow-hidden hidden md:block'>

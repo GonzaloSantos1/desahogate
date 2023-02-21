@@ -75,7 +75,7 @@ export default function BoardDisplay({data, categories}) {
               {[...dataFetched].reverse().map((post) => {
                 if (post._id !== pathname.slice(7)) {
                   return (
-                    <li className='relative max-w-[95%] min-w-[95%]' key={post._id}>
+                    <li className='relative max-w-[95%] min-w-[95%] text-primary' key={post._id}>
                       <Link href={`/board/${post._id}`}>
                         <button className='w-full  px-4 py-2 bg-palette-gray rounded-lg'>
                           {post.comments.length > 10 && (
@@ -150,7 +150,7 @@ export default function BoardDisplay({data, categories}) {
                   .map((post) => (
                     <li className='relative' key={post._id}>
                       <Link href={`/board/${post._id}`}>
-                        <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] px-4 py-2 bg-palette-gray rounded-lg md:hover:-translate-y-1 md:ease-in-out md:transition relative'>
+                        <button className='w-full max-w-[340px] min-w-[340px] px-4 py-2 bg-palette-gray rounded-lg md:hover:-translate-y-1 md:ease-in-out md:transition relative'>
                           {post.comments.length > 10 && (
                             <div className='absolute -top-2.5 -left-4 animate-pulse'>
                               <IconFlame color='#F4256D' size={45} />
@@ -197,7 +197,7 @@ export default function BoardDisplay({data, categories}) {
               : [...dataFetched].reverse().map((post) => (
                   <li className='relative' key={post._id}>
                     <Link href={`/board/${post._id}`}>
-                      <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] px-4 py-2 bg-palette-gray rounded-lg md:hover:-translate-y-1 md:ease-in-out md:transition relative'>
+                      <button className='w-full max-w-[340px] min-w-[340px] px-4 py-2 bg-palette-gray rounded-lg md:hover:-translate-y-1 md:ease-in-out md:transition relative'>
                         {post.comments.length > 10 && (
                           <div className='absolute -top-2.5 -left-4 animate-pulse'>
                             <IconFlame color='#F4256D' size={45} />

@@ -7,7 +7,6 @@ import {SessionProvider} from 'next-auth/react';
 import User from './components/User';
 
 export default function RootLayout({children, ...props}) {
-  const user = 'usuarito';
   return (
     <html lang='en'>
       <head />

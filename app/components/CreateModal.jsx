@@ -74,7 +74,7 @@ function CreateModal({categories, animate}) {
         onClick={() => {
           setModal(!modal);
         }}
-        className={`block rounded-2xl px-5 py-2.5 text-center ease-in-out transition duration-300 text-primary bg-gradient-to-b from-palette-purple to-action font-medium font-[Poppins] tracking-wide hover:text-primary hover:from-action hover:to-action text-sm md:m-4 shadow shadow-palette-black fixed bottom-[1vh] right-2 md:right-0 z-10`}
+        className={`block rounded-2xl px-5 py-2.5 text-center ease-in-out transition duration-300 text-palette-black bg-gradient-to-b from-palette-purple to-action font-medium font-[Poppins] tracking-wide hover:text-white hover:bg-palette-purple text-sm md:m-4 shadow shadow-palette-black fixed bottom-[1vh] right-2 md:right-0 z-10`}
         type='button'
       >
         Desahogarme
@@ -82,10 +82,10 @@ function CreateModal({categories, animate}) {
       {modal ? (
         !session ? (
           <div
-            className='absolute top-0 px-4 py-4 md:px-0 left-0 md:-top-10 md:-left-7 z-10 w-screen overflow-x-hidden overflow-y-hidden h-screen bg-palette-black/50 backdrop-blur-md flex justify-start md:justify-center items-center flex-col gap-6 md:gap-10'
+            className='fixed inset-0 modal-container z-10 w-screen overflow-x-hidden overflow-y-hidden h-full bg-palette-black/50 backdrop-blur-md flex justify-center px-4 items-center flex-col gap-6'
             onClick={() => setModal(false)}
           >
-            <div className='md:-mt-20 mt-6 font-light text-base text-start md:text-center md:text-md mx-auto px-3 md:px-44 flex flex-col gap-2 leading-[1.25]'>
+            <div className='font-light text-base text-start md:text-center md:text-md mx-auto px-3 md:px-44 flex flex-col gap-2 leading-[1.25]'>
               <h1>
                 Esta plataforma no susituye en ningún caso ayuda profesional. La gente podrá
                 comentar tu post e intentar animarte. Los comentarios provenientes de un perfil
@@ -111,7 +111,7 @@ function CreateModal({categories, animate}) {
                 son de un profesional de la salud mental.
               </h1>
             </div>
-            <div className='flex flex-col justify-center items-center py-2 text-base md:text-md w-full h-full'>
+            <div className='flex flex-col justify-center items-center py-2 text-base md:text-md w-full'>
               <button
                 onClick={(e) => {
                   signIn('google');
@@ -126,13 +126,14 @@ function CreateModal({categories, animate}) {
           </div>
         ) : (
           <div
-            className='fixed inset-0 modal-container mt-10 z-10 w-screen overflow-x-hidden overflow-y-hidden h-full bg-palette-black/50 backdrop-blur-md flex justify-start pt-24 px-4 items-center flex-col gap-6 md:gap-10'
+            className='fixed inset-0 modal-container z-10 w-screen overflow-x-hidden overflow-y-hidden h-full bg-palette-black/50 backdrop-blur-md flex justify-center px-4 items-center flex-col gap-6'
             onClick={() => setModal(false)}
           >
-            <div className='md:-mt-20font-light text-base text-start md:text-center md:text-md mx-auto px-3 md:px-44 flex flex-col gap-2 leading-[1.25]'>
+            <div className='font-light text-base text-start  md:text-md mx-auto px-3 md:px-44 flex flex-col gap-2 leading-[1.25] -mt-20 md:mt-0'>
               <h1>
                 Esta plataforma no susituye en ningún caso ayuda profesional. La gente podrá
                 comentar tu post e intentar animarte. <br />
+                <br />
                 Los comentarios provenientes de un perfil verificado
                 <span className='inline-flex text-center px-1 items-center relative w-7'>
                   <svg

@@ -41,6 +41,7 @@ function ChatInput(props) {
         body: JSON.stringify({
           comment,
           userId,
+          postId,
         }),
       });
     };
@@ -52,11 +53,11 @@ function ChatInput(props) {
   return (
     <>
       {!session ? (
-        <div className='flex justify-center items-center gap-1 py-2'>
+        <div className='flex justify-center items-center gap-1 py-2 md:text-sm'>
           <button onClick={() => signIn('google')} className='text-action-blue font-medium'>
             Inicia sesión
           </button>
-          <p>para poder comentar</p>
+          <p className='font-light'>para poder comentar</p>
         </div>
       ) : (
         <>
