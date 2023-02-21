@@ -71,7 +71,7 @@ export default function BoardDisplay({data, categories}) {
           <EmptyMessage categories={categories} />
         ) : (
           <>
-            <ul className='flex flex-wrap justify-center gap-2 w-full h-full rounded-md overflow-y-scroll py-2 text-xs -mt-10'>
+            <ul className='flex flex-wrap justify-center gap-2 w-full h-full rounded-md py-2 text-xs -mt-10'>
               {[...dataFetched].reverse().map((post) => {
                 if (post._id !== pathname.slice(7)) {
                   return (
@@ -142,7 +142,7 @@ export default function BoardDisplay({data, categories}) {
           <div className='block'>
             <CreateModal categories={categories} />
           </div>
-          <ul className='flex flex-wrap justify-center gap-3 md:gap-6 mt-3 md:mt-6 mb-3 overflow-y-scroll py-2'>
+          <ul className='flex flex-wrap justify-center gap-3 md:gap-6 mt-3 md:mt-6 mb-3 py-2'>
             {category !== ''
               ? dataFetched
                   .filter((e) => e.category == category)
@@ -150,7 +150,7 @@ export default function BoardDisplay({data, categories}) {
                   .map((post) => (
                     <li className='relative' key={post._id}>
                       <Link href={`/board/${post._id}`}>
-                        <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] px-4 py-2 bg-palette-gray rounded-lg shadow shadow-gray-500/50 md:hover:-translate-y-1 md:ease-in-out md:transition'>
+                        <button className='w-full max-w-[340px] md:max-w-sm min-w-[340px] md:min-w-[384px] px-4 py-2 bg-palette-gray rounded-lg md:hover:-translate-y-1 md:ease-in-out md:transition relative'>
                           {post.comments.length > 10 && (
                             <div className='absolute -top-2.5 -left-4 animate-pulse'>
                               <IconFlame color='#F4256D' size={45} />
