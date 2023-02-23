@@ -7,10 +7,10 @@ import {IconChevronUp, IconChevronDown, IconMenu2, IconLayoutDashboard} from '@t
 import {HiHome, HiUser} from 'react-icons/hi2';
 import {BiLogIn, BiLogOut} from 'react-icons/bi';
 import {IoFish} from 'react-icons/io5';
-import {usePathname, useRouter} from 'next/navigation';
+import {usePathname} from 'next/navigation';
 
 function Header() {
-  const {data: session} = useSession();
+  const {data: session, status} = useSession();
   const [modal, setModal] = useState(false);
   const [hamburger, setHamburger] = useState(false);
   const user = useContext(UserContext);
@@ -30,17 +30,17 @@ function Header() {
   return (
     <>
       <header
-        className='flex justify-between px-6 md:px-8 border-b border-palette-gray items-center h-[60px] md:h-14 tracking-wide  z-30'
+        className='bg-palette-black backdrop-filter backdrop-blur-lg bg-opacity-70 sticky top-0 flex justify-between px-6 md:px-8 border-palette-gray items-center h-[60px] md:h-16 tracking-wide z-30'
         onClick={() => setModal(false)}
       >
         <a
           href='/'
-          className='font-bold text-4xl cursor-pointere select-none text-center font-[Quicksand]'
+          className='font-bold text-[38px] cursor-pointere select-none text-center font-[Quicksand]'
         >
           desahógate
         </a>
 
-        <nav className='hidden md:flex justify-center gap-5 items-center text-sm font-medium'>
+        <nav className='hidden md:flex justify-center gap-5 items-center text-md font-medium'>
           <a href='/' className={pathname == '/' ? 'text-action-blue' : ''}>
             Home
           </a>
@@ -48,7 +48,7 @@ function Header() {
             Board
           </a>
 
-          {!session ? (
+          {status === 'unauthenticated' ? (
             <button
               onClick={handleSignIn}
               className='border-palette-purple border text-palette-purple hover:bg-palette-purple hover:text-palette-black px-3 text-sm font-medium py-[3.5px] rounded-xl flex gap-2 items-center ease-in-out duration-300'
@@ -56,16 +56,26 @@ function Header() {
               <p>Entrar</p>
               <IoFish size={24} />
             </button>
+          ) : status === 'loading' ? (
+            <div className='text-palette-purple animate-spin'>
+              <IoFish size={24} />
+            </div>
           ) : (
             <div className='flex justify-center gap-3' onClick={(e) => e.stopPropagation()}>
               <button
                 onClick={() => setModal(!modal)}
-                className='flex justify-center items-center text-primary border border-palette-gray rounded-xl pl-3 pr-2 py-1'
+                className={`flex justify-center items-center ${
+                  modal
+                    ? 'bg-palette-purple text-palette-black'
+                    : 'bg-transparent text-action-purple'
+                } border-2 border-palette-purple rounded-xl pl-3 pr-2 py-1`}
               >
-                <p className='text-palette-purple font-medium -mt-0.5'>
-                  {username ?? user.user.email}
-                </p>
-                {!modal ? <IconChevronDown size={20} /> : <IconChevronUp size={20} />}
+                <p className='font-medium'>{username ?? user.user.email}</p>
+                {!modal ? (
+                  <IconChevronDown size={20} stroke={3} />
+                ) : (
+                  <IconChevronUp size={20} stroke={3} />
+                )}
               </button>
             </div>
           )}
@@ -76,7 +86,7 @@ function Header() {
         >
           <IconMenu2 stroke={3} size={28} color={`${hamburger ? '#9e69ff' : '#FFFF'}`} />
           {hamburger && (
-            <div className='font-medium absolute top-8 -right-1 flex flex-col justify-center items-start gap-3 py-5 bg-palette-gray z-50 rounded-xl px-1 w-40 shadow shadow-palette-black'>
+            <div className='font-medium absolute top-10 -right-2 flex flex-col justify-center items-start gap-3 py-5 bg-palette-gray z-50 rounded-xl px-1 w-40 shadow shadow-palette-black'>
               <a
                 href={'/'}
                 className='flex gap-2 items-center w-full hover:text-action-blue ease-in-out duration-300 transition pl-3 pr-4'
@@ -123,11 +133,11 @@ function Header() {
         </div>
       </header>
       {modal ? (
-        <div className='font-medium absolute top-12 right-10 flex flex-col justify-center items-start py-1 bg-palette-gray rounded-xl z-50'>
+        <div className='font-medium absolute top-14 right-8 flex flex-col justify-center items-start py-1 bg-palette-gray rounded-xl z-50 shadow shadow-palette-black'>
           <Link
             href={'/account'}
             onClick={() => setModal(!modal)}
-            className='flex gap-2 items-center w-full hover:text-action-blue ease-in-out duration-300 transition pl-3 pr-4 hover:bg-white/10 py-2 text-sm'
+            className='flex gap-2 items-center w-full ease-in-out duration-300 transition pl-3 pr-4 hover:bg-white/10 py-2 text-sm'
           >
             <HiUser size={20} stroke={2} />
             <p>Mi cuenta</p>

@@ -6,7 +6,6 @@ import UserContext from '../../lib/userContext';
 import {IconChevronUp, IconChevronDown} from '@tabler/icons';
 import AnimateHeight from 'react-animate-height';
 import BoardDisplay from './BoardDisplay';
-import CommentMenu from './CommentMenu';
 import Comments from './Comments';
 
 function ChatMessages({postId, categories}) {
@@ -86,7 +85,7 @@ function ChatMessages({postId, categories}) {
   return (
     <>
       {/** CARD TITLE AND TEXT */}
-      <div className='flex justify-center items-center h-full'>
+      <div className='flex justify-center items-center h-[calc(100vh-64px)]'>
         <div className='flex flex-col justify-between h-full items-center w-full bg-transparent flex-1'>
           <div className=' mt-1 w-full px-3 md:px-4 pb-2 text-md flex justify-between flex-col gap-1'>
             <div className='flex justify-between'>
@@ -111,7 +110,7 @@ function ChatMessages({postId, categories}) {
             <AnimateHeight duration={500} height={titleHeight}>
               <div className='relative md:hidden'>
                 <p className='font-light text-primary leading-[1.1]'>{data[0].message}</p>
-                <p className='text-secondary font-medium text-end text-xs'>
+                <p className='text-secondary text-end text-xs'>
                   Hace {dateHandler(data[0].created_at)}
                 </p>
               </div>

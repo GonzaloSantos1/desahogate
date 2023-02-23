@@ -9,6 +9,7 @@ module.exports = {
       animation: {
         //Bounces 5 times 1s equals 5s
         'bounce-short': 'bounce 1s ease-in-out 3',
+        bounce: 'bounce 2s infinite',
       },
       colors: {
         background: '#171717',

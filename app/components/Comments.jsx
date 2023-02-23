@@ -10,7 +10,7 @@ function Comments({time, text, user, username, verified}) {
     return (
       <li className='font-medium text-end self-end bg-palette-gray pb-1 pt-1.5 px-3 rounded-xl max-w-[350px] md:max-w-[450px] relative select-none'>
         <p className='text-action md:text-sm pl-4'>{username ? username : 'Anónimo'}</p>
-        <p className='font-light md:text-sm leading-[1.1]'>{text}</p>
+        <p className='font-light md:text-sm leading-[1.1] px-3'>{text}</p>
         <p className='text-secondary text-xs font-light text-start pt-0.5 -ml-0.5'>{time}</p>
       </li>
     );
@@ -18,7 +18,7 @@ function Comments({time, text, user, username, verified}) {
 
   if (user == 'userNoAuthor') {
     return (
-      <li className='font-medium text-end self-end bg-palette-gray pb-1 pt-1.5 px-3 rounded-xl max-w-[350px] md:max-w-[450px] relative select-none'>
+      <li className='font-medium self-end bg-palette-gray pb-1 pt-1.5 px-3 rounded-xl max-w-[350px] md:max-w-[450px] relative select-none'>
         <div className='flex items-center gap-1 justify-end'>
           {verified && (
             <span>
@@ -29,7 +29,7 @@ function Comments({time, text, user, username, verified}) {
             {username ? username : 'Anónimo'}
           </p>
         </div>
-        <p className='font-light md:text-sm leading-[1.1]'>{text}</p>
+        <p className='font-light md:text-sm leading-[1.1] px-3'>{text}</p>
         <p className='text-secondary text-xs font-light text-start pt-0.5 -ml-0.5'>{time}</p>
       </li>
     );
@@ -43,7 +43,7 @@ function Comments({time, text, user, username, verified}) {
         onMouseLeave={() => setIsOpen(false)}
       >
         <p className='text-action md:text-sm pr-4'>{username ? username : 'Anónimo'}</p>
-        <p className='font-light md:text-sm leading-[1.1]'>{text}</p>
+        <p className='font-light md:text-sm leading-[1.1] px-3'>{text}</p>
         <p className='text-secondary text-xs font-light text-end pt-0.5 -mr-0.5'>{time}</p>
         {isOpen && (
           <span
@@ -77,7 +77,7 @@ function Comments({time, text, user, username, verified}) {
             </span>
           )}
         </div>
-        <p className='font-light md:text-sm leading-[1.1]'>{text}</p>
+        <p className='font-light md:text-sm leading-[1.1] px-3'>{text}</p>
         <p className='text-secondary text-xs font-light text-end pt-0.5 -mr-0.5'>{time}</p>
         {isOpen && (
           <span

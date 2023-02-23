@@ -1,10 +1,10 @@
 'use client';
 import React, {useState, useEffect, useContext} from 'react';
-import {IconChevronDown, IconPlus} from '@tabler/icons';
+import {IconChevronDown} from '@tabler/icons';
 import {useSession, signIn} from 'next-auth/react';
 import UserContext from '../../lib/userContext';
 
-function CreateModal({categories, animate}) {
+function CreateModal({categories}) {
   const [modal, setModal] = useState(false);
   const [userDropdown, setUserDropdown] = useState(false);
   const [charactersCount, setCharactersCount] = useState(0);

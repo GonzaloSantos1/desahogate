@@ -13,7 +13,6 @@ function Account() {
   const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   let attemps = user.user.attemps ? user.user.attemps : 2;
-  const [activity, setActivity] = useState([]);
 
   const editAccount = (e) => {
     e.preventDefault();

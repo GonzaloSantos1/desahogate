@@ -10,21 +10,18 @@ export default function RootLayout({children, ...props}) {
   return (
     <html lang='en'>
       <head />
-      <body className='bg-palette-black text-primary h-screen overflow-hidden flex flex-col relative'>
-        <SessionProvider session={props.session}>
+      <SessionProvider session={props.session}>
+        <body className='bg-palette-black text-primary relative overflow-x-hidden'>
           <User>
             <Header />
             <Suspense fallback={<Loading />}>
-              <div
-                id='body-div'
-                className='flex-1 overflow-y-scroll scrollbar-none relative pb-20 md:pb-0'
-              >
+              <div id='body-div' className='flex-1 scrollbar-none relative pb-20 md:pb-0'>
                 {children}
               </div>
             </Suspense>
           </User>
-        </SessionProvider>
-      </body>
+        </body>
+      </SessionProvider>
     </html>
   );
 }

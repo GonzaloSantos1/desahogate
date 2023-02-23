@@ -1,10 +1,10 @@
 'use client';
 import React, {useState, useContext} from 'react';
-import {useSession, signIn, signOut} from 'next-auth/react';
+import {useSession, signIn} from 'next-auth/react';
 import UserContext from '../../lib/userContext';
 
 function ChatInput(props) {
-  const {postId, refreshMessages, disabled, loggedUser, loggedUserId, data} = props;
+  const {postId, refreshMessages, disabled, data} = props;
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
   const {data: session} = useSession();

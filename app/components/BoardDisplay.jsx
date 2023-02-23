@@ -1,12 +1,7 @@
 'use client';
 import React, {useState, useEffect} from 'react';
 import Link from 'next/link';
-import {
-  IconFlame,
-  IconClockHour3,
-  IconMessageCircle2,
-  IconDeviceComputerCameraOff,
-} from '@tabler/icons';
+import {IconFlame, IconClockHour3, IconMessageCircle2} from '@tabler/icons';
 import CategoriesFilter from './CategoriesFilter';
 import EmptyMessage from './EmptyMessage';
 import CreateModal from './CreateModal';
