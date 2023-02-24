@@ -30,12 +30,12 @@ function Header() {
   return (
     <>
       <header
-        className='bg-palette-black backdrop-filter backdrop-blur-lg bg-opacity-70 sticky top-0 flex justify-between px-6 md:px-8 border-palette-gray items-center h-[60px] md:h-16 tracking-wide z-30'
+        className='bg-palette-black backdrop-filter backdrop-blur-lg bg-opacity-80 md:bg-opacity-70 sticky top-0 flex justify-between px-6 md:px-8 border-palette-gray items-center h-[60px] md:h-16 tracking-wide z-30'
         onClick={() => setModal(false)}
       >
         <a
           href='/'
-          className='font-bold text-[38px] cursor-pointere select-none text-center font-[Quicksand]'
+          className='font-bold text-[38px] cursor-pointer select-none text-center font-[Quicksand] text-transparent bg-clip-text bg-gradient-to-r from-palette-purple to-action'
         >
           desahógate
         </a>
@@ -84,7 +84,7 @@ function Header() {
           className='flex md:hidden relative z-50 cursor-pointer'
           onClick={() => setHamburger(!hamburger)}
         >
-          <IconMenu2 stroke={3} size={28} color={`${hamburger ? '#9e69ff' : '#FFFF'}`} />
+          <IconMenu2 stroke={3} size={28} color={`${hamburger ? '#c084fc' : '#FFFF'}`} />
           {hamburger && (
             <div className='font-medium absolute top-10 -right-2 flex flex-col justify-center items-start gap-3 py-5 bg-palette-gray z-50 rounded-xl px-1 w-40 shadow shadow-palette-black'>
               <a
