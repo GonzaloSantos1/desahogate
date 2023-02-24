@@ -14,16 +14,21 @@ function HeroSection() {
     let sectionSet = gsap.utils.toArray('.section-set');
 
     let to = gsap.to(sectionSet, {
-      xPercent: -200,
+      xPercent: -100 * (sectionSet.length - 1),
       ease: 'none',
       scrollTrigger: {
         trigger: scroller.current,
         pin: true,
-        scrub: 2,
+        scrub: 1,
         pinSpacing: true,
         invalidateOnRefresh: true,
         anticipatePin: 1,
-        snap: 1 / (sectionSet.length - 1),
+        snap: {
+          snapTo: 1 / (sectionSet.length - 1),
+          duration: 0.1,
+          delay: 0.1,
+          ease: 'power1.inOut',
+        },
 
         end: () => '+=' + window.innerWidth,
       },
@@ -35,80 +40,154 @@ function HeroSection() {
   }, []);
 
   return (
-    <div className='overflow-hidden flex'>
-      <div className='overflow-hidden '>
-        <div
-          id='sections'
-          ref={scroller}
-          className=' flex overflow-x-hidden text-white w-[300vw] m-0 relative h-screen'
-        >
-          <section
-            ref={sections}
-            className='section-set w-screen h-full bg-transparent flex items-center z-50 justify-center'
+    <>
+      {/** TABLET + DESKTOP VERSION */}
+      <div className='hidden overflow-hidden md:flex'>
+        <div className='overflow-hidden '>
+          <div
+            id='sections'
+            ref={scroller}
+            className=' flex overflow-x-hidden text-white w-[300vw] m-0 relative h-screen'
           >
-            <div className='flex flex-col text-center gap-2 md:items-start'>
-              <p className='text-3xl font-semibold md:text-4xl md:text-start'>
-                Comparte lo que te preocupa
+            <section
+              ref={sections}
+              className='section-set w-screen h-full bg-transparent flex items-center z-50 justify-center'
+            >
+              <div className='flex flex-col text-start gap-6 items-center justify-center '>
+                <p className='text-6xl max-w-md font-semibold text-transparent bg-clip-text bg-gradient-to-r from-palette-purple to-action'>
+                  Comparte lo que te preocupa
+                </p>
+                <p className='text-xl text-primary md:max-w-md '>
+                  A veces, solo necesitamos desahogarnos. Puedes hacerlo de forma anónima o crear
+                  una cuenta, así podrás seguir el hilo de lo que ocurre. Otras personas pueden
+                  darte consejos o apoyo
+                </p>
+              </div>
+              <Image
+                src='/assets/images/purr-sad-dark.png'
+                width={400}
+                height={400}
+                alt='sad cat looking through a window'
+              />
+            </section>
+            <section
+              ref={sections}
+              className='section-set w-screen h-full bg-white flex items-center z-50 justify-center'
+            >
+              <Image
+                src='/assets/images/purr-5.png'
+                width={400}
+                height={400}
+                alt='a cat comforting another one'
+              />
+              <div className='flex flex-col text-start gap-6 items-center justify-center'>
+                <p className='text-6xl max-w-md font-semibold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-500'>
+                  Comenta otras publicaciones
+                </p>
+                <p className='text-xl text-palette-gray md:max-w-md'>
+                  Entre todos podemos ayudarnos a salir del pozo, pero recuerda que probablemente ni
+                  tú ni quién te comente sea un profesional de la salud mental. Es una comunidad de
+                  apoyo, pero si necesitas ayuda profesional no la busques aquí
+                </p>
+              </div>
+            </section>
+            <section
+              ref={sections}
+              className='section-set w-screen h-full flex items-center z-50 justify-center'
+            >
+              <div className='flex flex-col text-start gap-6 items-center justify-center'>
+                <p className='text-6xl max-w-md font-semibold text-transparent bg-clip-text bg-gradient-to-r to-rose-400 from-pink-600'>
+                  Pórtate bien
+                </p>
+                <p className='text-xl text-primary md:max-w-md'>
+                  A veces, solo necesitamos desahogarnos. Puedes hacerlo de forma anónima o crear
+                  una cuenta, así podrás seguir el hilo de lo que ocurre. Otras personas pueden
+                  darte consejos o apoyo
+                </p>
+              </div>
+              <Image
+                src='/assets/images/purr-monch.png'
+                width={400}
+                height={400}
+                alt='a cat chewing on a plant'
+              />
+            </section>
+          </div>
+          {/** CALL TO ACTION */}
+          <div className='h-screen w-full flex flex-col items-center justify-center gap-32 text-primary px-24'>
+            <div className='w-full flex justify-center items-center gap-12'>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam atque libero illo
+                architecto! Amet earum optio similique dignissimos magnam quia nulla quos commodi!
+                Modi ipsa ex ut quaerat quam consequatur!
               </p>
-              <p className='text-lg md:text-lg text-primary px-5 md:max-w-md md:px-0 text-start'>
-                A veces, solo necesitamos desahogarnos. Puedes hacerlo de forma anónima o crear una
-                cuenta, así podrás seguir el hilo de lo que ocurre. Otras personas pueden darte
-                consejos o apoyo
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident expedita
+                molestias minima perferendis culpa aperiam ipsum at quisquam debitis ab corrupti,
+                hic harum unde aut voluptate. Eum deleniti officiis ratione.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa recusandae rem itaque
+                similique illum neque accusamus consequatur amet debitis, libero labore, eum enim
+                ducimus voluptatibus placeat quibusdam impedit optio quis?
               </p>
             </div>
-            <Image
-              src='/assets/images/purr-sad-dark.png'
-              width={300}
-              height={300}
-              className='max-w-[70vw] max-h-[60vh]'
-              alt='sad cat looking through a window'
-            />
-          </section>
-          <section
-            ref={sections}
-            className='section-set w-screen h-full bg-white text-palette-gray flex items-center z-50 justify-center'
-          >
-            <div className='flex flex-col text-center gap-2 md:items-start'>
-              <p className='text-3xl font-semibold md:text-4xl md:text-start'>
-                Comenta otras publicaciones
-              </p>
-              <p className='text-lg md:text-lg px-5 md:max-w-md md:px-0 text-start'>
-                Entre todos podemos ayudarnos a salir del pozo, pero recuerda que probablemente ni
-                tú ni quién te comente sea un profesional de la salud mental. Es una comunidad de
-                apoyo, pero si necesitas ayuda profesional no la busques aquí
-              </p>
-            </div>
-            <Image
-              src='/assets/images/purr-5.png'
-              width={300}
-              height={300}
-              className='max-w-[70vw] max-h-[60vh]'
-              alt='a cat comforting another one'
-            />
-          </section>
-          <section
-            ref={sections}
-            className='section-set w-screen h-full flex items-center z-50 justify-center'
-          >
-            <div className='flex flex-col text-center gap-2 md:items-start'>
-              <p className='text-3xl font-semibold md:text-4xl md:text-start'>Pórtate bien</p>
-              <p className='text-lg md:text-lg px-5 md:max-w-md md:px-0 text-start'>
-                A veces, solo necesitamos desahogarnos. Puedes hacerlo de forma anónima o crear una
-                cuenta, así podrás seguir el hilo de lo que ocurre. Otras personas pueden darte
-                consejos o apoyo
-              </p>
-            </div>
-            <Image
-              src='/assets/images/purr-monch.png'
-              width={300}
-              height={300}
-              className='max-w-[70vw] max-h-[60vh]'
-              alt='a cat chewing on a plant'
-            />
-          </section>
+            <button className='text-4xl font-medium rounded-md bg-palette-blue text-white px-4 py-2'>
+              Explorar
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+      {/** MOBILE VERSION */}
+      <div className='md:hidden h-screen flex flex-col items-center justify-center gap-6 px-6 text-center'>
+        <p className='text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-violet-400'>
+          Comparte lo que te preocupa
+        </p>
+        <p className='text-lg text-primary '>
+          A veces, solo necesitamos desahogarnos. Puedes hacerlo de forma anónima o crear una
+          cuenta, así podrás seguir el hilo de lo que ocurre. Otras personas pueden darte consejos o
+          apoyo
+        </p>
+        <Image
+          src='/assets/images/purr-sad-dark.png'
+          width={350}
+          height={350}
+          alt='sad cat looking through a window'
+        />
+      </div>
+      <div className='md:hidden h-screen bg-white flex flex-col items-center justify-center gap-6 px-6 text-center'>
+        <p className='text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-500'>
+          Comenta otras publicaciones
+        </p>
+        <p className='text-lg text-palette-gray'>
+          Entre todos podemos ayudarnos a salir del pozo, pero recuerda que probablemente ni tú ni
+          quién te comente sea un profesional de la salud mental. Es una comunidad de apoyo, pero si
+          necesitas ayuda profesional no la busques aquí
+        </p>
+        <Image
+          src='/assets/images/purr-5.png'
+          width={350}
+          height={350}
+          alt='a cat comforting another one'
+        />
+      </div>
+      <div className='md:hidden h-screen flex flex-col items-center justify-center gap-6 px-6 text-center'>
+        <p className='text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-rose-500'>
+          Pórtate bien
+        </p>
+        <p className='text-lg text-primary'>
+          A veces, solo necesitamos desahogarnos. Puedes hacerlo de forma anónima o crear una
+          cuenta, así podrás seguir el hilo de lo que ocurre. Otras personas pueden darte consejos o
+          apoyo
+        </p>
+        <Image
+          src='/assets/images/purr-monch.png'
+          width={350}
+          height={350}
+          alt='a cat chewing on a plant'
+        />
+      </div>
+    </>
   );
 }
 

@@ -151,7 +151,7 @@ export default function BoardDisplay({data, categories}) {
                               <IconFlame color='#F4256D' size={45} />
                             </div>
                           )}
-                          <p className='mt-2 font-light tracking-wide md:text-sm'>{post.message}</p>
+                          <p className='mt-2 tracking-wide md:text-sm'>{post.message}</p>
                           <div className='flex justify-between items-end mt-4 text-secondary font-light'>
                             <div className='flex flex-col justify-start text-start'>
                               <p className='text-sm flex gap-1'>
@@ -198,7 +198,7 @@ export default function BoardDisplay({data, categories}) {
                             <IconFlame color='#F4256D' size={45} />
                           </div>
                         )}
-                        <p className='mt-2 font-light tracking-wide md:text-sm'>{post.message}</p>
+                        <p className='mt-2 tracking-wide md:text-sm'>{post.message}</p>
                         <div className='flex justify-between items-end mt-4 text-secondary font-light'>
                           <div className='flex flex-col justify-start text-start'>
                             <p className='text-sm flex gap-1'>
