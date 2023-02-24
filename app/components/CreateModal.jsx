@@ -74,7 +74,7 @@ function CreateModal({categories}) {
         onClick={() => {
           setModal(!modal);
         }}
-        className={`block rounded-2xl px-5 py-2.5 text-center ease-in-out transition duration-300 text-palette-black bg-gradient-to-b from-palette-purple to-action font-medium font-[Poppins] tracking-wide hover:text-white hover:bg-palette-purple text-sm md:m-4 shadow shadow-palette-black fixed bottom-[1vh] right-2 md:right-0 z-10`}
+        className='block rounded-2xl px-5 py-2.5 text-center ease-in-out transition duration-500 text-white bg-purple-600 hover:bg-gradient-to-b hover:from-palette-purple hover:to-action font-medium tracking-wide hover:bg-palette-purple text-sm md:m-4 shadow shadow-palette-black fixed bottom-[1vh] right-2 md:right-0 z-10'
         type='button'
       >
         Desahogarme

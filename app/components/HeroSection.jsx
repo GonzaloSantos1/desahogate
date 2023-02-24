@@ -113,29 +113,6 @@ function HeroSection() {
               />
             </section>
           </div>
-          {/** CALL TO ACTION */}
-          <div className='h-screen w-full flex flex-col items-center justify-center gap-32 text-primary px-24'>
-            <div className='w-full flex justify-center items-center gap-12'>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam atque libero illo
-                architecto! Amet earum optio similique dignissimos magnam quia nulla quos commodi!
-                Modi ipsa ex ut quaerat quam consequatur!
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident expedita
-                molestias minima perferendis culpa aperiam ipsum at quisquam debitis ab corrupti,
-                hic harum unde aut voluptate. Eum deleniti officiis ratione.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa recusandae rem itaque
-                similique illum neque accusamus consequatur amet debitis, libero labore, eum enim
-                ducimus voluptatibus placeat quibusdam impedit optio quis?
-              </p>
-            </div>
-            <button className='text-4xl font-medium rounded-md bg-palette-blue text-white px-4 py-2'>
-              Explorar
-            </button>
-          </div>
         </div>
       </div>
       {/** MOBILE VERSION */}

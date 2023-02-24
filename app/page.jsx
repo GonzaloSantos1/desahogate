@@ -1,6 +1,8 @@
+'use client';
 import Image from 'next/image';
 import Footer from './components/Footer';
 import {CgMouse} from 'react-icons/cg';
+import {GoHeart} from 'react-icons/go';
 import HeroSection from './components/HeroSection';
 
 export default function Home() {
@@ -32,6 +34,41 @@ export default function Home() {
         </div>
       </div>
       <HeroSection />
+
+      <div className='py-24 w-full flex flex-col items-center justify-center gap-32 text-primary px-24'>
+        <div className='w-full flex justify-center items-center gap-12'>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam atque libero illo
+            architecto! Amet earum optio similique dignissimos magnam quia nulla quos commodi! Modi
+            ipsa ex ut quaerat quam consequatur!
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident expedita molestias
+            minima perferendis culpa aperiam ipsum at quisquam debitis ab corrupti, hic harum unde
+            aut voluptate. Eum deleniti officiis ratione.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa recusandae rem itaque
+            similique illum neque accusamus consequatur amet debitis, libero labore, eum enim
+            ducimus voluptatibus placeat quibusdam impedit optio quis?
+          </p>
+        </div>
+        <button
+          class='text-transparent bg-clip-text bg-gradient-to-r from-palette-purple to-action font-bold uppercase px-8 py-3 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 flex items-center justify-center gap-2 tracking-wide'
+          type='button'
+        >
+          <div className='relative'>
+            <span className='text-rose-500 animate-ping absolute inset-0'>
+              <GoHeart size={24} />
+            </span>
+            <span className='text-rose-500'>
+              <GoHeart size={24} />
+            </span>
+          </div>
+          Explorar
+        </button>
+      </div>
+
       <Footer />
     </main>
   );
