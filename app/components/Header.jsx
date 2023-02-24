@@ -7,6 +7,7 @@ import {IconChevronUp, IconChevronDown, IconMenu2, IconLayoutDashboard} from '@t
 import {HiHome, HiUser} from 'react-icons/hi2';
 import {BiLogIn, BiLogOut} from 'react-icons/bi';
 import {IoFish} from 'react-icons/io5';
+import {GoHeart} from 'react-icons/go';
 import {usePathname} from 'next/navigation';
 
 function Header() {
@@ -51,10 +52,12 @@ function Header() {
           {status === 'unauthenticated' ? (
             <button
               onClick={handleSignIn}
-              className='border-palette-purple border text-palette-purple hover:bg-palette-purple hover:text-palette-black px-3 text-sm font-medium py-[3.5px] rounded-xl flex gap-2 items-center ease-in-out duration-300'
+              class='text-transparent bg-clip-text bg-gradient-to-l to-palette-purple from-action font-medium outline-none focus:outline-none ease-linear transition-all duration-150 flex items-center justify-center gap-2 tracking-wide border border-palette-purple rounded-xl px-3 py-1'
             >
               <p>Entrar</p>
-              <IoFish size={24} />
+              <span className='text-action/80'>
+                <IoFish size={24} />
+              </span>
             </button>
           ) : status === 'loading' ? (
             <div className='text-palette-purple animate-spin'>
@@ -64,17 +67,25 @@ function Header() {
             <div className='flex justify-center gap-3' onClick={(e) => e.stopPropagation()}>
               <button
                 onClick={() => setModal(!modal)}
-                className={`flex justify-center items-center ${
-                  modal
-                    ? 'bg-palette-purple text-palette-black'
-                    : 'bg-transparent text-action-purple'
-                } border-2 border-palette-purple rounded-xl pl-3 pr-2 py-1`}
+                class='text-transparent bg-clip-text bg-gradient-to-r from-palette-purple to-action font-bold outline-none focus:outline-none ease-linear transition-all duration-150 flex items-center justify-center gap-1 tracking-wide'
               >
+                <div className='relative mt-1'>
+                  <span className='text-rose-500 animate-ping absolute inset-0'>
+                    <GoHeart size={20} />
+                  </span>
+                  <span className='text-rose-500'>
+                    <GoHeart size={20} />
+                  </span>
+                </div>
                 <p className='font-medium'>{username ?? user.user.email}</p>
                 {!modal ? (
-                  <IconChevronDown size={20} stroke={3} />
+                  <span className='text-action'>
+                    <IconChevronDown size={20} stroke={3} />
+                  </span>
                 ) : (
-                  <IconChevronUp size={20} stroke={3} />
+                  <span className='text-action'>
+                    <IconChevronUp size={20} stroke={3} />
+                  </span>
                 )}
               </button>
             </div>
