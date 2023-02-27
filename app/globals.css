@@ -34,3 +34,53 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.switcher {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 25px;
+  border-radius: 100px;
+  border: 2px solid #25282c;
+  background-color: #fff;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.switcher:before,
+.switcher:after {
+  display: block;
+  position: absolute;
+  content: '';
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: 0.5s ease;
+}
+
+.switcher:before {
+  background-color: #ffa41b;
+}
+
+.switcher:after {
+  background-color: #141617;
+  left: -58px;
+  transform: scale(0.00001);
+}
+
+input[type='checkbox'] {
+  display: none;
+}
+input[type='checkbox']:checked + .switcher:before {
+  background-color: #fff;
+  transform: translateX(22px);
+}
+input[type='checkbox']:checked + .switcher:after {
+  transform: translateX(76px) scale(1);
+}
+input[type='checkbox']:checked + .switcher {
+  background-color: #141617;
+  border: 2px solid #e5e7eb;
+}
