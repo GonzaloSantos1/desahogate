@@ -145,7 +145,7 @@ export default function BoardDisplay({data, categories}) {
                   .map((post) => (
                     <li className='relative' key={post._id}>
                       <Link href={`/board/${post._id}`}>
-                        <button className='w-full max-w-[340px] min-w-[340px] px-4 py-2 bg-palette-gray rounded-lg md:hover:-translate-y-1 md:ease-in-out md:transition relative'>
+                        <button className='w-full max-w-[340px] min-w-[340px] px-4 py-2 bg-gray-50 dark:bg-palette-gray rounded-lg md:hover:-translate-y-1 md:ease-in-out md:transition relative shadow dark:shadow-none'>
                           {post.comments.length > 10 && (
                             <div className='absolute -top-2.5 -left-4 animate-pulse'>
                               <IconFlame color='#F4256D' size={45} />
@@ -192,30 +192,32 @@ export default function BoardDisplay({data, categories}) {
               : [...dataFetched].reverse().map((post) => (
                   <li className='relative' key={post._id}>
                     <Link href={`/board/${post._id}`}>
-                      <button className='w-full max-w-[340px] min-w-[340px] px-4 py-2 bg-palette-gray rounded-lg md:hover:-translate-y-1 md:ease-in-out md:transition relative'>
+                      <button className='w-full max-w-[340px] min-w-[340px] px-4 py-2 bg-gray-50 dark:bg-palette-gray rounded-lg md:hover:-translate-y-1 md:ease-in-out md:transition relative shadow dark:shadow-none'>
                         {post.comments.length > 10 && (
                           <div className='absolute -top-2.5 -left-4 animate-pulse'>
                             <IconFlame color='#F4256D' size={45} />
                           </div>
                         )}
-                        <p className='mt-2 tracking-wide md:text-sm'>{post.message}</p>
+                        <p className='mt-2 tracking-wide md:text-sm text-pallete-gray dark:text-primary'>
+                          {post.message}
+                        </p>
                         <div className='flex justify-between items-end mt-4 text-secondary font-light'>
                           <div className='flex flex-col justify-start text-start'>
-                            <p className='text-sm flex gap-1'>
-                              <span className='mt-0.5'>
-                                <IconMessageCircle2 size={15} stroke={2} />
+                            <p className='text-xs font-medium flex gap-1'>
+                              <span className=''>
+                                <IconMessageCircle2 size={15} stroke={3} />
                               </span>
                               {post.comments.length}
                             </p>
-                            <p className='text-sm relative pl-5'>
-                              <span className='inline-flex absolute left-0 top-0.5'>
-                                <IconClockHour3 size={15} stroke={2} />
+                            <p className='text-xs font-medium relative pl-5'>
+                              <span className='inline-flex absolute left-0'>
+                                <IconClockHour3 size={15} stroke={3} />
                               </span>
                               {dateHandler(post.created_at)}
                             </p>
                           </div>
                           <div className='flex flex-col items-end'>
-                            <p href='#' className='font-medium text-sm text-action' role='link'>
+                            <p href='#' className='font-medium text-xs text-action' role='link'>
                               {post.username}
                             </p>
                             {categories.map(({name, color}) => {
@@ -223,7 +225,7 @@ export default function BoardDisplay({data, categories}) {
                                 return (
                                   <p
                                     key={name}
-                                    className={`text-sm text-${color} font-medium lowercase`}
+                                    className={`text-xs text-${color} font-medium lowercase`}
                                   >
                                     {post.category}
                                   </p>

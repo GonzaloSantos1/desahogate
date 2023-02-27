@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className='select-none flex flex-col justify-center overflow-hidden'>
       <div className='h-[calc(100vh-60px)] flex flex-col w-full items-center justify-center relative'>
-        <h2 className='font-semibold text-center text-6xl md:text-8xl px-4 max-w-4xl tracking-wide'>
+        <h2 className='font-semibold text-center text-6xl md:text-8xl px-4 max-w-4xl tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-palette-purple to-action dark:text-white'>
           Una plataforma donde llorar y palante.
         </h2>
         <Image
@@ -28,7 +28,7 @@ export default function Home() {
           className='block lg:hidden absolute -left-28 top-10'
           priority
         />
-        <div className='flex justify-center flex-col items-center gap-2 absolute bottom-2 text-center text-secondary'>
+        <div className='flex justify-center flex-col items-center gap-2 absolute bottom-2 text-center text-palette-gray dark:text-secondary'>
           <p className='text-xs'>Desliza para saber más</p>
           <CgMouse size={24} className='animate-bounce ' />
         </div>
@@ -54,7 +54,7 @@ export default function Home() {
           </p>
         </div>
         <button
-          class='text-transparent bg-clip-text bg-gradient-to-r from-palette-purple to-action font-bold uppercase px-8 py-3 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 flex items-center justify-center gap-2 tracking-wide'
+          className='text-transparent bg-clip-text bg-gradient-to-r from-palette-purple to-action font-bold uppercase px-8 py-3 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 flex items-center justify-center gap-2 tracking-wide'
           type='button'
         >
           <div className='relative'>

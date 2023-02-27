@@ -3,25 +3,22 @@ import Header from './components/Header';
 import './globals.css';
 import React, {Suspense} from 'react';
 import Loading from './loading';
-import {SessionProvider} from 'next-auth/react';
-import User from './components/User';
+import Provider from './components/Provider';
 
-export default function RootLayout({children, ...props}) {
+export default function RootLayout({children}) {
   return (
     <html lang='en'>
       <head />
-      <SessionProvider session={props.session}>
-        <body className='bg-palette-black text-primary relative overflow-x-hidden'>
-          <User>
+      <body className='bg-white dark:bg-palette-black text-palette-gray dark:text-primary relative overflow-x-hidden'>
+        <Provider>
+          <Suspense fallback={<Loading />}>
             <Header />
-            <Suspense fallback={<Loading />}>
-              <div id='body-div' className='flex-1 scrollbar-none relative md:pb-0'>
-                {children}
-              </div>
-            </Suspense>
-          </User>
-        </body>
-      </SessionProvider>
+            <div id='body-div' className='flex-1 scrollbar-none relative md:pb-0'>
+              {children}
+            </div>
+          </Suspense>
+        </Provider>
+      </body>
     </html>
   );
 }

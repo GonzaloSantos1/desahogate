@@ -28,11 +28,12 @@ module.exports = {
       },
     },
   },
+  darkMode: 'class',
   plugins: [],
   safelist: [
     {
-      pattern:
-        /(bg|text|border|shadow|hover:bg|hover:text|hover:border|hover:shadow)-(action|palette)-(blue|yellow|green|red|purple|black|gray)/,
+      pattern: /(bg|text|border|shadow)-(action|palette)-(blue|yellow|green|red|purple|black|gray)/,
+      variants: ['hover', 'dark', 'dark:hover'],
     },
   ],
 };

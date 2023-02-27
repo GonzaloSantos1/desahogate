@@ -53,7 +53,7 @@ function HeroSection() {
               ref={sections}
               className='section-set w-screen h-full bg-transparent flex items-center z-50 justify-center'
             >
-              <div className='flex flex-col text-start gap-6 items-center justify-center '>
+              <div className='flex flex-col text-start gap-6 items-start justify-center '>
                 <p className='text-6xl max-w-md font-semibold text-transparent bg-clip-text bg-gradient-to-r from-palette-purple to-action'>
                   Comparte lo que te preocupa
                 </p>
@@ -80,7 +80,7 @@ function HeroSection() {
                 height={400}
                 alt='a cat comforting another one'
               />
-              <div className='flex flex-col text-start gap-6 items-center justify-center'>
+              <div className='flex flex-col text-start gap-6 items-start justify-center'>
                 <p className='text-6xl max-w-md font-semibold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-500'>
                   Comenta otras publicaciones
                 </p>
@@ -95,7 +95,7 @@ function HeroSection() {
               ref={sections}
               className='section-set w-screen h-full flex items-center z-50 justify-center'
             >
-              <div className='flex flex-col text-start gap-6 items-center justify-center'>
+              <div className='flex flex-col text-start gap-6 items-start justify-center'>
                 <p className='text-6xl max-w-md font-semibold text-transparent bg-clip-text bg-gradient-to-r to-rose-400 from-pink-600'>
                   Pórtate bien
                 </p>
