@@ -79,7 +79,6 @@ function ChatMessages({postId, categories}) {
     return (
       <div className='flex flex-col justify-between h-full py-2'>
         <LoadingComponent size={300} text={'Cargando comentarios...'} textSize={'3xl'} />
-        <ChatInput postId={postId} disabled={'disabled'} />
       </div>
     );
   return (
