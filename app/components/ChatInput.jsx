@@ -2,6 +2,7 @@
 import React, {useState, useContext} from 'react';
 import {useSession, signIn} from 'next-auth/react';
 import UserContext from '../../lib/userContext';
+import {TbSend} from 'react-icons/tb';
 
 function ChatInput(props) {
   const {postId, refreshMessages, disabled, data} = props;
@@ -65,21 +66,23 @@ function ChatInput(props) {
             onSubmit={addComment}
             className='flex overflow-hidden w-full text-md md:text-sm h-10 relative justify-between md:px-4 pb-2'
           >
-            <div className='border border-palette-gray w-full flex rounded-md overflow-hidden mx-2 md:mx-0'>
+            <div className=' w-full flex rounded-md overflow-hidden mx-2 md:mx-0'>
               <input
                 type='text'
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder='Escribe algo bonito aquí...'
-                className='flex-1 bg-palette-black px-3 focus:outline-none w-full rounded-md'
+                className='flex-1 bg-gray-100 dark:bg-palette-black px-3 focus:outline-none w-full text-gray-700 dark:text-primary'
               />
               <button
                 type='submit'
                 disabled={!input || disabled}
-                className='bg-palette-purple text-primary font-medium px-6 py-[5px] disabled:bg-palette-gray disabled:text-secondary disabled:cursor-not-allowed ease-in-out'
+                className='text-palette-purple font-medium px-6 bg-gray-100 dark:bg-palette-gray disabled:text-secondary disabled:cursor-not-allowed ease-in-out'
               >
                 {!sending ? (
-                  <p className='-mt-0.5'>Enviar</p>
+                  <span>
+                    <TbSend size={20} />
+                  </span>
                 ) : (
                   <svg
                     aria-hidden='true'

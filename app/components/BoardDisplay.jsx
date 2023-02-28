@@ -70,24 +70,29 @@ export default function BoardDisplay({data, categories}) {
               {[...dataFetched].reverse().map((post) => {
                 if (post._id !== pathname.slice(7)) {
                   return (
-                    <li className='relative max-w-[95%] min-w-[95%] text-primary' key={post._id}>
+                    <li
+                      className='relative max-w-[95%] min-w-[95%] text-gray-700 dark:text-primary'
+                      key={post._id}
+                    >
                       <Link href={`/board/${post._id}`}>
-                        <button className='w-full  px-4 py-2 bg-palette-gray rounded-lg'>
+                        <button className='w-full px-4 py-2 bg-gray-50 dark:bg-palette-gray rounded-lg shadow dark:shadow-none'>
                           {post.comments.length > 10 && (
                             <div className='absolute -top-2 -left-3 animate-pulse'>
                               <IconFlame color='#F4256D' size={35} />
                             </div>
                           )}
-                          <p className='mt-2 font-light tracking-wide'>{post.message}</p>
+                          <p className='mt-2 tracking-wide md:text-sm text-gray-700 dark:text-primary'>
+                            {post.message}
+                          </p>
                           <div className='flex justify-between items-end mt-4 text-secondary font-light'>
                             <div className='flex flex-col justify-start text-start'>
-                              <p className='flex gap-1'>
-                                <span>
+                              <p className='text-sm flex gap-1'>
+                                <span className='mt-0.5'>
                                   <IconMessageCircle2 size={15} stroke={2} />
                                 </span>
                                 {post.comments.length}
                               </p>
-                              <p className=' relative pl-5'>
+                              <p className='text-xs font-medium relative pl-5'>
                                 <span className='inline-flex absolute left-0 top-0.5'>
                                   <IconClockHour3 size={15} stroke={2} />
                                 </span>
@@ -95,7 +100,7 @@ export default function BoardDisplay({data, categories}) {
                               </p>
                             </div>
                             <div className='flex flex-col items-end'>
-                              <p href='#' className='font-medium  text-action' role='link'>
+                              <p href='#' className='font-medium text-sm text-action' role='link'>
                                 {post.username}
                               </p>
                               {categories.map(({name, color}) => {
@@ -151,7 +156,9 @@ export default function BoardDisplay({data, categories}) {
                               <IconFlame color='#F4256D' size={45} />
                             </div>
                           )}
-                          <p className='mt-2 tracking-wide md:text-sm'>{post.message}</p>
+                          <p className='mt-2 tracking-wide md:text-sm text-gray-700 dark:text-primary'>
+                            {post.message}
+                          </p>
                           <div className='flex justify-between items-end mt-4 text-secondary font-light'>
                             <div className='flex flex-col justify-start text-start'>
                               <p className='text-sm flex gap-1'>
@@ -160,7 +167,7 @@ export default function BoardDisplay({data, categories}) {
                                 </span>
                                 {post.comments.length}
                               </p>
-                              <p className='text-sm relative pl-5'>
+                              <p className='text-xs font-medium relative pl-5'>
                                 <span className='inline-flex absolute left-0 top-0.5'>
                                   <IconClockHour3 size={15} stroke={2} />
                                 </span>
@@ -198,7 +205,7 @@ export default function BoardDisplay({data, categories}) {
                             <IconFlame color='#F4256D' size={45} />
                           </div>
                         )}
-                        <p className='mt-2 tracking-wide md:text-sm text-pallete-gray dark:text-primary'>
+                        <p className='mt-2 tracking-wide md:text-sm text-gray-700 dark:text-primary'>
                           {post.message}
                         </p>
                         <div className='flex justify-between items-end mt-4 text-secondary font-light'>
@@ -217,7 +224,7 @@ export default function BoardDisplay({data, categories}) {
                             </p>
                           </div>
                           <div className='flex flex-col items-end'>
-                            <p href='#' className='font-medium text-xs text-action' role='link'>
+                            <p href='#' className='font-medium text-sm text-action' role='link'>
                               {post.username}
                             </p>
                             {categories.map(({name, color}) => {
@@ -225,7 +232,7 @@ export default function BoardDisplay({data, categories}) {
                                 return (
                                   <p
                                     key={name}
-                                    className={`text-xs text-${color} font-medium lowercase`}
+                                    className={`text-sm text-${color} font-medium lowercase`}
                                   >
                                     {post.category}
                                   </p>

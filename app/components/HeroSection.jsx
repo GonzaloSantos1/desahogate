@@ -54,10 +54,10 @@ function HeroSection() {
               className='section-set w-screen h-full bg-transparent flex items-center z-50 justify-center'
             >
               <div className='flex flex-col text-start gap-6 items-start justify-center '>
-                <p className='text-6xl max-w-md font-semibold text-transparent bg-clip-text bg-gradient-to-r from-palette-purple to-action'>
+                <p className='text-6xl max-w-md font-semibold text-palette-gray dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-palette-purple dark:to-action'>
                   Comparte lo que te preocupa
                 </p>
-                <p className='text-xl text-primary md:max-w-md '>
+                <p className='text-xl text-gray-700 dark:text-primary md:max-w-md '>
                   A veces, solo necesitamos desahogarnos. Puedes hacerlo de forma anónima o crear
                   una cuenta, así podrás seguir el hilo de lo que ocurre. Otras personas pueden
                   darte consejos o apoyo
@@ -72,7 +72,7 @@ function HeroSection() {
             </section>
             <section
               ref={sections}
-              className='section-set w-screen h-full bg-white flex items-center z-50 justify-center'
+              className='section-set w-screen h-full dark:bg-white flex items-center z-50 justify-center'
             >
               <Image
                 src='/assets/images/purr-5.png'
@@ -84,7 +84,7 @@ function HeroSection() {
                 <p className='text-6xl max-w-md font-semibold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-500'>
                   Comenta otras publicaciones
                 </p>
-                <p className='text-xl text-palette-gray md:max-w-md'>
+                <p className='text-xl text-gray-700 md:max-w-md'>
                   Entre todos podemos ayudarnos a salir del pozo, pero recuerda que probablemente ni
                   tú ni quién te comente sea un profesional de la salud mental. Es una comunidad de
                   apoyo, pero si necesitas ayuda profesional no la busques aquí
@@ -99,7 +99,7 @@ function HeroSection() {
                 <p className='text-6xl max-w-md font-semibold text-transparent bg-clip-text bg-gradient-to-r to-rose-400 from-pink-600'>
                   Pórtate bien
                 </p>
-                <p className='text-xl text-primary md:max-w-md'>
+                <p className='text-xl text-gray-700 dark:text-primary md:max-w-md'>
                   A veces, solo necesitamos desahogarnos. Puedes hacerlo de forma anónima o crear
                   una cuenta, así podrás seguir el hilo de lo que ocurre. Otras personas pueden
                   darte consejos o apoyo
@@ -120,7 +120,7 @@ function HeroSection() {
         <p className='text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-violet-400'>
           Comparte lo que te preocupa
         </p>
-        <p className='text-lg text-primary '>
+        <p className='text-lg text-gray-700 dark:text-primary'>
           A veces, solo necesitamos desahogarnos. Puedes hacerlo de forma anónima o crear una
           cuenta, así podrás seguir el hilo de lo que ocurre. Otras personas pueden darte consejos o
           apoyo
@@ -136,7 +136,7 @@ function HeroSection() {
         <p className='text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-500'>
           Comenta otras publicaciones
         </p>
-        <p className='text-lg text-palette-gray'>
+        <p className='text-lg text-gray-700'>
           Entre todos podemos ayudarnos a salir del pozo, pero recuerda que probablemente ni tú ni
           quién te comente sea un profesional de la salud mental. Es una comunidad de apoyo, pero si
           necesitas ayuda profesional no la busques aquí
@@ -152,7 +152,7 @@ function HeroSection() {
         <p className='text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-rose-500'>
           Pórtate bien
         </p>
-        <p className='text-lg text-primary'>
+        <p className='text-lg text-gray-700 dark:text-primary'>
           A veces, solo necesitamos desahogarnos. Puedes hacerlo de forma anónima o crear una
           cuenta, así podrás seguir el hilo de lo que ocurre. Otras personas pueden darte consejos o
           apoyo

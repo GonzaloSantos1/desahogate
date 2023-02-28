@@ -13,7 +13,7 @@ module.exports = {
       },
       colors: {
         background: '#171717',
-        primary: '#FFFF',
+        primary: '#fff',
         secondary: '#9ca3af',
         action: '#FF4ECD',
         'action-blue': '#008FF6',

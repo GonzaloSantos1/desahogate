@@ -33,7 +33,7 @@ function CategoriesFilter(props) {
             className={`px-3 py-1 border-2 font-medium text-sm ease-in-out transition duration-300 rounded-full border-${color} select-none cursor-pointer ${
               category == name
                 ? `bg-${color} text-white dark:text-palette-black`
-                : `text-palette-gray dark:text-${color}`
+                : `text-gray-700 dark:text-${color}`
             } lowercase`}
           >
             {name}

@@ -46,7 +46,7 @@ function Header() {
         desahógate
       </a>
 
-      <nav className='hidden md:flex justify-center gap-5 items-center text-md font-medium text-palette-gray dark:text-white'>
+      <nav className='hidden md:flex justify-center gap-5 items-center text-md font-medium text-gray-700 dark:text-white'>
         {/** THEME SWITCHER */}
         {mounted && (
           <>
@@ -67,8 +67,8 @@ function Header() {
           href='/'
           className={
             pathname == '/'
-              ? 'text-action'
-              : 'hover:text-action transition ease-in-out duration-300'
+              ? 'text-action-purple dark:text-action'
+              : 'hover:text-action-purple dark:hover:text-action transition ease-in-out duration-300'
           }
         >
           Home
@@ -77,8 +77,8 @@ function Header() {
           href='/board'
           className={
             pathname == '/board'
-              ? 'text-action'
-              : 'hover:text-action transition ease-in-out duration-300'
+              ? 'text-action-purple dark:text-action'
+              : 'hover:text-action-purple dark:hover:text-action transition ease-in-out duration-300'
           }
         >
           Board

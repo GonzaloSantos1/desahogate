@@ -101,7 +101,9 @@ function ChatMessages({postId, categories}) {
               })}
             </div>
             <div className='relative hidden md:block'>
-              <p className='font-light text-primary leading-[1.1] md:text-sm'>{data[0].message}</p>
+              <p className='font-light text-gray-700 dark:text-primary leading-[1.1] md:text-sm'>
+                {data[0].message}
+              </p>
               <p className='text-secondary font-medium text-end text-xs'>
                 Hace {dateHandler(data[0].created_at)}
               </p>
@@ -116,11 +118,11 @@ function ChatMessages({postId, categories}) {
               </div>
             </AnimateHeight>
           </div>
-          <hr className='border-palette-gray w-full relative' />
+          <hr className='border-gray-200 dark:border-palette-gray w-full relative' />
           {/** button to show/hide the text */}
           <div className='relative bg-transparent w-full'>
             <button
-              className='border-b border-l border-r rounded-bl-xl rounded-br-xl px-2 border-palette-gray md:hidden z-50 absolute bg-palette-gray right-[45%]'
+              className='border-b border-l border-r rounded-bl-xl rounded-br-xl px-2 border-gray-200 dark:border-palette-gray md:hidden z-50 absolute bg-gray-100 dark:bg-palette-gray right-[45%]'
               onClick={() => setTitleHeight(titleHeight === 0 ? 'auto' : 0)}
             >
               {titleHeight !== 0 ? <IconChevronUp /> : <IconChevronDown />}
@@ -199,8 +201,8 @@ function ChatMessages({postId, categories}) {
             data={data}
           />
         </div>
-        <div className='w-[20%] h-full border-l border-palette-gray overflow-hidden hidden md:block'>
-          <h2 className='font-medium text-sm w-full text-center my-2 text-palette-blue'>
+        <div className='w-[20%] h-full border-l border-gray-200 dark:border-palette-gray overflow-hidden hidden md:block'>
+          <h2 className='font-medium w-full text-center py-2 text-white bg-orange-400 dark:bg-palette-black dark:text-orange-600 text-md'>
             Otras publicaciones
           </h2>
           <div className='h-full pb-10 overflow-scroll scroll-none'>
