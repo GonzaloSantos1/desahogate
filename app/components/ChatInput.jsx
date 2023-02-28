@@ -88,7 +88,9 @@ function ChatInput(props) {
               onClick={() => {
                 setShowEmojis(!showEmojis);
               }}
-              className='cursor-pointer flex justify-center items-center bg-gray-100 dark:bg-palette-gray px-2 text-secondary'
+              className={`cursor-pointer flex justify-center items-center bg-gray-100 dark:bg-palette-gray px-2 ${
+                showEmojis ? 'text-palette-purple' : 'text-secondary'
+              }`}
             >
               <MdOutlineEmojiEmotions size={24} />
             </div>
