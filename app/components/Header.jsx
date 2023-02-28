@@ -4,6 +4,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import {useSession, signIn, signOut} from 'next-auth/react';
 import UserContext from '../../lib/userContext';
 import {IconChevronUp, IconChevronDown, IconMenu2, IconLayoutDashboard} from '@tabler/icons';
+import {IconSunFilled, IconMoonFilled} from '@tabler/icons-react';
 import {HiHome, HiUser} from 'react-icons/hi2';
 import {BiLogIn, BiLogOut} from 'react-icons/bi';
 import {IoFish} from 'react-icons/io5';
@@ -122,9 +123,13 @@ function Header() {
         className='flex md:hidden relative z-50 cursor-pointer'
         onClick={() => setHamburger(!hamburger)}
       >
-        <IconMenu2 stroke={3} size={28} color={`${hamburger ? '#c084fc' : '#FFFF'}`} />
+        <IconMenu2
+          stroke={3}
+          size={28}
+          color={`${hamburger ? '#c084fc' : theme === 'light' ? '#25282c' : '#fff'}`}
+        />
         {hamburger && (
-          <div className='font-medium absolute top-10 -right-2 flex flex-col justify-center items-start gap-3 py-5 bg-palette-gray z-50 rounded-xl px-1 w-40 shadow shadow-palette-black'>
+          <div className='font-medium absolute top-10 -right-2 flex flex-col justify-center items-start gap-3 py-5 bg-white dark:bg-palette-gray z-50 rounded-xl px-1 w-40 shadow dark:shadow-palette-black text-gray-700 dark:text-primary'>
             <a
               href={'/'}
               className='flex gap-2 items-center w-full hover:text-action-blue ease-in-out duration-300 transition pl-3 pr-4'
@@ -139,7 +144,28 @@ function Header() {
               <IconLayoutDashboard size={20} stroke={2} />
               <p>Board</p>
             </Link>
-            <hr className='w-[90%] self-center border-primary border-[0.5px]' />
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setTheme(theme === 'light' ? 'dark' : 'light');
+              }}
+              className='flex gap-2 items-center w-full pl-3 pr-4 '
+            >
+              {theme === 'light' ? (
+                <>
+                  <span className='text-[#ffa41b]'>
+                    <IconSunFilled size={20} stroke={2} />
+                  </span>
+                  <p>Claro</p>
+                </>
+              ) : (
+                <>
+                  <IconMoonFilled size={20} stroke={2} />
+                  <p>Oscuro</p>
+                </>
+              )}
+            </button>
+            <hr className='w-[90%] self-center border-gray-200 dark:border-primary border-[0.5px]' />
             {user.user.email && (
               <Link
                 href={'/account'}

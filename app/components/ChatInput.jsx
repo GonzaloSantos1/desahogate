@@ -82,7 +82,7 @@ function ChatInput(props) {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder='Escribe algo bonito aquí...'
-              className='flex-1 bg-gray-100 dark:bg-palette-gray px-3 focus:outline-none w-full h-10 text-gray-700 dark:text-primary'
+              className='flex-1 bg-gray-100 dark:bg-palette-gray px-3 focus:outline-none w-full h-10 text-gray-700 dark:text-primary text-md'
             />
             <div
               onClick={() => {

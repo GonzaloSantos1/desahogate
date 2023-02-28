@@ -4,7 +4,7 @@ import Image from 'next/image';
 function LoadingComponent({size, text, textSize}) {
   return (
     <div
-      className={`flex flex-col justify-center items-center mx-auto w-full h-full my-auto text-${textSize} font-medium`}
+      className={`flex flex-col justify-center items-center w-screen h-[calc(100vh-60px)] text-${textSize} font-medium`}
     >
       <Image
         src='/assets/images/purr.gif'
@@ -14,7 +14,7 @@ function LoadingComponent({size, text, textSize}) {
         className='block'
         priority
       />
-      <h2>{text}</h2>
+      <h2 className='px-4 py-2 text-center'>{text}</h2>
     </div>
   );
 }

@@ -78,7 +78,7 @@ function ChatMessages({postId, categories}) {
   if (!data)
     return (
       <div className='flex flex-col justify-between h-full py-2'>
-        <LoadingComponent size={300} text={'Cargando comentarios...'} textSize={'3xl'} />
+        <LoadingComponent size={300} text={'Cargando comentarios...'} textSize={'4xl'} />
       </div>
     );
   return (
@@ -92,7 +92,7 @@ function ChatMessages({postId, categories}) {
               {categories.map((e, index) => {
                 if (e.name == data[0].category) {
                   return (
-                    <p key={index} className={`text-${e.color} font-medium lowercase`}>
+                    <p key={index} className={`text-${e.color} font-medium lowercase text-sm`}>
                       {data[0].category}
                     </p>
                   );
@@ -100,7 +100,7 @@ function ChatMessages({postId, categories}) {
               })}
             </div>
             <div className='relative hidden md:block'>
-              <p className='font-light text-gray-700 dark:text-primary leading-[1.1] md:text-sm'>
+              <p className='text-gray-700 dark:text-primary leading-[1.1] md:text-sm'>
                 {data[0].message}
               </p>
               <p className='text-secondary font-medium text-end text-xs'>
