@@ -87,7 +87,7 @@ function Account() {
 
   if (!session)
     return (
-      <p className=' text-primary text-lg md:text-md px-3 text-center mt-[50%] md:mt-[20%]'>
+      <p className='text-gray-700 dark:text-primary text-lg md:text-md px-3 text-center mt-[50%] md:mt-[20%]'>
         <span
           className='text-action-blue font-semibold inline-flex mr-1.5 cursor-pointer hover:underline hover:underline-offset-2'
           onClick={handleSignIn}
@@ -101,7 +101,7 @@ function Account() {
   return (
     <div>
       <h1 className='text-palette-purple font-medium text-2xl my-5 px-4 md:px-36 font-[Poppins]'>
-        <span className='text-primary font-medium'>Hola,</span>{' '}
+        <span className='text-gray-700 dark:text-primary font-medium'>Hola,</span>{' '}
         {user.user.username ?? user.user.email} 👋
       </h1>
       <form
@@ -116,12 +116,12 @@ function Account() {
             onChange={(e) => {
               setUsername(e.target.value);
             }}
-            className='block px-2.5 py-2.5 w-full text-sm text-primary bg-transparent rounded-xl border-1 border-secondary appearance-none focus:outline-none focus:ring-0 border focus:border-action peer'
+            className='block px-2.5 py-2.5 w-full text-sm text-gray-700 dark:text-primary bg-transparent rounded-xl border-1 border-secondary appearance-none focus:outline-none focus:ring-0 border focus:border-action peer'
             placeholder=' '
           />
           <label
             htmlFor='username'
-            className='absolute text-sm text-secondary duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-palette-black px-2 peer-focus:px-2 peer-focus:text-action peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1'
+            className='absolute text-sm text-secondary duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-palette-black px-2 peer-focus:px-2 peer-focus:text-action peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1 cursor-text'
           >
             Cambiar nombre de usuario
           </label>
@@ -197,7 +197,7 @@ function Account() {
           )}
         </button>
       </form>
-      <h2 className='md:px-36 mt-2 text-xl font-medium text-gray-200 font-[Poppins]'>
+      <h2 className='md:px-36 mt-2 text-xl font-medium text-gray-700 dark:text-gray-200 font-[Poppins]'>
         Tu actividad
       </h2>
       {success && (

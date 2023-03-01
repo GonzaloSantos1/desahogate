@@ -3,9 +3,9 @@ import React, {useState, useEffect} from 'react';
 import Link from 'next/link';
 import {IconFlame, IconClockHour3, IconMessageCircle2} from '@tabler/icons';
 import CategoriesFilter from './CategoriesFilter';
-import EmptyMessage from './EmptyMessage';
+import EmptyMessage from '../../components/EmptyMessage';
 import CreateModal from './CreateModal';
-import LoadingComponent from './LoadingComponent';
+import LoadingComponent from '../../components/LoadingComponent';
 import {usePathname} from 'next/navigation';
 
 function msToTime(duration) {
@@ -59,14 +59,14 @@ export default function BoardDisplay({data, categories}) {
 
   if (pathname.length > 10) {
     return (
-      <div className='mt-5 md:mt-10 relative flex justify-center items-center'>
+      <div className='mt-5 md:mt-10 relative flex justify-center items-center scrollbar-none'>
         {!dataFetched ? (
           <LoadingComponent textSize={'lg'} text={'Cargando otros posts...'} size={250} />
         ) : !dataFetched.length ? (
           <EmptyMessage categories={categories} />
         ) : (
           <>
-            <ul className='flex flex-wrap justify-center gap-2 w-full h-full rounded-md py-2 text-xs -mt-10'>
+            <ul className='flex flex-wrap justify-center gap-2 w-full h-full rounded-md py-2 text-xs -mt-10 scrollbar-none'>
               {[...dataFetched].reverse().map((post) => {
                 if (post._id !== pathname.slice(7)) {
                   return (
@@ -75,7 +75,7 @@ export default function BoardDisplay({data, categories}) {
                       key={post._id}
                     >
                       <Link href={`/board/${post._id}`}>
-                        <button className='w-full px-4 py-2 bg-gray-100 dark:bg-palette-gray rounded-lg shadow dark:shadow-none'>
+                        <button className='w-full px-4 py-2 bg-gray-50 dark:bg-palette-gray rounded-lg shadow dark:shadow-none'>
                           {post.comments.length > 10 && (
                             <div className='absolute -top-2 -left-3 animate-pulse'>
                               <IconFlame color='#F4256D' size={35} />
@@ -131,18 +131,18 @@ export default function BoardDisplay({data, categories}) {
   }
 
   return (
-    <div className='relative'>
+    <div className='relative scrollbar-none'>
       <CategoriesFilter categories={categories} handleCategory={handleCategory} />
       {!dataFetched ? (
-        <LoadingComponent textSize={'3xl'} text={'Cargando posts...'} size={300} />
+        <LoadingComponent textSize={'4xl'} text={'Cargando posts...'} size={300} />
       ) : !dataFetched.length ? (
         <EmptyMessage categories={categories} />
       ) : (
         <>
-          <div className='block'>
+          <div className='block scrollbar-none'>
             <CreateModal categories={categories} />
           </div>
-          <ul className='flex flex-wrap justify-center gap-3 md:gap-6 mt-3 md:mt-6 mb-3 py-2'>
+          <ul className='flex flex-wrap justify-center gap-3 md:gap-6 mt-3 md:mt-6 mb-3 py-2 scrollbar-none'>
             {category !== ''
               ? dataFetched
                   .filter((e) => e.category == category)
@@ -199,7 +199,7 @@ export default function BoardDisplay({data, categories}) {
               : [...dataFetched].reverse().map((post) => (
                   <li className='relative' key={post._id}>
                     <Link href={`/board/${post._id}`}>
-                      <button className='w-full max-w-[340px] min-w-[340px] px-4 py-2 bg-gray-100 dark:bg-palette-gray rounded-lg md:hover:-translate-y-1 md:ease-in-out md:transition relative shadow dark:shadow-none'>
+                      <button className='w-full max-w-[340px] min-w-[340px] px-4 py-2 bg-gray-100 dark:bg-palette-gray rounded-lg md:hover:-translate-y-1 md:ease-in-out md:transition relative shadow dark:shadow-gray-800'>
                         {post.comments.length > 10 && (
                           <div className='absolute -top-2.5 -left-4 animate-pulse'>
                             <IconFlame color='#F4256D' size={45} />

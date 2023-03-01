@@ -1,7 +1,7 @@
 'use client';
 import React, {useState, useContext} from 'react';
 import {useSession, signIn} from 'next-auth/react';
-import UserContext from '../../lib/userContext';
+import UserContext from '../../../../lib/userContext';
 import {TbSend} from 'react-icons/tb';
 import {MdOutlineEmojiEmotions} from 'react-icons/md';
 import Picker from '@emoji-mart/react';

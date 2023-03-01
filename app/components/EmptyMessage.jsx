@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateModal from './CreateModal';
+import CreateModal from '../board/components/CreateModal';
 import Image from 'next/image';
 import {IconArrowNarrowDown} from '@tabler/icons';
 

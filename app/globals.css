@@ -35,6 +35,7 @@
   scrollbar-width: none; /* Firefox */
 }
 
+/* Theme switcher */
 .switcher {
   position: relative;
   display: block;
@@ -75,10 +76,10 @@ input[type='checkbox'] {
 }
 input[type='checkbox']:checked + .switcher:before {
   background-color: #fff;
-  transform: translateX(22px);
+  transform: translateX(24px);
 }
 input[type='checkbox']:checked + .switcher:after {
-  transform: translateX(76px) scale(1);
+  transform: translateX(78px) scale(1);
 }
 input[type='checkbox']:checked + .switcher {
   background-color: #141617;

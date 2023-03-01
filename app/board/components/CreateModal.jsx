@@ -2,7 +2,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {IconChevronDown} from '@tabler/icons';
 import {useSession, signIn} from 'next-auth/react';
-import UserContext from '../../lib/userContext';
+import UserContext from '../../../lib/userContext';
 
 function CreateModal({categories}) {
   const [modal, setModal] = useState(false);

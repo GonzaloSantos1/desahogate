@@ -1,5 +1,5 @@
 import React from 'react';
-import ChatMessages from '../../components/ChatMessages';
+import ChatMessages from './components/ChatMessages';
 
 const DetailedPost = ({params}) => {
   const categories = [
@@ -10,7 +10,7 @@ const DetailedPost = ({params}) => {
     {name: 'Otros', color: 'action-purple', selected: false},
   ];
   return (
-    <div className='flex flex-col justify-between h-full'>
+    <div className='flex flex-col justify-between h-[calc(100vh-64px)]'>
       <ChatMessages postId={params.id} categories={categories} />
     </div>
   );

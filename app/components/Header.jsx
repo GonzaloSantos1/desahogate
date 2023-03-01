@@ -10,6 +10,8 @@ import {BiLogIn, BiLogOut} from 'react-icons/bi';
 import {IoFish} from 'react-icons/io5';
 import {usePathname} from 'next/navigation';
 import {useTheme} from 'next-themes';
+import {useScrollPosition} from '../../hooks/useScrollPosition';
+import BackgroundGradient from './BackgroundGradient';
 
 function Header() {
   const {theme, setTheme} = useTheme();
@@ -20,6 +22,7 @@ function Header() {
   const user = useContext(UserContext);
   const username = user.user.username;
   const pathname = usePathname();
+  const scrollPosition = useScrollPosition();
 
   useEffect(() => {
     setMounted(true);
@@ -35,9 +38,16 @@ function Header() {
     signOut();
   };
 
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ');
+  }
+
   return (
     <header
-      className='bg-white dark:bg-palette-black backdrop-filter backdrop-blur-lg bg-opacity-30 dark:bg-opacity-70 sticky top-0 flex justify-between px-6 md:px-8 dark:shadow-palette-gray items-center h-[60px] md:h-16 tracking-wide z-30 shadow shadow-secondary'
+      className={classNames(
+        scrollPosition > 0 ? 'bg-opacity-20 dark:bg-opacity-50' : 'bg-opacity-0 dark:bg-opacity-0',
+        'bg-white dark:bg-palette-black backdrop-filter backdrop-blur-lg sticky top-0 flex justify-between px-6 md:px-8 items-center h-[60px] md:h-16 tracking-wide z-50'
+      )}
       onClick={() => setModal(false)}
     >
       <a
@@ -88,16 +98,16 @@ function Header() {
         {status === 'unauthenticated' ? (
           <button
             onClick={handleSignIn}
-            className='text-transparent bg-clip-text bg-gradient-to-l to-palette-purple from-action font-medium outline-none focus:outline-none ease-linear transition-all duration-150 flex items-center justify-center gap-2 tracking-wide border border-palette-purple rounded-xl px-3 py-1'
+            className='bg-gradient-to-l to-palette-purple from-action font-medium outline-none focus:outline-none ease-linear transition-all duration-150 flex items-center justify-center gap-2 tracking-wide rounded-full px-4 py-1 text-mdtext-whit hover:to-action hover:from-palette-purple text-primary'
           >
             <p>Entrar</p>
-            <span className='text-action/80'>
-              <IoFish size={24} />
+            <span>
+              <IoFish size={22} />
             </span>
           </button>
         ) : status === 'loading' ? (
-          <div className='text-palette-purple animate-spin'>
-            <IoFish size={24} />
+          <div className='animate-spin text-action'>
+            <IoFish size={22} />
           </div>
         ) : (
           <div className='flex justify-center gap-3' onClick={(e) => e.stopPropagation()}>
@@ -120,14 +130,16 @@ function Header() {
         )}
       </nav>
       <div
-        className='flex md:hidden relative z-50 cursor-pointer'
+        className={`flex md:hidden relative z-50 cursor-pointer ${
+          !hamburger
+            ? theme === 'light'
+              ? 'text-palette-black'
+              : 'text-white'
+            : 'text-action-purple'
+        }`}
         onClick={() => setHamburger(!hamburger)}
       >
-        <IconMenu2
-          stroke={3}
-          size={28}
-          color={`${hamburger ? '#c084fc' : theme === 'light' ? '#25282c' : '#fff'}`}
-        />
+        <IconMenu2 stroke={3} size={28} fill='' />
         {hamburger && (
           <div className='font-medium absolute top-10 -right-2 flex flex-col justify-center items-start gap-3 py-5 bg-white dark:bg-palette-gray z-50 rounded-xl px-1 w-40 shadow dark:shadow-palette-black text-gray-700 dark:text-primary'>
             <a
@@ -196,7 +208,7 @@ function Header() {
         )}
       </div>
       {modal ? (
-        <div className='font-medium absolute top-14 right-8 flex flex-col justify-center items-start py-1 bg-white dark:bg-palette-gray rounded-xl z-50 shadow shadow-secondary dark:shadow-palette-black'>
+        <div className='font-medium absolute top-14 right-8 flex flex-col justify-center items-start py-1 bg-white dark:bg-palette-gray rounded-xl z-50 shadow shadow-secondary dark:shadow-palette-black text-gray-700 dark:text-primary'>
           <Link
             href={'/account'}
             onClick={() => setModal(!modal)}

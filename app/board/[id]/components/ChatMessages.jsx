@@ -1,11 +1,11 @@
 'use client';
 import React, {useEffect, useState, useContext} from 'react';
-import LoadingComponent from './LoadingComponent';
+import LoadingComponent from '../../../components/LoadingComponent';
 import ChatInput from './ChatInput';
-import UserContext from '../../lib/userContext';
+import UserContext from '../../../../lib/userContext';
 import {IconChevronUp, IconChevronDown} from '@tabler/icons';
 import AnimateHeight from 'react-animate-height';
-import BoardDisplay from './BoardDisplay';
+import BoardDisplay from '../../components/BoardDisplay';
 import Comments from './Comments';
 
 function ChatMessages({postId, categories}) {
@@ -86,13 +86,18 @@ function ChatMessages({postId, categories}) {
       {/** CARD TITLE AND TEXT */}
       <div className='flex justify-center items-center h-[calc(100vh-64px)]'>
         <div className='flex flex-col justify-between h-full items-center w-full bg-transparent flex-1'>
-          <div className=' mt-1 w-full px-3 md:px-4 pb-2 text-md flex justify-between flex-col gap-1'>
+          <div className=' mt-1 w-full px-3 md:px-4 text-md flex justify-between flex-col gap-1 shadow dark:shadow-gray-800'>
             <div className='flex justify-between'>
-              <p className='font-medium text-action'>{data[0].username}</p>
+              <p className='font-medium text-white px-3 py-0.5 rounded-full bg-action text-sm'>
+                {data[0].username}
+              </p>
               {categories.map((e, index) => {
                 if (e.name == data[0].category) {
                   return (
-                    <p key={index} className={`text-${e.color} font-medium lowercase text-sm`}>
+                    <p
+                      key={index}
+                      className={`bg-${e.color} text-white px-3 py-0.5 rounded-full font-medium lowercase text-sm`}
+                    >
                       {data[0].category}
                     </p>
                   );
@@ -100,7 +105,7 @@ function ChatMessages({postId, categories}) {
               })}
             </div>
             <div className='relative hidden md:block'>
-              <p className='text-gray-700 dark:text-primary leading-[1.1] md:text-sm'>
+              <p className='text-gray-700 dark:text-primary !leading-[18px] md:text-sm font-medium'>
                 {data[0].message}
               </p>
               <p className='text-secondary font-medium text-end text-xs'>
@@ -110,14 +115,14 @@ function ChatMessages({postId, categories}) {
             {/** Smooth display showing/hiding card text */}
             <AnimateHeight duration={500} height={titleHeight}>
               <div className='relative md:hidden'>
-                <p className='text-gray-700 dark:text-primary leading-[1.1]'>{data[0].message}</p>
+                <p className='text-gray-700 dark:text-primary !leading-[18px]'>{data[0].message}</p>
                 <p className='text-secondary text-end text-xs'>
                   Hace {dateHandler(data[0].created_at)}
                 </p>
               </div>
             </AnimateHeight>
           </div>
-          <hr className='border-gray-200 dark:border-palette-gray w-full relative' />
+
           {/** button to show/hide the text */}
           <div className='relative bg-transparent w-full'>
             <button
@@ -130,7 +135,7 @@ function ChatMessages({postId, categories}) {
           {/** Comments section */}
           <div
             id='post-commentaries'
-            className='w-full flex-1 px-2 pb-1 overflow-y-auto flex flex-col-reverse relative scroll-none'
+            className='w-full flex-1 px-2 py-1 overflow-y-auto flex flex-col-reverse relative scrollbar-none'
           >
             <ul className='flex flex-col gap-2 items-start text-md md:px-2'>
               {data[0].comments.map((e) => {
@@ -204,7 +209,7 @@ function ChatMessages({postId, categories}) {
           <h2 className='font-medium text-center py-2 text-white bg-orange-400 dark:bg-palette-black dark:text-orange-600 text-md'>
             Otras publicaciones
           </h2>
-          <div className='h-full pb-10 overflow-scroll scroll-none'>
+          <div className='h-full pb-10 overflow-scroll scrollbar-none'>
             <BoardDisplay categories={categories} />
           </div>
         </div>

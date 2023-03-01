@@ -1,8 +1,7 @@
 'use client';
 import React, {useContext} from 'react';
-import CreateModal from '../components/CreateModal';
 import UserContext from '../../lib/userContext';
-import BoardDisplay from '../components/BoardDisplay';
+import BoardDisplay from './components/BoardDisplay';
 
 export default function Board() {
   const user = useContext(UserContext);
@@ -17,7 +16,7 @@ export default function Board() {
   ];
 
   return (
-    <div className='md:my-4 md:px-8'>
+    <div className='md:px-2'>
       <BoardDisplay data={data} categories={categories} />
     </div>
   );
