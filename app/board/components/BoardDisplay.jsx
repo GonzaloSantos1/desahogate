@@ -75,16 +75,16 @@ export default function BoardDisplay({data, categories}) {
                       key={post._id}
                     >
                       <Link href={`/board/${post._id}`}>
-                        <button className='w-full px-4 py-2 bg-gray-50 dark:bg-palette-gray rounded-lg shadow dark:shadow-none'>
+                        <button className='w-full p-2 bg-gray-50 dark:bg-palette-gray rounded-lg shadow dark:shadow-none'>
                           {post.comments.length > 10 && (
                             <div className='absolute -top-2 -left-3 animate-pulse'>
                               <IconFlame color='#F4256D' size={35} />
                             </div>
                           )}
-                          <p className='mt-2 tracking-wide md:text-sm text-gray-700 dark:text-primary'>
+                          <p className='mt-2 tracking-wide text-sm text-gray-700 !leading-[18px] dark:text-primary'>
                             {post.message}
                           </p>
-                          <div className='flex justify-between items-end mt-4 text-secondary'>
+                          <div className='flex justify-between items-end mt-1 text-secondary'>
                             <div className='flex flex-col justify-start text-start'>
                               <p className='text-xs flex gap-1 font-medium'>
                                 <span>
@@ -108,7 +108,7 @@ export default function BoardDisplay({data, categories}) {
                                   return (
                                     <p
                                       key={name}
-                                      className={` text-${color} font-medium lowercase`}
+                                      className={`text-xs text-${color} font-medium lowercase`}
                                     >
                                       {post.category}
                                     </p>
@@ -142,7 +142,7 @@ export default function BoardDisplay({data, categories}) {
           <div className='block scrollbar-none'>
             <CreateModal categories={categories} />
           </div>
-          <ul className='flex flex-wrap justify-center gap-3 md:gap-6 mt-3 md:mt-6 mb-3 py-2 scrollbar-none'>
+          <ul className='flex flex-wrap justify-center gap-3 mt-3 md:mt-6 mb-3 py-2 scrollbar-none'>
             {category !== ''
               ? dataFetched
                   .filter((e) => e.category == category)
@@ -156,10 +156,10 @@ export default function BoardDisplay({data, categories}) {
                               <IconFlame color='#F4256D' size={45} />
                             </div>
                           )}
-                          <p className='mt-2 tracking-wide md:text-sm text-gray-700 dark:text-primary'>
+                          <p className='mt-2 tracking-wide md:text-sm text-gray-700 dark:text-primary !leading-[18px]'>
                             {post.message}
                           </p>
-                          <div className='flex justify-between items-end mt-4 text-secondary'>
+                          <div className='flex justify-between items-end mt-1 text-secondary'>
                             <div className='flex flex-col justify-start text-start'>
                               <p className='text-sm flex gap-1'>
                                 <span className='mt-0.5'>
@@ -175,7 +175,7 @@ export default function BoardDisplay({data, categories}) {
                               </p>
                             </div>
                             <div className='flex flex-col items-end'>
-                              <p href='#' className='font-medium text-sm text-action' role='link'>
+                              <p href='#' className='font-medium text-xs text-action' role='link'>
                                 {post.username}
                               </p>
                               {categories.map(({name, color}) => {
@@ -183,7 +183,7 @@ export default function BoardDisplay({data, categories}) {
                                   return (
                                     <p
                                       key={name}
-                                      className={`text-sm text-${color} font-medium lowercase`}
+                                      className={`text-xs text-${color} font-medium lowercase`}
                                     >
                                       {post.category}
                                     </p>
@@ -205,10 +205,10 @@ export default function BoardDisplay({data, categories}) {
                             <IconFlame color='#F4256D' size={45} />
                           </div>
                         )}
-                        <p className='mt-2 tracking-wide md:text-sm text-gray-700 dark:text-primary'>
+                        <p className='mt-2 tracking-wide md:text-sm text-gray-700 dark:text-primary !leading-[18px]'>
                           {post.message}
                         </p>
-                        <div className='flex justify-between items-end mt-4 text-secondary font-light'>
+                        <div className='flex justify-between items-end mt-1 text-secondary font-light'>
                           <div className='flex flex-col justify-start text-start'>
                             <p className='text-xs font-medium flex gap-1'>
                               <span className=''>
@@ -224,7 +224,7 @@ export default function BoardDisplay({data, categories}) {
                             </p>
                           </div>
                           <div className='flex flex-col items-end'>
-                            <p href='#' className='font-medium text-sm text-action' role='link'>
+                            <p href='#' className='font-medium text-xs text-action' role='link'>
                               {post.username}
                             </p>
                             {categories.map(({name, color}) => {
@@ -232,7 +232,7 @@ export default function BoardDisplay({data, categories}) {
                                 return (
                                   <p
                                     key={name}
-                                    className={`text-sm text-${color} font-medium lowercase`}
+                                    className={`text-xs text-${color} font-medium lowercase`}
                                   >
                                     {post.category}
                                   </p>

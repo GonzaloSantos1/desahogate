@@ -82,7 +82,7 @@ function CreateModal({categories}) {
       {modal ? (
         !session ? (
           <div
-            className='fixed inset-0 modal-container z-10 w-screen overflow-x-hidden overflow-y-hidden h-full bg-palette-black/50 backdrop-blur-md flex justify-center px-4 items-center flex-col gap-6'
+            className='fixed inset-0 modal-container z-50 w-screen overflow-x-hidden overflow-y-hidden h-full bg-palette-black/50 backdrop-blur-md flex justify-center px-4 items-center flex-col gap-6'
             onClick={() => setModal(false)}
           >
             <div className='font-light text-base text-start md:text-center md:text-md mx-auto px-3 md:px-44 flex flex-col gap-2 leading-[1.25]'>
@@ -126,7 +126,7 @@ function CreateModal({categories}) {
           </div>
         ) : (
           <div
-            className='fixed inset-0 modal-container z-10 w-screen overflow-x-hidden overflow-y-hidden h-full bg-palette-black/50 backdrop-blur-md flex justify-center px-4 items-center flex-col gap-6'
+            className='fixed inset-0 modal-container z-50 w-screen overflow-x-hidden overflow-y-hidden h-full bg-palette-black/50 backdrop-blur-md flex justify-center px-4 items-center flex-col gap-6'
             onClick={() => setModal(false)}
           >
             <div className='font-light text-base text-start  md:text-md mx-auto px-3 md:px-44 flex flex-col gap-2 leading-[1.25] -mt-20 md:mt-0'>

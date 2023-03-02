@@ -17,10 +17,7 @@ export default function RootLayout({children}) {
             {/* <div className='fixed h-full'>
               <BackgroundGradient />
             </div> */}
-            <div
-              id='body-div'
-              className='flex-1 scrollbar-none relative md:pb-0 scroll-smooth z-30'
-            >
+            <div id='body-div' className='flex-1 scrollbar-none relative md:pb-0 scroll-smooth'>
               {children}
             </div>
           </Suspense>

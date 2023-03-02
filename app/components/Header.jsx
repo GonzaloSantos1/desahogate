@@ -46,7 +46,7 @@ function Header() {
     <header
       className={classNames(
         scrollPosition > 0 ? 'bg-opacity-20 dark:bg-opacity-50' : 'bg-opacity-0 dark:bg-opacity-0',
-        'bg-white dark:bg-palette-black backdrop-filter backdrop-blur-lg sticky top-0 flex justify-between px-6 md:px-8 items-center h-[60px] md:h-16 tracking-wide z-50'
+        'bg-white dark:bg-palette-black backdrop-filter backdrop-blur-lg sticky top-0 flex justify-between px-6 md:px-8 items-center h-[60px] md:h-16 tracking-wide z-30'
       )}
       onClick={() => setModal(false)}
     >

@@ -86,7 +86,7 @@ function ChatMessages({postId, categories}) {
       {/** CARD TITLE AND TEXT */}
       <div className='flex justify-center items-center h-[calc(100vh-64px)]'>
         <div className='flex flex-col justify-between h-full items-center w-full bg-transparent flex-1'>
-          <div className=' mt-1 w-full px-3 md:px-4 text-md flex justify-between flex-col gap-1 shadow dark:shadow-gray-800'>
+          <div className=' mt-1 w-full px-3 md:px-4 text-md flex justify-between flex-col gap-2 shadow dark:shadow-gray-800'>
             <div className='flex justify-between'>
               <p className='font-medium text-white px-3 py-0.5 rounded-full bg-action text-sm'>
                 {data[0].username}
@@ -206,7 +206,7 @@ function ChatMessages({postId, categories}) {
           />
         </div>
         <div className='w-[20%] h-full border-l border-gray-200 dark:border-palette-gray overflow-hidden hidden md:block'>
-          <h2 className='font-medium text-center py-2 text-white bg-orange-400 dark:bg-palette-black dark:text-orange-600 text-md'>
+          <h2 className='font-medium text-center py-2 dark:bg-palette-black text-orange-500 text-md'>
             Otras publicaciones
           </h2>
           <div className='h-full pb-10 overflow-scroll scrollbar-none'>

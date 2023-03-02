@@ -11,9 +11,7 @@ function Comments({time, text, user, username, verified}) {
     return (
       <li className='text-end self-end bg-action/80 pb-1 pt-1.5 px-3 rounded-t-xl rounded-bl-xl max-w-[350px] md:max-w-[450px] relative select-none shadow dark:shadow-gray-800'>
         <p className='text-white md:text-sm pl-4 font-medium'>{username ? username : 'Anónimo'}</p>
-        <p className='md:text-sm px-3 text-palette-gray dark:text-primary !leading-[18px]'>
-          {text}
-        </p>
+        <p className='md:text-sm text-palette-gray dark:text-primary !leading-[18px]'>{text}</p>
         <p className='text-gray-200 text-xs text-start pt-0.5 -ml-0.5'>{time}</p>
       </li>
     );
@@ -36,7 +34,7 @@ function Comments({time, text, user, username, verified}) {
             {username ? username : 'Anónimo'}
           </p>
         </div>
-        <p className='md:text-sm px-3 text-gray-700 dark:text-primary !leading-[18px]'>{text}</p>
+        <p className='md:text-sm text-gray-700 dark:text-primary !leading-[18px]'>{text}</p>
         <p className='text-secondary text-xs text-start pt-0.5 -ml-0.5'>{time}</p>
       </li>
     );
@@ -55,9 +53,7 @@ function Comments({time, text, user, username, verified}) {
         <p className='text-white dark:text-palette-black md:text-sm pr-4 font-medium'>
           {username ? username : 'Anónimo'}
         </p>
-        <p className='md:text-sm px-3 text-palette-gray dark:text-primary !leading-[18px]'>
-          {text}
-        </p>
+        <p className='md:text-sm text-palette-gray dark:text-primary !leading-[18px]'>{text}</p>
         <p className='text-gray-200 text-xs text-end pt-0.5 -mr-0.5'>{time}</p>
         {isOpen && (
           <span
@@ -103,7 +99,7 @@ function Comments({time, text, user, username, verified}) {
             </span>
           )}
         </div>
-        <p className='md:text-sm px-3 text-gray-700 dark:text-primary !leading-[18px]'>{text}</p>
+        <p className='md:text-sm text-gray-700 dark:text-primary !leading-[18px]'>{text}</p>
         <p className='text-secondary text-xs text-end pt-0.5 -mr-0.5'>{time}</p>
         {isOpen && (
           <span
